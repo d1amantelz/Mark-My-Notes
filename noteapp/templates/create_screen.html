@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<title>Создать</title>
+<link rel="stylesheet" href="{% static 'noteapp/css/note.css' %}"/>
+<link rel="stylesheet" href="{% static 'noteapp/css/create_screen.css' %}"/>
+
+{% endblock %}
+
+{% block content %}
+<div class="create-block-container">
+    <div class="create-block left"><a href="{% url 'create_category' %}">Создать категорию</a></div>
+    <div class="create-block right"><a href="{% url 'create_note' %}">Создать заметку</a></div>
+</div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const rows = document.querySelectorAll(".create-block");
+
+          rows.forEach((row) => {
+            const link = row.querySelector("a");
+            if (link) {
+              row.addEventListener("click", function () {
+                window.location = link.href;
+              });
+            }
+          });
+        });
+    </script>
+
+
+{% endblock %}

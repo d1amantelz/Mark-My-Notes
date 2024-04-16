@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Вход</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'noteapp/css/forms.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+            rel="stylesheet"
+    />
+</head>
+<body>
+<div class="form-container">
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <div class="form-fields">
+            <h1>Вход в аккаунт</h1>
+            <hr/>
+            <div class="input-group">
+                <label>Логин</label>
+                {{ form.username }}
+            </div>
+            <div class="input-group">
+                <label>Пароль</label>
+                {{ form.password }}
+            </div>
+
+            <p>Нет аккаунта? <a href="{% url 'sign_up' %}">Зарегистрируйтесь здесь</a></p>
+        </div>
+        <button type="submit">Войти</button>
+    </form>
+</div>
+</body>
+</html>

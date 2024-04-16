@@ -1,0 +1,67 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link rel="stylesheet" href="{% static 'noteapp/css/base.css' %}">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+            rel="stylesheet"
+    />
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
+
+<!-- шапка -->
+<header>
+    <div class="left-group">
+        <a href="{% url 'notes' %}" class="tooltip">
+            <img src="{% static 'noteapp/svg/notes.svg' %}" alt="Заметки"/>
+            <span class="tooltiptext">Ваши заметки</span>
+        </a>
+        <a href="{% url 'categories' %}" class="tooltip">
+            <img src="{% static 'noteapp/svg/categories.svg' %}" alt="Категории"/>
+            <span class="tooltiptext">Ваши категории</span>
+        </a>
+        <a href="{% url 'create_screen' %}" class="tooltip">
+            <img src="{% static 'noteapp/svg/add.svg' %}" alt="Создать заметку"/>
+            <span class="tooltiptext">Создать заметку</span>
+        </a>
+
+        <form action="">
+            <input class="fixing-paddings" type="text" placeholder="Поиск по заметкам..."/>
+        </form>
+    </div>
+    <div class="right-group">
+        <a href="#" class="tooltip">
+            <img src="{% static 'noteapp/svg/settings.svg' %}" alt="Настройки">
+            <span class="tooltiptext">Настройки</span>
+        </a>
+        <a href="{% url 'profile' %}" class="tooltip">
+            <img
+                    class="circled-icon border-icon"
+                    src="{{ request.user.profile.avatar.url }}"
+                    alt="Профиль пользователя"
+            />
+            <span class="tooltiptext">Ваш профиль</span>
+        </a>
+
+        <!-- Иконка для выйти -->
+        <a href="{% url 'logout' %}" class="tooltip">
+            <img src="{% static 'noteapp/svg/quit.svg' %}" alt="Выйти"/>
+            <span class="tooltiptext">Выйти из аккаунта</span>
+
+        </a>
+
+
+    </div>
+</header>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

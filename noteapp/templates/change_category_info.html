@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<title>Изменить категорию</title>
+<link rel="stylesheet" href="{% static 'noteapp/css/note.css' %}"/>
+<link rel="stylesheet" href="{% static 'noteapp/css/forms.css' %}"/>
+<link rel="stylesheet" href="{% static 'noteapp/css/create_note.css' %}"/>
+
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-fields">
+            <h1>Изменение категории</h1>
+            <hr/>
+
+            {% for f in form %}
+            <div class="input-group">
+                <label>{{ f.label }}</label>
+                {{ f }}
+            </div>
+            {% endfor %}
+
+        </div>
+        <button type="submit">Ко всем категориям</button>
+    </form>
+</div>
+
+
+{% endblock %}

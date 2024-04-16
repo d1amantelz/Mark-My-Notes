@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<title>{{ profile.user.username }}</title>
+<link rel="stylesheet" href="{% static 'noteapp/css/note.css' %}"/>
+<link rel="stylesheet" href="{% static 'noteapp/css/profile.css' %}"/>
+{% endblock %}
+
+{% block content %}
+<!-- контент профиля -->
+<div class="profile-container">
+    <div class="change-info-container">
+        <div class="profile-photo-container">
+            <img class="profile-photo" src="{{ profile.avatar.url }}" alt=""/>
+        </div>
+        <div class="change-buttons-container">
+            <h2 class="profile-name">{{ profile.user.username }}</h2>
+            <button><a href="{% url 'change_avatar' %}">Сменить аватар</a></button>
+            <button><a href="{% url 'change_username' %}">Сменить имя профиля</a></button>
+        </div>
+    </div>
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-fields">
+                <div class="input-group">
+                    <label>Имя</label>
+                    {{ form.first_name }}
+                </div>
+                <div class="input-group">
+                    <label>Фамилия</label>
+                    {{ form.last_name }}
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    {{ form.email }}
+                </div>
+            </div>
+            <button type="submit">Сохранить изменения</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

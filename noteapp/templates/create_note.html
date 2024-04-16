@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<title>Создать заметку</title>
+<link rel="stylesheet" href="{% static 'noteapp/css/note.css' %}"/>
+<link rel="stylesheet" href="{% static 'noteapp/css/forms.css' %}"/>
+<link rel="stylesheet" href="{% static 'noteapp/css/create_note.css' %}"/>
+
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <form class="test-class-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-fields">
+            <h1>Создание заметки</h1>
+            <hr/>
+
+            {% for f in form %}
+            <div class="input-group">
+                <label>{{ f.label }}</label>
+                {{ f }}
+            </div>
+            {% endfor %}
+
+        </div>
+        <button type="submit">Перейти к заметке</button>
+    </form>
+</div>
+
+
+{% endblock %}

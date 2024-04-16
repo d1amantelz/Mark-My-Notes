@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<title>Ваши категории</title>
+<link rel="stylesheet" href="{% static 'noteapp/css/note.css' %}"/>
+<link rel="stylesheet" href="{% static 'noteapp/css/notes.css' %}"/>
+<link rel="stylesheet" href="{% static 'noteapp/css/categories.css' %}"/>
+
+{% endblock %}
+
+{% block content %}
+<!-- контейнер с заметками -->
+<div class="notes-container">
+    <h1 class="notes-header">Ваши категории</h1>
+
+    <div class="categories-container">
+        {% for category in categories %}
+
+        <div class="category" style="background-color: {{ category.color }}">
+            <h2><span class="category-name">{{ category.name }}</span>
+                <a href="{{ category.get_absolute_url }}">
+                    <img src="{% static 'noteapp/svg/edit_green.svg' %}" alt="">
+                </a>
+                <a href="{% url 'notes_by_category' category.pk %}">
+                    <img src="{% static 'noteapp/svg/list.svg' %}" alt="">
+                </a>
+                <a href="{% url 'delete_category' category.pk %}">
+                    <img src="{% static 'noteapp/svg/delete_red.svg' %}" alt="">
+                </a>
+            </h2>
+        </div>
+        {% endfor %}
+
+    </div>
+
+
+</div>
+{% endblock %}

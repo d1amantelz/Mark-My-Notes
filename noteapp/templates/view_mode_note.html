@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<title>{{ note.title }}</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-dark.css"
+/>
+<link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+        rel="stylesheet"
+/>
+<link rel="stylesheet" href="{% static 'noteapp/css/note.css' %}"/>
+<link rel="stylesheet" href="{% static 'noteapp/css/view_mode_note.css' %}"/>
+<style>
+    .note-panel {
+        width: 132px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="note-panel">
+    <a href="{% url 'note_detail' note.pk %}" class="tooltip">
+        <img src="{% static 'noteapp/svg/edit.svg' %}" alt="">
+        <span class="tooltiptext">Перейти в режим редактирования</span>
+    </a>
+    <a href="{% url 'change_note_info' note.pk %}" class="tooltip">
+        <img src="{% static 'noteapp/svg/note-properties.svg' %}" alt="">
+        <span class="tooltiptext">Изменить данные заметки</span>
+    </a>
+    <a href="{% url 'delete_note' note.pk %}" class="tooltip">
+        <img src="{% static 'noteapp/svg/delete.svg' %}" alt="">
+        <span class="tooltiptext">Удалить заметку</span>
+    </a>
+
+</div>
+
+
+<!-- заметка -->
+<div class="note-block">
+    <div class="note-info-container">
+        <div class="note-image">
+            <img
+                    class="circled-icon note-icon"
+                    src="{{ note.icon.url }}"
+                    alt="Заметка"
+            />
+        </div>
+
+        <div class="note-info">
+            <div class="note-title">
+                <h2>{{ note.title }}</h2>
+            </div>
+            <div class="note-description">
+                <p>{{ note.description }}</p>
+            </div>
+            <div class="category" style="background-color: {{ note.category.color }}">
+                <h2>{{ note.category }}</h2>
+            </div>
+            <div class="date-container">
+                <p><span class="date-span">upd.</span> {{ note.time_update|date:"d.m.Y" }} <span
+                        class="date-span"> / </span>{{ note.time_update|date:"H:i" }} <span class="date-span">(мск)</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    {% load markdown_extras %}
+
+    <div class="note-content">
+        {% if note.content %}
+        {{ note.content | markdown | safe }}
+        {% endif %}
+
+    </div>
+    <script>
+        hljs.highlightAll();
+    </script>
+</div>
+
+{% endblock %}

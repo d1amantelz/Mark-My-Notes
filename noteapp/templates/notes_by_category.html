@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<title>Ваши заметки по категории &laquo;{{ category }}&raquo;</title>
+<link rel="stylesheet" href="{% static 'noteapp/css/note.css' %}"/>
+<link rel="stylesheet" href="{% static 'noteapp/css/notes.css' %}"/>
+{% endblock %}
+
+{% block content %}
+<!-- контейнер с заметками -->
+<div class="notes-container">
+    <h1 class="notes-header">Ваши заметки по категории <span
+            class="notes-by-category-name">&laquo;{{ category }}&raquo;</span>
+    </h1>
+
+    <table class="notes-table">
+        <tr data-href="index.html" class="note-row header-row">
+            <th>Аватар</th>
+            <th>Название</th>
+            <th>Категория</th>
+            <th>Дата создания</th>
+            <th>Дата изменения</th>
+        </tr>
+        {% for note in notes %}
+        <tr class="note-row hoverable">
+            <td>
+                <a href="{{ note.get_absolute_url }}"
+                ><img class="img-in-table" src="{{ note.icon.url }}" alt=""
+                /></a>
+            </td>
+            <td><a href="">{{ note.title }}</a></td>
+            <td><a class="note-category-label" href="" style="background-color: {{ note.category.color }}">
+                {{ note.category }}</a></td>
+            <td><a href="">{{ note.time_create|date:"d.m.Y" }}</a></td>
+            <td><a href="">{{ note.time_update|date:"d.m.Y" }}</a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const rows = document.querySelectorAll(".note-row");
+
+            rows.forEach((row) => {
+                const link = row.querySelector("a");
+                if (link) {
+                    row.addEventListener("click", function () {
+                        window.location = link.href;
+                    });
+                }
+            });
+        });
+    </script>
+</div>
+{% endblock %}

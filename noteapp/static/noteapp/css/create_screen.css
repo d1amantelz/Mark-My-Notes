@@ -1,0 +1,48 @@
+.create-block-container {
+    margin-top: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-block {
+    width: 400px;
+    border-radius: 30px;
+    height: 300px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #3a3a3a;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease-in-out;
+}
+
+.create-block a {
+    text-decoration: none;
+    color: #fdbf2d;
+}
+
+.create-block:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 2px #fdbf2d;
+
+}
+
+.left {
+    margin-right: 50px;
+}
+
+.left:hover {
+    background-color: #685077;
+}
+
+.right {
+    margin-left: 50px;
+}
+
+.right:hover {
+    background-color: #965764;
+}

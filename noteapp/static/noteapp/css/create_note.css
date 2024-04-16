@@ -1,0 +1,53 @@
+textarea {
+  height: 110px;
+  width: 558px;
+  border-radius: 15px;
+  resize: none;
+  padding: 10px;
+  font-size: 20px;
+  font-family: Nunito, sans-serif;
+  background-color: #3f3f3f;
+  border: 1px solid #fdbf2d;
+  color: #d2d2ca;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+input[type="file"] {
+  height: 40px;
+  font-size: 15px;
+  font-family: Nunito, sans-serif;
+  padding: 0;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  background-color: #3f3f3f;
+  height: 40px;
+  border-radius: 15px;
+  font-size: 15px;
+  font-family: Nunito, sans-serif;
+  border: 1px solid #fdbf2d;
+  color: #d2d2ca;
+  padding: 0 15px;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.form-container {
+  position: static;
+  margin: 50px auto;
+  transform: none;
+  max-width: 698px;
+}
+
+
+textarea::-webkit-scrollbar {
+    width: 8px;
+  }
+  textarea::-webkit-scrollbar-thumb {
+    background-color: #525252;
+    border-radius: 20px;
+    /* border: 3px solid #303030; */
+  }

@@ -1,0 +1,82 @@
+
+.note-change-buttons-container button {
+    width: 400px;
+}
+
+.note-content h1,
+.note-content h2,
+.note-content h3,
+.note-content h4,
+.note-content h5,
+.note-content h6 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.note-content h1 {
+    margin-top: 0;
+}
+
+.note-content ol,
+.note-content ul {
+    padding-left: 10px;
+    margin: 0;
+    list-style-position: inside;
+}
+
+.note-content pre {
+    margin: 0 0 15px;
+}
+
+
+.note-content a {
+    color: #fdbf2d;
+}
+
+.note-content a:visited {
+    color: #fdbf2d;
+
+}
+
+.note-content blockquote {
+    display: inline-block;
+    margin: 0;
+    padding: 10px;
+    border-left: 3px solid #fdbf2d;
+    background-color: #484848;
+}
+
+.note-content code {
+    border-radius: 10px;
+    max-width: 800px;
+    font-size: 14px;
+}
+
+.note-content strong, .note-content em {
+    color: #fdbf2d;
+}
+
+
+.note-content input[type="checkbox"]:checked:before {
+    content: "";
+    background-color: #ff0000; /* Замените на желаемый цвет */
+}
+
+.note-content img {
+    max-width: 800px;
+    margin-bottom: 15px;
+}
+
+
+.hljs {
+    background-color: #323232;
+    font-family: "Jetbrains Mono", monospace;
+}
+
+@media (max-width: 1024px) {
+    .note-change-buttons-container {
+        order: 3;
+        height: 100px;
+    }
+}
+

@@ -1,0 +1,53 @@
+<html lang="ru">
+<head>
+    <title>Регистрация</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'noteapp/css/forms.css' %}">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+            rel="stylesheet"
+    />
+
+</head>
+<body>
+<div class="form-container">
+    <form action="{% url 'sign_up' %}" method="post">
+        {% csrf_token %}
+        <div class="form-fields">
+            <h1>Регистрация нового аккаунта</h1>
+            <hr/>
+            <div class="input-group">
+                <label>Имя</label>
+                {{ form.first_name }}
+            </div>
+            <div class="input-group">
+                <label>Фамилия</label>
+                {{ form.last_name }}
+            </div>
+            <div class="input-group">
+                <label>Имя профиля</label>
+                {{ form.username }}
+            </div>
+            <div class="input-group">
+                <label>Email</label>
+                {{ form.email }}
+            </div>
+            <div class="input-group">
+                <label>Пароль</label>
+                {{ form.password1 }}
+            </div>
+            <div class="input-group">
+                <label>Повторите пароль</label>
+                {{ form.password2 }}
+            </div>
+            <p>Уже есть аккаунт? <a href="{% url 'login' %}">Войдите здесь</a></p>
+        </div>
+        <button type="submit">Регистрация</button>
+    </form>
+</div>
+</body>
+</html>

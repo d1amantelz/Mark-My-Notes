@@ -1,0 +1,29 @@
+.categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 70px 100px;
+}
+
+.category {
+    display: inline-block;
+    margin: 10px 30px 10px 10px;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.category h2, .category a {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.category span {
+    margin-right: 10px;
+}
+
+.category a {
+    color: inherit;
+    font-size: 18px;
+    text-decoration: none;
+}
