@@ -4,6 +4,10 @@
 {% block css %}
 <title>{{ note.title }}</title>
 <link rel="stylesheet" href="{% static 'noteapp/css/note.css' %}"/>
+<link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+        rel="stylesheet"
+/>
 {% endblock %}
 
 {% block content %}
@@ -12,7 +16,7 @@
         <img src="{% static 'noteapp/svg/view.svg' %}" alt="">
         <span class="tooltiptext">Перейти в режим обзора</span>
     </a>
-    <a href="{% url 'change_note_info' note.pk %}" class="tooltip">
+    <a href="{% url 'update_note' note.pk %}" class="tooltip">
         <img src="{% static 'noteapp/svg/note-properties.svg' %}" alt="">
         <span class="tooltiptext">Изменить данные заметки</span>
     </a>
@@ -46,9 +50,13 @@
             <div class="note-title">
                 <h2>{{ note.title }}</h2>
             </div>
+
+            {% if note.description %}
             <div class="note-description">
                 <p>{{ note.description }}</p>
             </div>
+            {% endif %}
+
             <div class="category" style="background-color: {{ note.category.color }}">
                 <h2>{{ note.category }}</h2>
             </div>
@@ -115,7 +123,7 @@
     });
 </script>
 
-<!--для вставки 4-х пробелов при нажатии tab -->
+<!-- для вставки 4-х пробелов при нажатии tab -->
 <script>
     document.querySelector('textarea').addEventListener('keydown', function (e) {
         if (e.key == 'Tab') {
@@ -135,7 +143,7 @@
 
 </script>
 
-<!--для копирования в буфер-->
+<!-- для копирования в буфер -->
 <script>
     function popNotification() {
         var message = document.createElement('div');

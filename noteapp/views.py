@@ -1,144 +1,188 @@
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
+from django.views.generic.list import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import logout
+from django.views.generic import CreateView, UpdateView, DetailView
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
 
 from .forms import *
 from .models import *
 
 
-def notes(request):
-    user = Profile.objects.get(user=request.user)
-    context = {'notes': Note.objects.filter(author=user),
-               'user': user}
-    return render(request, 'notes.html', context=context)
+# ------- NOTE VIEWS -------
+
+class NoteListView(LoginRequiredMixin, ListView):
+    template_name = 'notes.html'
+    context_object_name = 'notes'
+
+    def get_queryset(self):
+        user = self.request.user.profile
+        return Note.objects.filter(author=user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user'] = self.request.user.profile
+        return context
 
 
-def create_note(request):
-    if request.method == 'POST':
-        form = CreateNoteForm(request.POST, request.FILES, author=request.user.profile)
+class NoteCreateView(LoginRequiredMixin, CreateView):
+    model = Note
+    form_class = NoteForm
+    template_name = 'create_note.html'
 
-        if form.is_valid():
-            print(form.cleaned_data)
-            note = Note.objects.create(
-                title=form.cleaned_data['title'],
-                description=form.cleaned_data['description'],
-                author=Profile.objects.get(user=request.user),
-                icon=form.cleaned_data['icon'],
-                category=form.cleaned_data['category'])
-            note.save()
-            return redirect(f'/note_detail/{note.pk}')
-    else:
-        form = CreateNoteForm(author=request.user.profile)
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs.update({'author': self.request.user.profile})
+        return kwargs
 
-    return render(request, 'create_note.html', context={'form': form})
+    def form_valid(self, form):
+        form.instance.author = self.request.user.profile
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('note_edit_mode', kwargs={'note_id': self.object.pk})
 
 
-def note_detail(request, note_id):
-    note = Note.objects.get(pk=note_id)
+class NoteUpdateView(LoginRequiredMixin, UpdateView):
+    model = Note
+    form_class = EditNoteForm
+    template_name = 'note.html'
+    pk_url_kwarg = 'note_id'
 
-    if request.method == 'POST':
-        form = EditNoteForm(request.POST)
-
-        if form.is_valid():
-            note.content = form.cleaned_data['content']
-            note.save()
-            return redirect(f'/note/{note.pk}/view_mode/')
-    else:
-        form = EditNoteForm(instance=note)
-
-    return render(request, 'note.html', context={'note': note, 'form': form})
+    def get_success_url(self):
+        return reverse_lazy('note_view_mode', kwargs={'note_id': self.object.pk})
 
 
-def note_view_mode(request, note_id):
-    note = Note.objects.get(pk=note_id)
-    return render(request, 'view_mode_note.html', context={'note': note})
+class NoteViewMode(LoginRequiredMixin, DetailView):
+    model = Note
+    template_name = 'view_mode_note.html'
+    pk_url_kwarg = 'note_id'
 
 
-def profile_view(request):
-    profile = Profile.objects.get(id=request.user.id)
+class NoteInfoUpdateView(LoginRequiredMixin, UpdateView):
+    model = Note
+    form_class = NoteForm
+    template_name = 'update_note.html'
+    pk_url_kwarg = 'note_id'
 
-    if request.method == 'POST':
-        form = ChangeUserInfoForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            return redirect('/profile/')
-    else:
-        form = ChangeUserInfoForm(instance=request.user)
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs.update({'author': self.request.user.profile})
+        return kwargs
 
-    return render(request, 'profile.html', {'profile': profile, 'form': form})
+    def form_valid(self, form):
+        form.instance.author = self.request.user.profile
+        return super().form_valid(form)
 
-
-def change_username(request):
-    if request.method == 'POST':
-        form = ChangeUsernameForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            return redirect('/profile/')
-    else:
-        form = ChangeUsernameForm(instance=request.user)
-
-    return render(request, 'change_username.html', {'form': form})
+    def get_success_url(self):
+        return reverse_lazy('note_edit_mode', kwargs={'note_id': self.object.pk})
 
 
-def change_avatar(request):
-    profile = Profile.objects.get(id=request.user.id)
+class NotesByCategoryView(LoginRequiredMixin, ListView):
+    template_name = 'notes_by_category.html'
+    context_object_name = 'notes'
 
-    if request.method == 'POST':
-        form = ChangeAvatarForm(request.POST, request.FILES)
-        if form.is_valid():
-            profile.avatar = form.cleaned_data['avatar']
-            profile.save()
-            return redirect('/profile/')
-    else:
-        form = ChangeAvatarForm(instance=profile)
+    def get_queryset(self):
+        category_id = self.kwargs['category_id']
+        return Note.objects.filter(category__pk=category_id, author=self.request.user.profile)
 
-    return render(request, 'change_avatar.html', {'form': form})
-
-
-def change_note_info(request, note_id):
-    note = Note.objects.get(pk=note_id)
-
-    if request.method == 'POST':
-        form = ChangeNoteInfoForm(request.POST, request.FILES)
-        if form.is_valid():
-
-            print(form.cleaned_data)
-            note.title = form.cleaned_data['title']
-            note.description = form.cleaned_data['description']
-            note.category = form.cleaned_data['category']
-
-            if form.cleaned_data['icon'] != 'default/default-note-icon.png':
-                note.icon = form.cleaned_data['icon']
-
-            note.author = request.user.profile
-            note.save()
-
-            return redirect(f'/note_detail/{note.pk}')
-    else:
-        form = ChangeNoteInfoForm(instance=note)
-
-    return render(request, 'change_note_info.html', {'form': form})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.get(pk=self.kwargs['category_id'])
+        return context
 
 
 def delete_note(request, note_id):
-    note = get_object_or_404(Note, pk=note_id)
-    note.delete()
-    return redirect('/')
+    get_object_or_404(Note, pk=note_id).delete()
+    return redirect('notes')
+
+
+# ------- CATEGORY VIEWS -------
+
+class CategoryListView(LoginRequiredMixin, ListView):
+    template_name = 'categories.html'
+    context_object_name = 'categories'
+
+    def get_queryset(self):
+        user = self.request.user.profile
+        return Category.objects.filter(author=user)
+
+
+class CategoryCreateView(LoginRequiredMixin, CreateView):
+    model = Category
+    form_class = CategoryForm
+    template_name = 'create_category.html'
+    success_url = reverse_lazy('categories')
+
+    def form_valid(self, form):
+        if form.cleaned_data['color'] is None:
+            form.instance.color = Category.COLOR_CHOICES[1][0]
+        else:
+            form.instance.color = form.cleaned_data['color']
+
+        form.instance.author = self.request.user.profile
+        return super().form_valid(form)
+
+
+class CategoryUpdateView(LoginRequiredMixin, UpdateView):
+    model = Category
+    form_class = CategoryForm
+    template_name = 'update_category.html'
+    pk_url_kwarg = 'category_id'
+    success_url = reverse_lazy('categories')
+
+    def form_valid(self, form):
+        if form.cleaned_data['color'] is None:
+            form.instance.color = Category.COLOR_CHOICES[1][0]
+        else:
+            form.instance.color = form.cleaned_data['color']
+        return super().form_valid(form)
 
 
 def delete_category(request, category_id):
-    category = get_object_or_404(Category, pk=category_id)
-    category.delete()
+    get_object_or_404(Category, pk=category_id).delete()
     return redirect('/categories/')
 
 
-def logout_view(request):
-    logout(request)
-    return redirect('login')
+# ------- PROFILE VIEWS -------
 
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = ChangeUserInfoForm
+    template_name = 'profile.html'
+    success_url = reverse_lazy('profile')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['profile'] = self.request.user.profile
+        return context
+
+    def get_object(self, *args, **kwargs):
+        return self.request.user
+
+
+class UsernameUpdateView(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = ChangeUsernameForm
+    template_name = 'change_username.html'
+    success_url = reverse_lazy('profile')
+
+    def get_object(self, **kwargs):
+        return self.request.user
+
+
+class AvatarUpdateView(LoginRequiredMixin, UpdateView):
+    model = Profile
+    form_class = ChangeAvatarForm
+    template_name = 'change_avatar.html'
+    success_url = reverse_lazy('profile')
+
+    def get_object(self, **kwargs):
+        return self.request.user.profile
+
+
+# ------- AUTH VIEWS -------
 
 class SignUpPageView(CreateView):
     form_class = CustomUserCreationForm
@@ -152,61 +196,11 @@ class LoginPageView(LoginView):
     success_url = reverse_lazy('notes')
 
 
-def categories(request):
-    categories = Category.objects.filter(author=Profile.objects.get(user=request.user))
-    return render(request, 'categories.html', context={'categories': categories})
+class LogoutUserView(LogoutView):
+    next_page = 'login'
 
 
-def category_detail(request, category_id):
-    category = Category.objects.get(pk=category_id)
-    return render(request, 'category.html', context={'category': category})
-
+# ------- OTHER VIEWS -------
 
 def create_screen(request):
     return render(request, 'create_screen.html')
-
-
-def create_category(request):
-    if request.method == 'POST':
-        form = CreateCategoryForm(request.POST, request.FILES)
-
-        if form.is_valid():
-            print(form.cleaned_data)
-
-            category = Category.objects.create(
-                name=form.cleaned_data['name'],
-                author=Profile.objects.get(user=request.user))
-
-            if form.cleaned_data['color'] is None:
-                category.color = Category.COLOR_CHOICES[1][0]
-            else:
-                category.color = form.cleaned_data['color']
-
-            category.save()
-            return redirect('/categories')
-    else:
-        form = CreateCategoryForm()
-
-    return render(request, 'create_category.html', context={'form': form})
-
-
-def change_category_info(request, category_id):
-    category = Category.objects.get(pk=category_id)
-
-    if request.method == 'POST':
-        form = ChangeCategoryInfoForm(request.POST, request.FILES)
-        if form.is_valid():
-            category.name = form.cleaned_data['name']
-            category.color = form.cleaned_data['color']
-            category.save()
-            return redirect('/categories/')
-    else:
-        form = ChangeCategoryInfoForm(instance=category)
-
-    return render(request, 'change_category_info.html', {'form': form})
-
-
-def notes_by_category(request, category_id):
-    category = Category.objects.get(pk=category_id)
-    notes_by_cat = Note.objects.filter(category__pk=category_id, author=request.user.profile)
-    return render(request, 'notes_by_category.html', context={'notes': notes_by_cat, 'category': category})

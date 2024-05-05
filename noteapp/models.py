@@ -19,7 +19,7 @@ class Note(models.Model):
         return f'{self.title} | {self.category} | {self.time_create:%d-%m-%Y | %H:%M:%S}'
 
     def get_absolute_url(self):
-        return reverse('note_detail', kwargs={'note_id': self.pk})
+        return reverse('note_edit_mode', kwargs={'note_id': self.pk})
 
 
 class Category(models.Model):
@@ -41,7 +41,7 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('change_category_info', kwargs={'category_id': self.pk})
+        return reverse('update_category', kwargs={'category_id': self.pk})
 
     class Meta:
         verbose_name = 'Category'

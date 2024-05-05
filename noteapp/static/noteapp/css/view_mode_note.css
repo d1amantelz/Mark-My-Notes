@@ -1,4 +1,8 @@
 
+.note-content {
+    font-family: "Jetbrains Mono", monospace;
+}
+
 .note-change-buttons-container button {
     width: 400px;
 }

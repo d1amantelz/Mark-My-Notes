@@ -23,11 +23,11 @@
 
 {% block content %}
 <div class="note-panel">
-    <a href="{% url 'note_detail' note.pk %}" class="tooltip">
+    <a href="{% url 'note_edit_mode' note.pk %}" class="tooltip">
         <img src="{% static 'noteapp/svg/edit.svg' %}" alt="">
         <span class="tooltiptext">Перейти в режим редактирования</span>
     </a>
-    <a href="{% url 'change_note_info' note.pk %}" class="tooltip">
+    <a href="{% url 'update_note' note.pk %}" class="tooltip">
         <img src="{% static 'noteapp/svg/note-properties.svg' %}" alt="">
         <span class="tooltiptext">Изменить данные заметки</span>
     </a>
@@ -54,15 +54,20 @@
             <div class="note-title">
                 <h2>{{ note.title }}</h2>
             </div>
+
+            {% if note.description %}
             <div class="note-description">
                 <p>{{ note.description }}</p>
             </div>
+            {% endif %}
+
             <div class="category" style="background-color: {{ note.category.color }}">
                 <h2>{{ note.category }}</h2>
             </div>
             <div class="date-container">
                 <p><span class="date-span">upd.</span> {{ note.time_update|date:"d.m.Y" }} <span
-                        class="date-span"> / </span>{{ note.time_update|date:"H:i" }} <span class="date-span">(мск)</span>
+                        class="date-span"> / </span>{{ note.time_update|date:"H:i" }} <span
+                        class="date-span">(мск)</span>
                 </p>
             </div>
         </div>

@@ -158,9 +158,12 @@ input[type="file"]::-webkit-file-upload-button {
 }
 
 .errorlist {
+    max-width: 558px;
     font-size: 18px;
     color: #e63946;
     list-style-type: none;
     margin-bottom: 15px;
     font-weight: bold;
 }
+
+

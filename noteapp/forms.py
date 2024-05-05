@@ -11,13 +11,13 @@ class CleanFileInput(forms.FileInput):
         return super().render(name, value, attrs)
 
 
-class CreateNoteForm(forms.ModelForm):
+class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
         fields = ['title', 'description', 'icon', 'category']
         widgets = {
             'description': forms.Textarea(attrs={'rows': 10, 'cols': 70}),
-            'icon': CleanFileInput()
+            'icon': CleanFileInput(),
         }
 
     def __init__(self, *args, **kwargs):
@@ -31,7 +31,7 @@ class CreateNoteForm(forms.ModelForm):
         self.fields['category'].queryset = Category.objects.filter(author=self.author)
 
 
-class CreateCategoryForm(forms.ModelForm):
+class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = ['name', 'color']
