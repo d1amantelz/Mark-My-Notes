@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="form-container">
-    <form action="{% url 'change_avatar' %}" method="post" enctype="multipart/form-data">
+    <form action="{% url 'update_avatar' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-fields">
             <h1>Изменение фото профиля</h1>

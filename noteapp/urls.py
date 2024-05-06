@@ -11,6 +11,7 @@ urlpatterns = [
     path('notes/<int:note_id>/update_note/', NoteInfoUpdateView.as_view(), name='update_note'),
     path('notes/by_category/<int:category_id>', NotesByCategoryView.as_view(), name='notes_by_category'),
     path('notes/delete/<int:note_id>/', delete_note, name='delete_note'),
+    path('notes/export/<int:note_id>/', export_note, name='export_note'),
 
     # CATEGORY VIEWS
     path('categories/', CategoryListView.as_view(), name='categories'),
@@ -20,8 +21,8 @@ urlpatterns = [
 
     # PROFILE VIEWS
     path('profile/', ProfileUpdateView.as_view(), name='profile'),
-    path('profile/update/username/', UsernameUpdateView.as_view(), name='change_username'),
-    path('profile/update/avatar/', AvatarUpdateView.as_view(), name='change_avatar'),
+    path('profile/update/username/', UsernameUpdateView.as_view(), name='update_username'),
+    path('profile/update/avatar/', AvatarUpdateView.as_view(), name='update_avatar'),
 
     # AUTH VIEWS
     path('sign_up/', SignUpPageView.as_view(), name='sign_up'),
@@ -30,5 +31,4 @@ urlpatterns = [
 
     # OTHER VIEWS
     path('create/', create_screen, name='create_screen'),
-
 ]

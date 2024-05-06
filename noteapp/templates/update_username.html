@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="form-container">
-    <form action="{% url 'change_username' %}" method="post">
+    <form action="{% url 'update_username' %}" method="post">
         {% csrf_token %}
         <div class="form-fields">
             <h1>Изменение имени</h1>

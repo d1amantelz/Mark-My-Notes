@@ -29,7 +29,7 @@
                 {{ form.last_name }}
             </div>
             <div class="input-group">
-                <label>Имя профиля</label>
+                <label><span class="required-span">*</span>Имя профиля</label>
                 {{ form.username }}
             </div>
             <div class="input-group">
@@ -37,11 +37,11 @@
                 {{ form.email }}
             </div>
             <div class="input-group">
-                <label>Пароль</label>
+                <label><span class="required-span">*</span>Пароль</label>
                 {{ form.password1 }}
             </div>
             <div class="input-group">
-                <label>Повторите пароль</label>
+                <label><span class="required-span">*</span>Повторите пароль</label>
                 {{ form.password2 }}
             </div>
             <p>Уже есть аккаунт? <a href="{% url 'login' %}">Войдите здесь</a></p>

@@ -45,7 +45,7 @@ class CategoryForm(forms.ModelForm):
         self.fields['color'].label = 'Цвет'
 
 
-class EditNoteForm(forms.ModelForm):
+class NoteEditForm(forms.ModelForm):
     class Meta:
         model = Note
         fields = ['content']
@@ -59,13 +59,13 @@ class EditNoteForm(forms.ModelForm):
         self.fields['content'].strip = False
 
 
-class ChangeUserInfoForm(forms.ModelForm):
+class UserInfoUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email']
 
 
-class ChangeNoteInfoForm(forms.ModelForm):
+class NoteInfoUpdateForm(forms.ModelForm):
     class Meta:
         model = Note
         fields = ['title', 'description', 'icon', 'category']
@@ -84,7 +84,7 @@ class ChangeNoteInfoForm(forms.ModelForm):
         self.fields['category'].queryset = Category.objects.all()
 
 
-class ChangeCategoryInfoForm(forms.ModelForm):
+class CategoryInfoUpdateForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = ['name', 'color']
@@ -98,13 +98,13 @@ class ChangeCategoryInfoForm(forms.ModelForm):
         self.fields['color'].label = 'Цвет'
 
 
-class ChangeUsernameForm(forms.ModelForm):
+class UsernameUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username']
 
 
-class ChangeAvatarForm(forms.ModelForm):
+class AvatarUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['avatar']

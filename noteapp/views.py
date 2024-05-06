@@ -1,10 +1,15 @@
+from io import BytesIO
+
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView, LogoutView
+from django.http import HttpResponse, FileResponse
+from django.template.loader import get_template
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import CreateView, UpdateView, DetailView
 from django.urls import reverse_lazy
+from xhtml2pdf import pisa
 
 from .forms import *
 from .models import *
@@ -46,7 +51,7 @@ class NoteCreateView(LoginRequiredMixin, CreateView):
 
 class NoteUpdateView(LoginRequiredMixin, UpdateView):
     model = Note
-    form_class = EditNoteForm
+    form_class = NoteEditForm
     template_name = 'note.html'
     pk_url_kwarg = 'note_id'
 
@@ -96,6 +101,28 @@ class NotesByCategoryView(LoginRequiredMixin, ListView):
 def delete_note(request, note_id):
     get_object_or_404(Note, pk=note_id).delete()
     return redirect('notes')
+
+
+def export_note(request, note_id):
+    note = Note.objects.get(id=note_id)
+    response = HttpResponse(note.content, content_type='text/markdown')
+    response['Content-Disposition'] = 'attachment; filename=note.md'
+    return response
+
+
+# def export_note_pdf(request, note_id):
+#     note = Note.objects.get(id=note_id)
+#     template = get_template('note.html')
+#     html = template.render({'note': note})
+#     buffer = BytesIO()
+#     pisa_status = pisa.CreatePDF(html, dest=buffer)
+#
+#     if pisa_status.err:
+#         return HttpResponse('Произошла ошибка при генерации PDF: %s' % pisa_status.err)
+#
+#     response = FileResponse(buffer, content_type='application/pdf.svg')
+#     response['Content-Disposition'] = 'attachment; filename=note.pdf.svg'
+#     return response
 
 
 # ------- CATEGORY VIEWS -------
@@ -149,7 +176,7 @@ def delete_category(request, category_id):
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = User
-    form_class = ChangeUserInfoForm
+    form_class = UserInfoUpdateForm
     template_name = 'profile.html'
     success_url = reverse_lazy('profile')
 
@@ -164,8 +191,8 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
 
 class UsernameUpdateView(LoginRequiredMixin, UpdateView):
     model = User
-    form_class = ChangeUsernameForm
-    template_name = 'change_username.html'
+    form_class = UsernameUpdateForm
+    template_name = 'update_username.html'
     success_url = reverse_lazy('profile')
 
     def get_object(self, **kwargs):
@@ -174,8 +201,8 @@ class UsernameUpdateView(LoginRequiredMixin, UpdateView):
 
 class AvatarUpdateView(LoginRequiredMixin, UpdateView):
     model = Profile
-    form_class = ChangeAvatarForm
-    template_name = 'change_avatar.html'
+    form_class = AvatarUpdateForm
+    template_name = 'update_avatar.html'
     success_url = reverse_lazy('profile')
 
     def get_object(self, **kwargs):

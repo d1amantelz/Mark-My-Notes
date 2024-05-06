@@ -1,0 +1,45 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница не найдена</title>
+    <style>
+        body {
+            background-color: #272727;
+            font-family: "Nunito", sans-serif;
+            color: #fdbf2d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .centered-block {
+            text-align: center;
+            transform: translateY(-50%);
+        }
+
+        h1 {
+            font-size: 50px;
+        }
+
+        p {
+            color: #d2d2ca;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        a {
+            color: #fdbf2d;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+<div class="centered-block">
+    <h1>Ошибка 404&nbsp;🤨</h1>
+    <p>Возможно, вы не вошли в свой аккаунт. <a href="{% url 'login' %}">Войдите здесь</a></p>
+</div>
+</body>
+</html>
