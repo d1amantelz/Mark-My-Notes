@@ -1,15 +1,11 @@
-from io import BytesIO
-
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView, LogoutView
-from django.http import HttpResponse, FileResponse
-from django.template.loader import get_template
+from django.http import HttpResponse
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import CreateView, UpdateView, DetailView
 from django.urls import reverse_lazy
-from xhtml2pdf import pisa
 
 from .forms import *
 from .models import *
