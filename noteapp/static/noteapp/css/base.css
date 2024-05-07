@@ -1,5 +1,4 @@
 
-
 img {
     user-select: none;
     display: block;
@@ -99,7 +98,7 @@ header {
 
 
 .left-group input:focus {
-    outline: 1px solid #fdbf2d;
+    outline: 1px solid #696969;
 }
 
 
@@ -116,6 +115,7 @@ input::placeholder {
 }
 
 .tooltip .tooltiptext {
+    pointer-events: none;
     width: 150px;
     background-color: #555;
     color: #fff;
@@ -145,4 +145,17 @@ header .tooltip .tooltiptext {
 .tooltip:hover .tooltiptext {
     opacity: 1;
     transition-delay: 1s;
+}
+
+.hoverable:hover {
+    background-color: #3d3d3d;
+    border-radius: 15px;
+    transition: background-color 0.5s ease-in-out;
+    cursor: pointer;
+}
+
+.note-title {
+    /*font-weight: bold;*/
+    font-size: 17px;
+    /*color: #fdbf2d;*/
 }

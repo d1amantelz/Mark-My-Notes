@@ -4,10 +4,6 @@
 {% block css %}
 <title>{{ note.title }}</title>
 <link rel="stylesheet" href="{% static 'noteapp/css/note.css' %}"/>
-<link
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
-        rel="stylesheet"
-/>
 {% endblock %}
 
 {% block content %}
@@ -155,6 +151,7 @@
         message.style.position = 'fixed';
         message.style.top = '30px';
         message.style.left = '50%';
+        message.style.fontWeight = "bold";
         message.style.transform = 'translateX(-50%)';
         message.style.padding = '15px';
         message.style.backgroundColor = '#3a3a3a';

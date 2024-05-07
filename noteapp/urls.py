@@ -12,6 +12,7 @@ urlpatterns = [
     path('notes/by_category/<int:category_id>', NotesByCategoryView.as_view(), name='notes_by_category'),
     path('notes/delete/<int:note_id>/', delete_note, name='delete_note'),
     path('notes/export/<int:note_id>/', export_note, name='export_note'),
+    path('notes/search/', note_search, name='note_search'),
 
     # CATEGORY VIEWS
     path('categories/', CategoryListView.as_view(), name='categories'),

@@ -106,21 +106,6 @@ def export_note(request, note_id):
     return response
 
 
-# def export_note_pdf(request, note_id):
-#     note = Note.objects.get(id=note_id)
-#     template = get_template('note.html')
-#     html = template.render({'note': note})
-#     buffer = BytesIO()
-#     pisa_status = pisa.CreatePDF(html, dest=buffer)
-#
-#     if pisa_status.err:
-#         return HttpResponse('Произошла ошибка при генерации PDF: %s' % pisa_status.err)
-#
-#     response = FileResponse(buffer, content_type='application/pdf.svg')
-#     response['Content-Disposition'] = 'attachment; filename=note.pdf.svg'
-#     return response
-
-
 # ------- CATEGORY VIEWS -------
 
 class CategoryListView(LoginRequiredMixin, ListView):
@@ -227,3 +212,12 @@ class LogoutUserView(LogoutView):
 
 def create_screen(request):
     return render(request, 'create_screen.html')
+
+
+def note_search(request):
+    search_query = request.POST.get('search')
+    if search_query:
+        notes = Note.objects.filter(content__icontains=search_query)
+        return render(request, 'note_search.html', {'notes': notes, 'search_query': search_query})
+    else:
+        return redirect(request.META.get('HTTP_REFERER', 'notes/'))

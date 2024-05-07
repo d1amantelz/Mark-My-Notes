@@ -10,6 +10,10 @@
             href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
             rel="stylesheet"
     />
+    <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+            rel="stylesheet"
+    />
     {% block css %}
     {% endblock %}
 </head>
@@ -31,11 +35,21 @@
             <span class="tooltiptext">Создать заметку</span>
         </a>
 
-        <form action="">
-            <input class="fixing-paddings" type="text" placeholder="Поиск по заметкам..."/>
+        <form action="{% url 'note_search' %}" method="post">
+            {% csrf_token %}
+            <input class="fixing-paddings" type="text" name="search" placeholder="Поиск по заметкам..."/>
         </form>
     </div>
     <div class="right-group">
+        <a href="#" class="tooltip">
+            <img src="{% static 'noteapp/svg/question_mark.svg' %}" alt="Настройки">
+            <span class="tooltiptext">Справка по написанию</span>
+        </a>
+        <a href="#" class="tooltip">
+            <img src="{% static 'noteapp/svg/coffee.svg' %}" alt="Настройки">
+            <span class="tooltiptext">Пожертвовать на кофе</span>
+        </a>
+
         <a href="#" class="tooltip">
             <img src="{% static 'noteapp/svg/settings.svg' %}" alt="Настройки">
             <span class="tooltiptext">Настройки</span>

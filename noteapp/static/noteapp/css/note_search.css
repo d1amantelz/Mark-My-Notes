@@ -1,0 +1,55 @@
+
+.notes-container {
+    max-width: 1560px;
+    min-height: 80vh;
+    border-radius: 15px;
+    margin: 50px auto;
+    background-color: #303030;
+}
+
+.notes-container-wrapper {
+    padding: 30px 60px;
+    margin-top: 35px;
+}
+
+.notes-search-header {
+    font-size: 26px;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.note-search-icon {
+    border-radius: 50%;
+    width: 66px;
+    vertical-align: middle;
+    margin-right: 15px;
+    display: inline-block;
+}
+
+.note-search-title {
+    font-weight: bold;
+    font-size: 20px;
+    display: inline-block;
+}
+
+.notes-container a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.note-container {
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.note-search-content {
+    color: #deded1;
+    font-family: "Jetbrains Mono", monospace;
+    font-size: 15px;
+    border-radius: 3px;
+    width: fit-content;
+    margin-top: 15px;
+    padding: 7px 10px;
+    border-left: 3px solid #fdbf2d;
+    background-color: #494949;
+}

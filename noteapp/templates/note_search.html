@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<title>Поиск по заметкам</title>
+<link rel="stylesheet" href="{% static 'noteapp/css/note_search.css' %}"/>
+{% endblock %}
+
+{% block content %}
+
+{% if notes %}
+
+<div class="notes-container">
+    <h1 class="notes-search-header">Результаты поиска:</h1>
+    <div class="notes-container-wrapper">
+        {% for note in notes %}
+        <a href="{{ note.get_absolute_url }}">
+            <div class="note-container hoverable">
+                <img class="note-search-icon" src="{{ note.icon.url }}" alt="">
+                <p class="note-search-title">{{ note.title }}</p>
+                {% load markdown_extras %}
+                <p class="note-search-content">... {{ note.content | markdown_to_plaintext:search_query }} ...</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+</div>
+{% else %}
+<p>Не найдено ни одного элемента с данным содержанием!</p>
+{% endif %}
+{% endblock %}
