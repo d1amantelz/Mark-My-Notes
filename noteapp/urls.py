@@ -28,7 +28,7 @@ urlpatterns = [
     # AUTH VIEWS
     path('sign_up/', SignUpPageView.as_view(), name='sign_up'),
     path('login/', LoginPageView.as_view(), name='login'),
-    path('logout/', LogoutUserView.as_view(), name='logout'),
+    path('logout/', logout_view, name='logout'),
 
     # OTHER VIEWS
     path('create/', create_screen, name='create_screen'),

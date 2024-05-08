@@ -14,20 +14,7 @@
     <div class="create-block right"><a href="{% url 'create_note' %}">Создать заметку</a></div>
 </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const rows = document.querySelectorAll(".create-block");
-
-          rows.forEach((row) => {
-            const link = row.querySelector("a");
-            if (link) {
-              row.addEventListener("click", function () {
-                window.location = link.href;
-              });
-            }
-          });
-        });
-    </script>
-
+<!--для перенаправления -->
+<script src="{% static 'noteapp/js/redirect_create_screen.js' %}"></script>
 
 {% endblock %}

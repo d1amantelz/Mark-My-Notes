@@ -49,19 +49,6 @@ td:last-child {
     border-bottom-right-radius: 15px;
 }
 
-/*.hoverable:hover {*/
-/*    background-color: #494949;*/
-/*    border-radius: 15px;*/
-/*    transition: background-color 0.5s ease-in-out;*/
-/*    cursor: pointer;*/
-/*}*/
-
-td > a {
-    color: #fcfcee;
-    text-decoration: none;
-}
-
-
 .notes-by-category-name {
     color: #fcfcee;
 }

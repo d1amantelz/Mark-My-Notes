@@ -76,124 +76,23 @@
                 {{ form.content }}
             </div>
         </div>
-        <button type="submit" class="note-submit-button">
-            Сохранить изменения
-        </button>
+        <button type="submit">Сохранить изменения</button>
     </form>
 </div>
 
+<!-- для нажатия невидимой кнопки сохранения через иконку save.svg -->
+<script src="{% static 'noteapp/js/click_save_button.js' %}"></script>
 
-<!--для нажатия невидимой кнопки сохранения через иконку save.svg -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var saveIcon = document.querySelector(".note-panel img[src$='save.svg']");
-        saveIcon.addEventListener('click', function (e) {
-            e.preventDefault();
-            var submitButton = document.querySelector(".note-submit-button");
-            submitButton.click();
-        });
-    });
-</script>
-
-<!--для сохранения положения экрана на странице при добавлении контента в textarea -->
-<script>
-    function resize(textarea) {
-        var scrollLeft = window.pageXOffset ||
-            (document.documentElement || document.body.parentNode || document.body).scrollLeft;
-
-        var scrollTop = window.pageYOffset ||
-            (document.documentElement || document.body.parentNode || document.body).scrollTop;
-
-        textarea.style.height = "auto";
-        textarea.style.height = textarea.scrollHeight + 'px';
-
-        window.scrollTo(scrollLeft, scrollTop);
-    }
-
-    var textarea = document.querySelector(".note-text");
-
-    // Обновление высоты при вводе
-    textarea.addEventListener("input", function () {
-        resize(this);
-    });
-
-    // Инициализация высоты при загрузке страницы
-    window.addEventListener("DOMContentLoaded", function () {
-        resize(textarea);
-    });
-</script>
+<!-- для сохранения положения экрана на странице при добавлении контента в textarea -->
+<script src="{% static 'noteapp/js/save_screen_position.js' %}"></script>
 
 <!-- для вставки 4-х пробелов при нажатии tab -->
-<script>
-    document.querySelector('textarea').addEventListener('keydown', function (e) {
-        if (e.key == 'Tab') {
-            e.preventDefault();
-            var start = this.selectionStart;
-            var end = this.selectionEnd;
-
-            // вставляем 4 пробела
-            this.value = this.value.substring(0, start) +
-                "    " + this.value.substring(end);
-
-            // перемещаем курсор
-            this.selectionStart =
-                this.selectionEnd = start + 4;
-        }
-    });
-
-</script>
+<script src="{% static 'noteapp/js/insert_four_spaces.js' %}"></script>
 
 <!-- для копирования в буфер -->
-<script>
-    function popNotification() {
-        var message = document.createElement('div');
-        message.innerText = 'Текст скопирован';
-        message.style.position = 'fixed';
-        message.style.top = '30px';
-        message.style.left = '50%';
-        message.style.fontWeight = "bold";
-        message.style.transform = 'translateX(-50%)';
-        message.style.padding = '15px';
-        message.style.backgroundColor = '#3a3a3a';
-        message.style.color = '#d7d7d7';
-        message.style.border = '1px solid #fdbf2d'
-        message.style.borderRadius = '15px';
-        message.style.transition = 'opacity 0.5s';
-        message.style.opacity = '1';
-        message.style.zIndex = '10';
-
-        // Добавление сообщения на страницу
-        document.body.appendChild(message);
-
-        // Удаление сообщения через 2 секунды с анимацией
-        setTimeout(function () {
-            message.style.opacity = '0';
-            setTimeout(function () {
-                document.body.removeChild(message);
-            }, 500);
-        }, 1000);
-    }
-
-    function copy_to_clipboard() {
-        // Копирование текста
-        document.querySelector("textarea").select();
-        document.execCommand('copy');
-        window.getSelection().removeAllRanges();
-        popNotification();
-    }
-</script>
+<script src="{% static 'noteapp/js/copy_to_clipboard.js' %}"></script>
 
 <!-- Отключение tabindex на всей странице -->
-<script>
-    window.addEventListener('keydown', function (e) {
-        if (e.keyIdentifier == 'U+0009' || e.key == 'Tab') {
-            e.preventDefault();
-        }
-    }, true);
-</script>
+<script src="{% static 'noteapp/js/disable_tabindex.js' %}"></script>
 
 {% endblock %}
-
-
-
-

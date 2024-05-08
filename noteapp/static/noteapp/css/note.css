@@ -88,25 +88,25 @@ p {
 
 }
 
-.note-submit-button {
-    padding: 8px 26px;
-    font-size: 20px;
-    border-radius: 10px;
-    font-family: Nunito, sans-serif;
-    background-color: #3a3a3a;
-    color: #fdbf2d;
-    font-weight: bold;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%, 0);
-    margin-top: 45px;
-    border: 1px solid #303030;
-}
+/*.note-submit-button {*/
+/*    padding: 8px 26px;*/
+/*    font-size: 20px;*/
+/*    border-radius: 10px;*/
+/*    font-family: Nunito, sans-serif;*/
+/*    background-color: #3a3a3a;*/
+/*    color: #fdbf2d;*/
+/*    font-weight: bold;*/
+/*    position: relative;*/
+/*    left: 50%;*/
+/*    transform: translate(-50%, 0);*/
+/*    margin-top: 45px;*/
+/*    border: 1px solid #303030;*/
+/*}*/
 
-.note-submit-button:hover {
-    cursor: pointer;
-    border: 1px solid #fdbf2d;
-}
+/*.note-submit-button:hover {*/
+/*    cursor: pointer;*/
+/*    border: 1px solid #fdbf2d;*/
+/*}*/
 
 
 button a {
@@ -159,43 +159,43 @@ button a {
 
 /*Тест*/
 
-/* Стили для всплывающей подсказки */
-.tooltip {
-    position: relative;
-    display: inline-block;
-}
+/*!* Стили для всплывающей подсказки *!*/
+/*.tooltip {*/
+/*    position: relative;*/
+/*    display: inline-block;*/
+/*}*/
 
-.tooltip .tooltiptext {
-    width: 150px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    font-size: 15px;
-    padding: 5px;
-    border-radius: 6px;
+/*.tooltip .tooltiptext {*/
+/*    width: 150px;*/
+/*    background-color: #555;*/
+/*    color: #fff;*/
+/*    text-align: center;*/
+/*    font-size: 15px;*/
+/*    padding: 5px;*/
+/*    border-radius: 6px;*/
 
-    /* Позиционирование текста подсказки */
-    position: absolute;
-    z-index: 1;
-    top: 140%;
-    left: 50%;
-    margin-left: -75px;
+/*    !* Позиционирование текста подсказки *!*/
+/*    position: absolute;*/
+/*    z-index: 1;*/
+/*    top: 140%;*/
+/*    left: 50%;*/
+/*    margin-left: -75px;*/
 
-    /* Анимация появления */
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-
-header .tooltip .tooltiptext {
-    top: 210%;
-}
+/*    !* Анимация появления *!*/
+/*    opacity: 0;*/
+/*    transition: opacity 0.3s;*/
+/*}*/
 
 
-.tooltip:hover .tooltiptext {
-    opacity: 1;
-    transition-delay: 1s;
-}
+/*header .tooltip .tooltiptext {*/
+/*    top: 210%;*/
+/*}*/
+
+
+/*.tooltip:hover .tooltiptext {*/
+/*    opacity: 1;*/
+/*    transition-delay: 1s;*/
+/*}*/
 
 
 .category {

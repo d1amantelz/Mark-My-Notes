@@ -27,6 +27,8 @@
 
 </div>
 {% else %}
-<p>Не найдено ни одного элемента с данным содержанием!</p>
+<p class="not-found">Не найдено ни одного элемента с данным содержанием!</p>
+<button class="ordinary-button" onclick="goBack()">Вернуться назад</button>
+<script src="{% static 'noteapp/js/go_back.js' %}"></script>
 {% endif %}
 {% endblock %}

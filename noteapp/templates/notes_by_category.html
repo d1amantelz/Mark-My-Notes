@@ -23,34 +23,21 @@
             <th>Дата изменения</th>
         </tr>
         {% for note in notes %}
-        <tr class="note-row hoverable">
+        <tr class="note-row hoverable" data-url="{{ note.get_absolute_url }}">
             <td>
-                <a href="{{ note.get_absolute_url }}"
-                ><img class="img-in-table" src="{{ note.icon.url }}" alt=""
-                /></a>
+                <img class="img-in-table" src="{{ note.icon.url }}" alt=""/>
             </td>
-            <td><a href="" class="note-title">{{ note.title }}</a></td>
-            <td><a class="note-category-label" href="" style="background-color: {{ note.category.color }}">
-                {{ note.category }}</a></td>
-            <td><a href="">{{ note.time_create|date:"d.m.Y" }}</a></td>
-            <td><a href="">{{ note.time_update|date:"d.m.Y" }}</a></td>
-
+            <td class="note-title">{{ note.title }}</td>
+            <td><span class="note-category-label" style="background-color:{{ note.category.color }}">
+                {{ note.category }}</span>
+            </td>
+            <td>{{ note.time_create|date:"d.m.Y" }}</td>
+            <td>{{ note.time_update|date:"d.m.Y" }}</td>
         </tr>
         {% endfor %}
     </table>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const rows = document.querySelectorAll(".note-row");
 
-            rows.forEach((row) => {
-                const link = row.querySelector("a");
-                if (link) {
-                    row.addEventListener("click", function () {
-                        window.location = link.href;
-                    });
-                }
-            });
-        });
-    </script>
+    <script src="{% static 'noteapp/js/redirect_notes.js' %}"></script>
+
 </div>
 {% endblock %}

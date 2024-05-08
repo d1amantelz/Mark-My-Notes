@@ -1,3 +1,4 @@
+from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse
@@ -204,8 +205,9 @@ class LoginPageView(LoginView):
     success_url = reverse_lazy('notes')
 
 
-class LogoutUserView(LogoutView):
-    next_page = 'login'
+def logout_view(request):
+    logout(request)
+    return redirect('/login/')
 
 
 # ------- OTHER VIEWS -------

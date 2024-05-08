@@ -3,7 +3,6 @@
 
 {% block css %}
 <title>{{ profile.user.username }}</title>
-<link rel="stylesheet" href="{% static 'noteapp/css/note.css' %}"/>
 <link rel="stylesheet" href="{% static 'noteapp/css/profile.css' %}"/>
 {% endblock %}
 
@@ -37,7 +36,7 @@
                     {{ form.email }}
                 </div>
             </div>
-            <button type="submit">Сохранить изменения</button>
+            <button type="submit" class="ordinary-button submit-button-margin">Сохранить изменения</button>
         </form>
     </div>
 </div>

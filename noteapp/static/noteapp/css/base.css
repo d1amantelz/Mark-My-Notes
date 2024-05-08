@@ -4,6 +4,16 @@ img {
     display: block;
 }
 
+::selection {
+    background: #272727;
+    color: #fdbf2d;
+}
+
+::-moz-selection {
+    background: #272727;
+    color: #fdbf2d;
+}
+
 
 body::-webkit-scrollbar {
     width: 12px;
@@ -115,7 +125,6 @@ input::placeholder {
 }
 
 .tooltip .tooltiptext {
-    pointer-events: none;
     width: 150px;
     background-color: #555;
     color: #fff;
@@ -155,7 +164,33 @@ header .tooltip .tooltiptext {
 }
 
 .note-title {
-    /*font-weight: bold;*/
     font-size: 17px;
-    /*color: #fdbf2d;*/
+}
+
+.ordinary-button {
+    padding: 8px 26px;
+    font-size: 20px;
+    border-radius: 10px;
+    font-family: Nunito, sans-serif;
+    background-color: #3a3a3a;
+    color: #fdbf2d;
+    font-weight: bold;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border: 1px solid #272727;
+}
+
+.ordinary-button:hover {
+    cursor: pointer;
+    border: 1px solid #fdbf2d;
+}
+
+.ordinary-button a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.submit-button-margin {
+    margin-top: 25px;
 }

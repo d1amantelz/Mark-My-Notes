@@ -6,6 +6,8 @@
     <title>Вход</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'noteapp/css/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'noteapp/css/base.css' %}">
+
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link
@@ -21,6 +23,10 @@
             <h1>Вход в аккаунт</h1>
             <hr/>
             <div class="input-group">
+                {{ form.non_field_errors }}
+                {{ form.username.errors }}
+                {{ form.password.errors }}
+
                 <label>Логин</label>
                 {{ form.username }}
             </div>
@@ -31,7 +37,7 @@
 
             <p>Нет аккаунта? <a href="{% url 'sign_up' %}">Зарегистрируйтесь здесь</a></p>
         </div>
-        <button type="submit">Войти</button>
+        <button type="submit" class="ordinary-button submit-button-margin">Войти в аккаунт</button>
     </form>
 </div>
 </body>

@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'noteapp/svg/title.svg' %}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link rel="stylesheet" href="{% static 'noteapp/css/base.css' %}">
@@ -67,7 +68,6 @@
         <a href="{% url 'logout' %}" class="tooltip">
             <img src="{% static 'noteapp/svg/quit.svg' %}" alt="Выйти"/>
             <span class="tooltiptext">Выйти из аккаунта</span>
-
         </a>
 
 
