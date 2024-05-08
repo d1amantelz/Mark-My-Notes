@@ -19,7 +19,5 @@ def markdown_to_plaintext(markdown_string, search_query):
 
     soup = BeautifulSoup(html, "html.parser")
     text = '. '.join(soup.stripped_strings)
-    print(text)
     sentences = text.split('.')
-    print(sentences)
     return '. '.join(sentence for sentence in sentences if search_query.lower() in sentence.lower())
