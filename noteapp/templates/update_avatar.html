@@ -1,11 +1,15 @@
-<!DOCTYPE html>
+{% load static %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" href="{% static 'noteapp/svg/title.svg' %}" type="image/x-icon">
     <title>Изменение фото профиля</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'noteapp/css/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'noteapp/css/base.css' %}">
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -26,7 +30,7 @@
                 {{ form.avatar }}
             </div>
         </div>
-        <button type="submit">Сохранить изменения</button>
+        <button type="submit" class="ordinary-button submit-button-margin">Сохранить изменения</button>
     </form>
 </div>
 </body>

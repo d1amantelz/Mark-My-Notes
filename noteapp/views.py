@@ -1,6 +1,7 @@
 from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView, LogoutView
+from django.db.models import Q
 from django.http import HttpResponse
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -219,7 +220,7 @@ def create_screen(request):
 def note_search(request):
     search_query = request.POST.get('search')
     if search_query:
-        notes = Note.objects.filter(content__icontains=search_query)
+        notes = Note.objects.filter(Q(content__icontains=search_query) | Q(title__icontains=search_query))
         return render(request, 'note_search.html', {'notes': notes, 'search_query': search_query})
     else:
         return redirect(request.META.get('HTTP_REFERER', 'notes/'))

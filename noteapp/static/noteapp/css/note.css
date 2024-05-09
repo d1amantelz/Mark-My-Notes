@@ -27,6 +27,7 @@
 
 .note-icon {
     height: 250px;
+    width: 250px;
 }
 
 .note-image {
@@ -114,21 +115,23 @@ button a {
     text-decoration: none;
 }
 
+.note-block > form > button[type=submit] {
+    display: none;
+}
 
 .note-panel {
     position: sticky;
     top: 10px;
     z-index: 10;
-    width: 264px;
+    /*width: 44px;*/
     border-radius: 15px;
     background-color: #303030;
     margin: 30px auto;
     display: flex;
     justify-content: space-between;
-}
-
-.note-block > form > button[type=submit] {
-    display: none;
+    visibility: hidden;
+    transition: visibility 0.5s, opacity 0.5s linear; /* Добавьте это */
+    opacity: 0; /* Добавьте это */
 }
 
 .note-panel a {
@@ -221,14 +224,14 @@ button a {
     outline: none;
 }
 
-.date-container {
+.author-and-date-container {
     position: absolute;
     top: 100px;
     right: 50px;
     font-weight: bold;
 }
 
-.date-span {
+.white-span {
     color: #d7d7d7;
 }
 

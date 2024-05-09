@@ -14,30 +14,20 @@ img {
     color: #fdbf2d;
 }
 
+body {
+    background-color: #272727;
+    font-family: "Nunito", sans-serif;
+    color: #fdbf2d;
+    overflow: scroll;
+}
 
 body::-webkit-scrollbar {
-    width: 12px;
-}
-
-body::-webkit-scrollbar-track {
-    background: #272727;
-}
-
-body::-webkit-scrollbar-thumb {
-    background-color: #525252;
-    border-radius: 20px;
-    border: 3px solid #303030;
+    width: 0;
 }
 
 .fixing-paddings {
     box-sizing: content-box;
     padding: 5px 15px;
-}
-
-body {
-    background-color: #272727;
-    font-family: "Nunito", sans-serif;
-    color: #fdbf2d;
 }
 
 

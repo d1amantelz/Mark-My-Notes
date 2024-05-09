@@ -19,7 +19,13 @@
                 <img class="note-search-icon" src="{{ note.icon.url }}" alt="">
                 <p class="note-search-title">{{ note.title }}</p>
                 {% load markdown_extras %}
-                <p class="note-search-content">... {{ note.content | markdown_to_plaintext:search_query }} ...</p>
+                {% if note.content %}
+                    {% with note_content=note.content|markdown_to_plaintext:search_query %}
+                        {% if note_content.strip %}
+                            <p class="note-search-content">... {{ note_content }} ...</p>
+                        {% endif %}
+                    {% endwith %}
+                {% endif %}
             </div>
         </a>
         {% endfor %}
