@@ -16,24 +16,20 @@
 
     <div class="categories-container">
         {% for category in categories %}
-
-        <div class="category" style="background-color: {{ category.color }}">
-            <h2><span class="category-name">{{ category.name }}</span>
+        <div class="category-container">
+            <div class="category-title-container" style="background-color: {{ category.color }}; ">
+                <h3><a href="{% url 'notes_by_category' category.pk %}">{{ category.name }}</a></h3>
+            </div>
+            <div class="category-button-container">
                 <a href="{{ category.get_absolute_url }}">
-                    <img src="{% static 'noteapp/svg/edit_green.svg' %}" alt="">
-                </a>
-                <a href="{% url 'notes_by_category' category.pk %}">
-                    <img src="{% static 'noteapp/svg/list.svg' %}" alt="">
+                    <img src="{% static 'noteapp/svg/edit.svg' %}" alt="">
                 </a>
                 <a href="{% url 'delete_category' category.pk %}">
-                    <img src="{% static 'noteapp/svg/delete_red.svg' %}" alt="">
+                    <img src="{% static 'noteapp/svg/delete.svg' %}" alt="">
                 </a>
-            </h2>
+            </div>
         </div>
         {% endfor %}
-
     </div>
-
-
 </div>
 {% endblock %}

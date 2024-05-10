@@ -72,12 +72,12 @@
             <div class="author-and-date-container">
                 <p>
                     {% if request.user.profile == note.author %}
-                        <span class="white-span">Время изменения:</span>
-                        {{ note.time_update|date:"H:i / d.m.Y" }}
-                        <br>
+                    <span class="white-span">Время изменения:</span>
+                    {{ note.time_update|date:"H:i / d.m.Y" }}
+                    <br>
                     {% endif %}
                     {% if request.user.profile != note.author %}
-                        <span class="white-span">Автор:</span> {{ note.author }}
+                    <span class="white-span">Автор:</span> {{ note.author }}
                     {% endif %}
                 </p>
             </div>
@@ -102,6 +102,14 @@
 
     <!-- для подсчета ширины и медленного появления note-panel -->
     <script src="{% static 'noteapp/js/show_note_panel.js' %}"></script>
+
+    <!-- для копирования кода -->
+    <script>
+        window.copyIconPath = "{% static 'noteapp/svg/copy.svg' %}";
+        window.saveIconPath = "{% static 'noteapp/svg/save.svg' %}";
+    </script>
+    <script src="{% static 'noteapp/js/copy_code_button.js' %}"></script>
+
 
 </div>
 

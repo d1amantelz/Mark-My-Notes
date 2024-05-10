@@ -10,5 +10,5 @@ window.onload = function () {
     setTimeout(function () {
         notePanel.style.visibility = 'visible';
         notePanel.style.opacity = '1';
-    }, 600);
+    }, 100);
 };
