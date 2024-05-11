@@ -1,0 +1,109 @@
+
+.guide-container {
+    font-family: "Jetbrains Mono", monospace;
+    border-radius: 15px;
+    max-width: 1000px;
+    box-sizing: border-box;
+    background-color: #303030;
+    margin: 30px auto;
+    padding: 30px;
+}
+
+.guide-background-img {
+    margin: 50px auto 0;
+    border-radius: 15px;
+    width: 1000px;
+    box-shadow: 0 0 20px #262626;
+}
+
+.guide-header {
+    text-align: center;
+
+}
+
+.guide-description {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fcfcee;
+    text-align: center;
+}
+
+.md {
+    color: #fdbf2d;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.examples-container {
+    border-radius: 15px;
+    background-color: #303030;
+    margin: 30px auto;
+    max-width: 1000px;
+    box-sizing: border-box;
+    padding: 30px 50px;
+    color: #fcfcee;
+    font-family: "Jetbrains Mono", monospace;
+}
+
+
+.examples-container h2 {
+    text-align: center;
+    margin: 0;
+}
+
+.example-container h3 {
+    color: #fdbf2d;
+    font-size: 22px;
+    margin-bottom: 0;
+}
+
+.example-container code {
+    background-color: #272727;
+    font-family: "Jetbrains Mono", monospace;
+    margin: 0;
+    border-radius: 10px;
+    max-width: 900px;
+    font-size: 14px;
+    position: relative;
+}
+
+
+.example-container pre {
+    margin: 0;
+}
+
+.example-container img {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
+.quote {
+    padding: 15px;
+    border-left: 3px solid #fdbf2d;
+    background-color: #3a3a3a;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.quote span {
+    font-weight: bold;
+    color: #fdbf2d;
+    font-size: 17px;
+}
+
+.p-with-icon-container {
+    display: flex;
+}
+
+.icon-container {
+    max-width: 70px;
+    flex: 1;
+    display: flex;
+    align-items: center; /* Центрирует иконку по вертикали */
+}
+
+.p-with-icon {
+    flex: 3;
+}

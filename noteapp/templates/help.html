@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<title>Помощь</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-dark.css"
+/>
+<link rel="stylesheet" href="{% static 'noteapp/css/help.css' %}"/>
+<link rel="stylesheet" href="{% static 'noteapp/css/view_mode_note.css' %}"/>
+{% endblock %}
+
+{% block content %}
+<img class="guide-background-img" src="{% static 'noteapp/img/poster_background.png' %}" alt="Фон">
+
+<div class="examples-container">
+    <h2>Замечание!</h2>
+    <div class="p-with-icon-container">
+        <div class="icon-container">
+            <img src="{% static 'noteapp/svg/warning.svg' %}" alt="">
+        </div>
+        <p class="p-with-icon">Этот проект применяет мощь <span class="md">Markdown</span>, преобразуя обычный текст в
+            структурированный HTML. В
+            следующих разделах вы узнаете, что такое <span class="md">Markdown</span> и как эффективно использовать его
+            в рамках этого проекта.
+            Рассматривайте эту страницу как ваше персональное руководство по навигации по проекту.</p>
+    </div>
+</div>
+
+
+<div class="examples-container">
+    <h2>Что такое Markdown?</h2>
+    <p class="quote"><span>Markdown</span> – это легкий язык разметки, созданный с целью облегчения добавления
+        форматирования к тексту в интернете.
+        Он позволяет вам преобразовывать текст в HTML или XHTML и многие другие форматы.
+        <br><br>
+        Основная идея <span>Markdown</span> – сделать текст читаемым и легко редактируемым, независимо от того,
+        преобразован он в
+        другой формат или нет. Это достигается за счет использования простого и интуитивно понятного синтаксиса.
+        <br> <br>
+        <span>Markdown</span> широко используется для создания документации, написания сообщений на форумах, создания
+        контента для
+        сайтов и многое другое. Он поддерживается многими платформами публикации контента, такими как GitHub, GitLab,
+        Bitbucket, Jekyll, и многими другими.
+        <br> <br>
+        <span>Markdown</span> поддерживает различные элементы форматирования, такие как заголовки, ссылки, списки,
+        выделение текста,
+        и многое другое.</p>
+</div>
+
+<div class="examples-container">
+    <h2>Примеры использования Markdown</h2>
+    <div class="example-container">
+        <h3>Заголовки</h3>
+        <p>В Markdown заголовки создаются с помощью символа решетки #. Количество решеток перед заголовком определяет
+            его уровень. Вот примеры:</p>
+        <pre>
+            <code class="language-markdown"># Заголовок 1
+## Заголовок 2
+### Заголовок 3
+#### Заголовок 4
+##### Заголовок 5
+###### Заголовок 6</code>
+        </pre>
+        <img src="{% static 'noteapp/img/headers-example.png' %}" alt="">
+    </div>
+    <div class="example-container">
+        <h3>Параграфы</h3>
+        <p>В Markdown параграфы создаются с помощью одного или более последовательных строк текста, разделенных одной
+            или более пустыми строками. Вот пример:</p>
+        <pre>
+            <code class="language-markdown">Это первый параграф.
+
+Это второй параграф.</code>
+        </pre>
+        <img src="{% static 'noteapp/img/p-example.png' %}" alt="">
+        <p>Если вы хотите создать перенос строки без начала нового параграфа, вы можете использовать два или более
+            пробела в конце строки:</p>
+        <pre>
+            <code>Это строка с переносом.
+Это следующая строка.</code>
+        </pre>
+        <img src="{% static 'noteapp/img/p-example2.png' %}" alt="">
+
+        <h3>Выделения текста</h3>
+        <p>В Markdown отдельные части текста можно выделять разные способами. Например, жирным, курсивом или жирным
+            курсивом.</p>
+        <p>Для выделения курсивом используются, либо одна звездочка "*", либо одно подчеркивание "_". Вот как это
+            выглядит:</p>
+        <!-- TODO: fix that-->
+        <pre>
+            <code class="python">*Курсив*
+_Курсив_</code>
+        </pre>
+        <img src="{% static 'noteapp/img/cursive-example.png' %}" alt="">
+
+        <p>Для выделения жирным используются, либо две звездочки "**", либо два подчеркивания "__". Вот как это
+            выглядит:</p>
+        <pre>
+            <code class="python">**Жирный текст**
+__Жирный текст__</code>
+        </pre>
+        <img src="{% static 'noteapp/img/bold-example.png' %}" alt="">
+
+        <p>Для выделения жирным курсивом используются, либо три звездочки "***", либо три подчеркивания "__". Вот как
+            это
+            выглядит:</p>
+        <pre>
+            <code class="python">***Жирный курсив***
+___Жирный курсив___</code>
+        </pre>
+        <img src="{% static 'noteapp/img/bold-cursive-example.png' %}" alt="">
+
+        <h3>Цитаты</h3>
+    </div>
+</div>
+
+<!-- подсветка кода-->
+<script>
+    hljs.highlightAll();
+</script>
+{% endblock %}
