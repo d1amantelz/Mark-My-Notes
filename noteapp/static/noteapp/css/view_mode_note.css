@@ -47,7 +47,7 @@
     margin: 0 0 10px 0;
     padding: 10px;
     border-left: 3px solid #fdbf2d;
-    background-color: #3a3a3a;
+    background-color: #343434;
 }
 
 .note-content code {
@@ -57,6 +57,21 @@
     font-size: 14px;
     position: relative;
 }
+
+.note-content code::-webkit-scrollbar {
+    width: 5px;
+}
+
+.note-content code::-webkit-scrollbar-track {
+    background: #303030;
+
+}
+
+.note-content code::-webkit-scrollbar-thumb {
+    background: #494949;
+    border-radius: 5px;
+}
+
 
 .note-content strong, .note-content em {
     color: #fdbf2d;
