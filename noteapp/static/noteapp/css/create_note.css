@@ -22,18 +22,6 @@ input[type="file"] {
     padding: 0;
 }
 
-input[type="file"]::-webkit-file-upload-button {
-    background-color: #3f3f3f;
-    height: 40px;
-    border-radius: 15px;
-    font-size: 15px;
-    font-family: Nunito, sans-serif;
-    border: 1px solid #fdbf2d;
-    color: #d2d2ca;
-    padding: 0 15px;
-    font-weight: bold;
-    margin-right: 15px;
-}
 
 .form-container {
     position: static;

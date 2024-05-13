@@ -1,9 +1,18 @@
-// Ваш JavaScript-файл
 window.addEventListener('load', (event) => {
     document.querySelectorAll('pre code').forEach((block) => {
-        // Создаем div
+        // Создаем div-обертку
+        const wrapper = document.createElement('div');
+        wrapper.style.maxWidth = '800px';
+        wrapper.style.position = 'relative';
+        wrapper.style.zIndex = '10';
+
+        // Создаем div для кнопки копирования
         const div = document.createElement('div');
         div.className = 'copy-container';
+        div.style.position = 'absolute';
+        div.style.right = '0';
+        div.style.zIndex = '9';
+        div.style.top = '0';
 
         // Создаем кнопку копирования
         const button = document.createElement('button');
@@ -20,8 +29,14 @@ window.addEventListener('load', (event) => {
         // Добавляем кнопку в div
         div.appendChild(button);
 
-        // Добавляем div в code
-        block.appendChild(div);
+        // Добавляем div в обертку
+        wrapper.appendChild(div);
+
+        // Заменяем блок кода на обертку
+        block.parentNode.replaceChild(wrapper, block);
+
+        // Добавляем блок кода в обертку
+        wrapper.appendChild(block);
 
         // Добавляем функциональность копирования
         button.addEventListener('click', () => {
