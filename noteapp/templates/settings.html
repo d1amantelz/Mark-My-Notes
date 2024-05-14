@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<title>Ваши настройки</title>
+<link rel="stylesheet" href="{% static 'noteapp/css/settings.css' %}"/>
+{% endblock %}
+
+{% block content %}
+
+<div class="settings-container">
+    <form action="{% url 'settings' %}" class="settings-form" method="post">
+        <div class="settings-form-container">
+            {% csrf_token %}
+
+            <h1 class="settings-header">Ваши настройки</h1>
+            <hr/>
+
+            <div class="settings-fields-container">
+                {% for f in form %}
+                <div class="settings-field-container">
+                    <label class="settings-field-label">{{ f.label }}</label>
+                    {{ f }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <button type="submit" class="ordinary-button submit-button-margin">Сохранить изменения</button>
+
+    </form>
+
+</div>
+
+
+{% endblock %}

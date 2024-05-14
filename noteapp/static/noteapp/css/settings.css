@@ -1,0 +1,32 @@
+
+.settings-form-container {
+    max-width: 1280px;
+    box-sizing: border-box;
+    background-color: #303030;
+    border-radius: 15px;
+    margin: 50px auto 0;
+    padding: 50px 70px;
+}
+
+.settings-header {
+    margin-top: 0;
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.settings-field-label {
+    display: inline-block;
+    font-weight: bold;
+}
+
+
+
+
+.settings-field-container {
+    margin-bottom: 30px;
+}
+
+.settings-field-container select {
+    float: right;
+}

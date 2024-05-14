@@ -1,6 +1,6 @@
 from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView
 from django.db.models import Q
 from django.http import HttpResponse
 from django.views.generic.list import ListView
@@ -56,11 +56,24 @@ class NoteUpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy('note_view_mode', kwargs={'note_id': self.object.pk})
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        settings = Setting.objects.get(user=self.request.user.profile)
+        context['settings'] = settings
+        return context
+
 
 class NoteViewMode(LoginRequiredMixin, DetailView):
     model = Note
     template_name = 'view_mode_note.html'
     pk_url_kwarg = 'note_id'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        settings = Setting.objects.filter(user=self.request.user.profile).first()
+        if settings:
+            context['settings'] = settings
+        return context
 
 
 class NoteInfoUpdateView(LoginRequiredMixin, UpdateView):
@@ -111,8 +124,14 @@ def export_note(request, note_id):
 def note_search(request):
     search_query = request.POST.get('search')
     if search_query:
-        notes = Note.objects.filter(Q(content__icontains=search_query) | Q(title__icontains=search_query))
-        return render(request, 'note_search.html', {'notes': notes, 'search_query': search_query})
+        notes = Note.objects.filter(
+            Q(content__icontains=search_query) | Q(title__icontains=search_query),
+            author=request.user.profile)
+        settings = Setting.objects.get(user=request.user.profile)
+        return render(request, 'note_search.html',
+                      {'notes': notes,
+                       'search_query': search_query,
+                       'settings': settings})
     else:
         return redirect(request.META.get('HTTP_REFERER', 'notes/'))
 
@@ -228,3 +247,13 @@ def create_screen(request):
 
 def help_view(request):
     return render(request, 'help.html')
+
+
+class SettingsUpdateView(UpdateView):
+    model = Setting
+    form_class = SettingForm
+    template_name = 'settings.html'
+    success_url = reverse_lazy('notes')
+
+    def get_object(self, **kwargs):
+        return Setting.objects.get(user=self.request.user.profile)

@@ -33,4 +33,5 @@ urlpatterns = [
     # OTHER VIEWS
     path('create/', create_screen, name='create_screen'),
     path('help/', help_view, name='help'),
+    path('settings/', SettingsUpdateView.as_view(), name='settings'),
 ]

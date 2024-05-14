@@ -4,16 +4,8 @@
     border-radius: 15px;
     margin: 50px auto;
     background-color: #303030;
-    /* margin-top: 50px; */
-
 }
 
-.notes-header {
-    color: #fdbf2d;
-    font-size: 26px;
-    text-align: center;
-    padding-top: 40px;
-}
 
 .notes-table {
     padding: 30px 100px;
@@ -32,6 +24,7 @@ td {
     text-align: center;
     color: #fcfcee;
     padding: 15px 0;
+    max-width: 300px;
 }
 
 th {

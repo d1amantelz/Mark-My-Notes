@@ -3,7 +3,6 @@
 
 {% block css %}
 <title>Ваши категории</title>
-<link rel="stylesheet" href="{% static 'noteapp/css/note.css' %}"/>
 <link rel="stylesheet" href="{% static 'noteapp/css/notes.css' %}"/>
 <link rel="stylesheet" href="{% static 'noteapp/css/categories.css' %}"/>
 
@@ -12,7 +11,7 @@
 {% block content %}
 <!-- контейнер с заметками -->
 <div class="notes-container">
-    <h1 class="notes-header">Ваши категории</h1>
+    <h1 class="ordinary-header">Ваши категории</h1>
 
     <div class="categories-container">
         {% for category in categories %}

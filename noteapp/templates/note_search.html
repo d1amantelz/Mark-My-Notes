@@ -4,6 +4,11 @@
 {% block css %}
 <title>Поиск по заметкам</title>
 <link rel="stylesheet" href="{% static 'noteapp/css/note_search.css' %}"/>
+<style>
+    .note-search-content {
+        font-family: "{{ settings.code_font }}", sans-serif;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -22,7 +27,7 @@
                 {% if note.content %}
                     {% with note_content=note.content|markdown_to_plaintext:search_query %}
                         {% if note_content.strip %}
-                            <p class="note-search-content">... {{ note_content }} ...</p>
+                            <p class="note-search-content">{{ note_content }}</p>
                         {% endif %}
                     {% endwith %}
                 {% endif %}

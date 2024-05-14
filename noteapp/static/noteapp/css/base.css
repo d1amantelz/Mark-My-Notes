@@ -1,3 +1,6 @@
+html {
+    scroll-behavior: smooth;
+}
 
 img {
     user-select: none;
@@ -18,7 +21,6 @@ body {
     background-color: #272727;
     font-family: "Nunito", sans-serif;
     color: #fdbf2d;
-    overflow: scroll;
 }
 
 body::-webkit-scrollbar {
@@ -199,4 +201,95 @@ input[type="file"]::-webkit-file-upload-button {
     padding: 0 15px;
     font-weight: bold;
     margin-right: 15px;
+}
+
+
+.ordinary-header {
+    color: #fdbf2d;
+    font-size: 26px;
+    text-align: center;
+    padding-top: 40px;
+}
+
+select {
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 15px;
+    font-weight: bold;
+    appearance: none;
+    color: #d2d2ca;
+    padding: 5px 15px;
+    font-family: Nunito, sans-serif;
+    background-color: #3f3f3f;
+    border: 1px solid #fdbf2d;
+}
+
+select option {
+    background-color: #3a3a3a;
+}
+
+select:focus {
+    outline: none;
+}
+
+label {
+    display: block;
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+hr {
+    border: none;
+    border-bottom: 1px solid #525252;
+    margin-bottom: 55px;
+}
+
+
+.errorlist {
+    max-width: 558px;
+    font-size: 18px;
+    color: #e63946;
+    list-style-type: none;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.note-panel {
+    position: sticky;
+    top: 10px;
+    z-index: 20;
+    border-radius: 15px;
+    background-color: #303030;
+    margin: 30px auto;
+    display: flex;
+    justify-content: space-between;
+    visibility: hidden;
+    transition: visibility 0.5s, opacity 0.5s linear;
+    opacity: 0;
+}
+
+.note-panel a {
+    padding: 10px;
+    outline: 1px solid transparent;
+    outline-offset: -1px;
+    transition: background-color 0.2s ease, outline 0.2s ease-in-out;
+}
+
+.note-panel span {
+    pointer-events: none;
+}
+
+.note-panel a:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.note-panel a:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+
+.note-panel a:hover {
+    background-color: #3a3a3a;
+    outline: 1px solid #fdbf2d;
 }

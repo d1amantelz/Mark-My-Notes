@@ -44,6 +44,7 @@ window.addEventListener('load', (event) => {
             navigator.clipboard.writeText(code);
             img.src = window.saveIconPath; // Используйте глобальную переменную
             img.alt = 'Скопировано!';
+
             setTimeout(() => {
                 img.src = window.copyIconPath; // Возвращаем иконку copy.svg
                 img.alt = 'Копировать';

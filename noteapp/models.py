@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.urls import reverse
 
 
@@ -24,7 +24,6 @@ class Note(models.Model):
 
 class Category(models.Model):
     COLOR_CHOICES = [
-        ('', 'Выберите цвет'),
         ('#264653', 'Темно-синий'),
         ('#2A9D8F', 'Циановый'),
         ('#E9C46A', 'Жёлтый'),
@@ -34,8 +33,8 @@ class Category(models.Model):
     ]
 
     name = models.CharField(max_length=20)
-    author = models.ForeignKey('Profile', on_delete=models.CASCADE, null=True, blank=True)
-    color = models.CharField(choices=COLOR_CHOICES, null=True, blank=True)
+    author = models.ForeignKey('Profile', on_delete=models.CASCADE)
+    color = models.CharField(choices=COLOR_CHOICES, default='#264653')
 
     def __str__(self):
         return self.name
@@ -52,17 +51,53 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to='avatars/%Y/%m/%d/', default='default/default-profile-avatar.jpg')
     email = models.EmailField(blank=True, null=True)
+    settings = models.ForeignKey('Setting', on_delete=models.PROTECT, null=True, blank=True)
 
     def __str__(self):
         return self.user.username
 
 
+class Setting(models.Model):
+    FONT_CHOICES = [
+        ('JetBrains Mono', 'JetBrains Mono'),
+        ('Nunito', 'Nunito'),
+        ('Fira Code', 'Fira Code'),
+        ('Roboto Thin', 'Roboto Thin'),
+        ('Source Code Pro', 'Source Code Pro'),
+    ]
+
+    FONT_SIZE_CHOICES = [
+        (12, '12'),
+        (14, '14'),
+        (16, '16'),
+        (18, '18'),
+    ]
+
+    user = models.OneToOneField('Profile', on_delete=models.CASCADE, unique=True)
+    code_font = models.CharField(max_length=20, choices=FONT_CHOICES, default='JetBrains Mono')
+    code_font_size = models.IntegerField(choices=FONT_SIZE_CHOICES, default=14)
+    text_font = models.CharField(max_length=20, choices=FONT_CHOICES, default='JetBrains Mono')
+    text_font_size = models.IntegerField(choices=FONT_SIZE_CHOICES, default=16)
+
+    def __str__(self):
+        return f"{self.user}'s settings"
+
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance).save()
+        profile = Profile.objects.create(user=instance)
+        settings = Setting.objects.create(user=profile)
+        profile.settings = settings
+        profile.save()
 
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+
+@receiver(post_delete, sender=Profile)
+def delete_user_settings(sender, instance, **kwargs):
+    if instance.settings:
+        instance.settings.delete()

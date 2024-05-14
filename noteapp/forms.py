@@ -27,7 +27,7 @@ class NoteForm(forms.ModelForm):
         self.fields['description'].label = 'Описание'
         self.fields['icon'].label = 'Аватар'
         self.fields['category'].label = 'Категория'
-        self.fields['category'].empty_label = 'Выберите категорию'
+        self.fields['category'].empty_label = None
         self.fields['category'].queryset = Category.objects.filter(author=self.author)
 
 
@@ -35,9 +35,6 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = ['name', 'color']
-        widgets = {
-            'color': forms.Select(choices=[('', 'Выберите цвет')] + list(Category.COLOR_CHOICES))
-        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -88,9 +85,6 @@ class CategoryInfoUpdateForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = ['name', 'color']
-        widgets = {
-            'color': forms.Select(choices=[('', 'Выберите цвет')] + list(Category.COLOR_CHOICES))
-        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -137,3 +131,16 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
+
+
+class SettingForm(forms.ModelForm):
+    class Meta:
+        model = Setting
+        fields = ['code_font', 'code_font_size', 'text_font', 'text_font_size']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['code_font'].label = 'Шрифт кода'
+        self.fields['code_font_size'].label = 'Размер шрифта кода'
+        self.fields['text_font'].label = 'Шрифт текста'
+        self.fields['text_font_size'].label = 'Размер шрифта текста'

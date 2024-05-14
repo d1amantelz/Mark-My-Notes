@@ -13,6 +13,29 @@
 {% endblock %}
 
 {% block content %}
+
+<!--<div class="scroll-buttons-container">-->
+<!--    <a href="#" onclick="scrollToTop()">-->
+<!--        <img src="{% static 'noteapp/svg/up.svg' %}" alt="Переместиться наверх">-->
+<!--    </a>-->
+<!--    <a href="#" onclick="scrollToBottom()">-->
+<!--        <img src="{% static 'noteapp/svg/down.svg' %}" alt="Переместиться вниз">-->
+<!--    </a>-->
+<!--</div>-->
+
+
+<div class="note-panel">
+    <a class="tooltip" onclick="scrollToTop()">
+        <img src="{% static 'noteapp/svg/up.svg' %}" alt="">
+        <span class="tooltiptext">Переместиться наверх</span>
+    </a>
+    <a class="tooltip" onclick="scrollToBottom()">
+        <img src="{% static 'noteapp/svg/down.svg' %}" alt="">
+        <span class="tooltiptext">Переместиться вниз</span>
+    </a>
+</div>
+
+
 <img class="guide-background-img" src="{% static 'noteapp/img/poster_background.png' %}" alt="Фон">
 
 <div class="examples-container">
@@ -221,4 +244,12 @@ def hello_world():
 <script>
     hljs.highlightAll();
 </script>
+
+<!-- для скролла наверх и вниз -->
+<script src="{% static 'noteapp/js/scroll_to_top.js' %}"></script>
+<script src="{% static 'noteapp/js/scroll_to_down.js' %}"></script>
+
+<!-- для подсчета ширины и медленного появления note-panel -->
+<script src="{% static 'noteapp/js/show_note_panel.js' %}"></script>
+
 {% endblock %}

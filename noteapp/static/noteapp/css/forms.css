@@ -22,18 +22,6 @@ h1 {
     margin-bottom: 40px;
 }
 
-hr {
-    border: none;
-    border-bottom: 1px solid #525252;
-    margin-bottom: 55px;
-}
-
-label {
-    display: block;
-    font-size: 22px;
-    margin-left: 5px;
-}
-
 .input-group > input {
     height: 30px;
     padding: 5px 15px;
@@ -94,28 +82,6 @@ a:hover {
     margin-bottom: 20px;
 }
 
-select {
-    width: 200px;
-    height: 40px;
-    font-size: 16px;
-    border-radius: 15px;
-    font-weight: bold;
-    appearance: none;
-    color: #d2d2ca;
-    padding: 5px 15px;
-    font-family: Nunito, sans-serif;
-    background-color: #3f3f3f;
-    border: 1px solid #fdbf2d;
-}
-
-select option {
-    background-color: #3a3a3a;
-}
-
-select:focus {
-    outline: none;
-}
-
 
 input[type="file"] {
     height: 40px;
@@ -127,15 +93,6 @@ input[type="file"] {
 
 .test-class {
     color: red
-}
-
-.errorlist {
-    max-width: 558px;
-    font-size: 18px;
-    color: #e63946;
-    list-style-type: none;
-    margin-bottom: 15px;
-    font-weight: bold;
 }
 
 
