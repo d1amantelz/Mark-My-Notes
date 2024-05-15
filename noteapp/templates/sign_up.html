@@ -1,11 +1,13 @@
+{% load static %}
+
 <html lang="ru">
 <head>
-    <title>Регистрация</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'noteapp/svg/title.svg' %}" type="image/x-icon">
+    <title>Регистрация</title>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    {% load static %}
     <link rel="stylesheet" href="{% static 'noteapp/css/forms.css' %}">
     <link rel="stylesheet" href="{% static 'noteapp/css/base.css' %}">
 
@@ -22,6 +24,7 @@
         <div class="form-fields">
             <h1>Регистрация нового аккаунта</h1>
             <hr/>
+            <p style="text-align: left;margin: 10px 5px;">* – обязательное для заполнения поле</p>
             <div class="input-group">
                 {{ form.non_field_errors }}
                 {{ form.username.errors }}

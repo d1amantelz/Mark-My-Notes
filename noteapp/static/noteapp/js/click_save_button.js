@@ -1,8 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var saveLink = document.querySelector(".note-panel .save-link");
-    saveLink.addEventListener('click', function (e) {
-        e.preventDefault();
-        var submitButton = document.querySelector("button[type='submit']");
-        submitButton.click();
-    });
+    let saveLink = document.querySelector(".note-panel .save-link");
+    if (saveLink) {
+        saveLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            let submitButton = document.querySelector("button[type='submit']");
+            if (submitButton) {
+                submitButton.click();
+            }
+        });
+    }
 });

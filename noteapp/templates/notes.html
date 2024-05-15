@@ -24,7 +24,9 @@
         {% for note in notes %}
         <tr class="note-row hoverable" data-url="{{ note.get_absolute_url }}">
             <td>
-                <img class="img-in-table" src="{{ note.icon.url }}" alt=""/>
+                <img class="img-in-table"
+                     src="{% if note.icon %}{{ note.icon.url }}{% else %}{% static 'noteapp/default/default-note-icon.png' %}{% endif %}"
+                     alt=""/>
             </td>
             <td class="note-title">{{ note.title }}</td>
             <td><span class="note-category-label" style="background-color:{{ note.category.color }}">

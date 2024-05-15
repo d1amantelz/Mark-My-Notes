@@ -1,23 +1,14 @@
+{% extends 'base.html' %}
 
 {% load static %}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" href="{% static 'noteapp/svg/title.svg' %}" type="image/x-icon">
-    <title>Изменение имени профиля</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'noteapp/css/forms.css' %}">
-    <link rel="stylesheet" href="{% static 'noteapp/css/base.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
-            rel="stylesheet"
-    />
-</head>
-<body>
+{% block css %}
+<title>Изменение имени профиля</title>
+<link rel="stylesheet" href="{% static 'noteapp/css/forms.css' %}">
+<link rel="stylesheet" href="{% static 'noteapp/css/base.css' %}">
+{% endblock %}
+
+{% block content %}
 <div class="form-container">
     <form action="{% url 'update_username' %}" method="post">
         {% csrf_token %}
@@ -33,5 +24,4 @@
         <button type="submit" class="ordinary-button submit-button-margin">Сохранить изменения</button>
     </form>
 </div>
-</body>
-</html>
+{% endblock %}

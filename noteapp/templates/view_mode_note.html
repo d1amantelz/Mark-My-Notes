@@ -10,29 +10,9 @@
 />
 <link rel="stylesheet" href="{% static 'noteapp/css/note.css' %}"/>
 <link rel="stylesheet" href="{% static 'noteapp/css/view_mode_note.css' %}"/>
-<style>
 
-    .note-content {
-        {% if settings.text_font != 'JetBrains Mono' %}
-            font-family: "{{ settings.text_font }}", sans-serif;
-        {% endif %}
+{% include 'view_note_text_changer.html' %}
 
-        {% if settings.text_font_size != 16 %}
-            font-size: {{ settings.text_font_size }}px;
-        {% endif %}
-    }
-
-    .note-content code {
-        {% if settings.code_font != 'JetBrains Mono' %}
-            font-family: "{{ settings.code_font }}", sans-serif;
-        {% endif %}
-
-        {% if settings.code_font_size != 14 %}
-            font-size: {{ settings.code_font_size }}px;
-        {% endif %}
-    }
-пше
-</style>
 {% endblock %}
 
 {% block content %}
@@ -82,7 +62,7 @@
         <div class="note-image">
             <img
                     class="circled-icon note-icon"
-                    src="{{ note.icon.url }}"
+                    src="{% if note.icon %}{{ note.icon.url }}{% else %}{% static 'noteapp/default/default-note-icon.png' %}{% endif %}"
                     alt="Заметка"
             />
         </div>
@@ -145,7 +125,6 @@
     <!-- для скролла наверх и вниз -->
     <script src="{% static 'noteapp/js/scroll_to_top.js' %}"></script>
     <script src="{% static 'noteapp/js/scroll_to_down.js' %}"></script>
-
 
 </div>
 

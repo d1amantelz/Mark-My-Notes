@@ -1,0 +1,13 @@
+<style>
+
+    .note-text {
+        {% if settings.text_font != 'JetBrains Mono' %}
+            font-family: "{{ settings.text_font }}", sans-serif;
+        {% endif %}
+
+        {% if settings.text_font_size != 16 %}
+            font-size: {{ settings.text_font_size }}px;
+        {% endif %}
+    }
+
+</style>

@@ -66,7 +66,7 @@
         <a href="{% url 'profile' %}" class="tooltip">
             <img
                     class="circled-icon border-icon"
-                    src="{{ request.user.profile.avatar.url }}"
+                    src="{% if request.user.profile.avatar %}{{ request.user.profile.avatar.url }}{% else %}{% static 'noteapp/default/default-profile-avatar.jpg' %}{% endif %}"
                     alt="Профиль пользователя"
             />
             <span class="tooltiptext">Ваш профиль</span>

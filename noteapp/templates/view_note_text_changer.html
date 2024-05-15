@@ -1,0 +1,23 @@
+<style>
+
+    .note-content {
+        {% if settings.text_font != 'JetBrains Mono' %}
+            font-family: "{{ settings.text_font }}", sans-serif;
+        {% endif %}
+
+        {% if settings.text_font_size != 16 %}
+            font-size: {{ settings.text_font_size }}px;
+        {% endif %}
+    }
+
+    .note-content code {
+        {% if settings.code_font != 'JetBrains Mono' %}
+            font-family: "{{ settings.code_font }}", sans-serif;
+        {% endif %}
+
+        {% if settings.code_font_size != 14 %}
+            font-size: {{ settings.code_font_size }}px;
+        {% endif %}
+    }
+
+</style>

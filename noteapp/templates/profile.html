@@ -11,7 +11,9 @@
 <div class="profile-container">
     <div class="change-info-container">
         <div class="profile-photo-container">
-            <img class="profile-photo" src="{{ profile.avatar.url }}" alt=""/>
+            <img class="profile-photo"
+                 src="{% if profile.avatar %}{{ profile.avatar.url }}{% else %}{% static 'noteapp/default/default-profile-avatar.jpg' %}{% endif %}"
+                 alt=""/>
         </div>
         <div class="change-buttons-container">
             <h2 class="profile-name">{{ profile.user.username }}</h2>

@@ -172,13 +172,10 @@ button a {
         max-width: 100%;
     }
 
-    .date-container {
-        visibility: hidden;
+    .author-and-date-container {
+        margin-top: 20px;
+        order: 3;
+        position: initial;
+        text-align: center;
     }
-
-    .note-change-buttons-container {
-        order: 4;
-        height: 150px;
-    }
-
 }

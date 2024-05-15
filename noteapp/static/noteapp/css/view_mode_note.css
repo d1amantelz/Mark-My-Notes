@@ -3,9 +3,6 @@
     font-family: "Jetbrains Mono", monospace;
 }
 
-.note-change-buttons-container button {
-    width: 400px;
-}
 
 .note-content h1,
 .note-content h2,
@@ -91,8 +88,8 @@
 .copy-button {
     cursor: pointer;
     position: absolute;
-    top: 14px;
-    right: 14px;
+    top: 8px;
+    right: 8px;
     padding: 3px;
     font-family: "Jetbrains Mono", monospace;
     border-radius: 5px;
@@ -109,11 +106,4 @@
 .hljs {
     background-color: #323232;
     font-family: "Jetbrains Mono", monospace;
-}
-
-@media (max-width: 1024px) {
-    .note-change-buttons-container {
-        order: 3;
-        height: 100px;
-    }
 }

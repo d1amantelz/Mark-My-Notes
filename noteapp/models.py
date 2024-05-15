@@ -10,7 +10,7 @@ class Note(models.Model):
     description = models.CharField(max_length=200, blank=True, null=True)
     content = models.TextField(blank=True, null=True, )
     author = models.ForeignKey('Profile', on_delete=models.CASCADE)
-    icon = models.ImageField(upload_to='icons/%Y/%m/%d/', default='default/default-note-icon.png')
+    icon = models.ImageField(upload_to='icons/%Y/%m/%d/', blank=True, null=True)
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)
     category = models.ForeignKey('Category', on_delete=models.PROTECT)
@@ -49,7 +49,7 @@ class Category(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to='avatars/%Y/%m/%d/', default='default/default-profile-avatar.jpg')
+    avatar = models.ImageField(upload_to='avatars/%Y/%m/%d/', blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     settings = models.ForeignKey('Setting', on_delete=models.PROTECT, null=True, blank=True)
 
