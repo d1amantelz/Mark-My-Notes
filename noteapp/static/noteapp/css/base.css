@@ -8,14 +8,15 @@ img {
 }
 
 ::selection {
-    background: #272727;
+    background: #1e1e1e;
     color: #fdbf2d;
 }
 
 ::-moz-selection {
-    background: #272727;
+    background: #1e1e1e;
     color: #fdbf2d;
 }
+
 
 body {
     background-color: #272727;
@@ -288,8 +289,69 @@ hr {
     border-radius: 0 10px 10px 0;
 }
 
-
 .note-panel a:hover {
     background-color: #3a3a3a;
     outline: 1px solid #fdbf2d;
+}
+
+/* Стили для модального окна */
+.modal {
+    display: none; /* Скрыть модальное окно по умолчанию */
+    position: fixed; /* Оставаться на месте при прокрутке */
+    z-index: 1; /* Сидеть над всеми другими элементами */
+    left: 0;
+    top: 0;
+    width: 100%; /* Полная ширина */
+    height: 100%; /* Полная высота */
+    background-color: rgba(0, 0, 0, 0.6); /* Черный с небольшой прозрачностью */
+}
+
+/* Стили для содержимого модального окна */
+.modal-content {
+    background-color: #303030;
+    padding: 40px;
+    border-radius: 15px;
+    margin: 0; /* Убрать внешний отступ */
+    /* Центрирование содержимого */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 35%; /* Ширина модального окна */
+    height: auto; /* Высота по содержимому */
+}
+
+.modal-content p {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.buttons-container {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.buttons-container button {
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 8px 26px;
+    font-family: inherit;
+    color: #fdbf2d;
+    background-color: #3a3a3a;
+    border: 1px solid #303030;
+}
+
+.buttons-container button:hover {
+    border: 1px solid #fdbf2d;
+    cursor: pointer;
+}
+
+.close {
+    font-size: 26px;
+    cursor: pointer;
+    float: right;
 }

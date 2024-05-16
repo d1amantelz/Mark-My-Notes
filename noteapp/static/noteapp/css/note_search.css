@@ -60,3 +60,7 @@
     font-weight: bold;
     margin-top: 50px;
 }
+
+.highlighted {
+    background-color: #fdbf2d;
+}

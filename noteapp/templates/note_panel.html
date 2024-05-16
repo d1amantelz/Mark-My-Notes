@@ -1,0 +1,59 @@
+{% load static %}
+
+<div class="note-panel">
+
+    {# Действия для того или иного режима #}
+    {% if mode == "edit" %}
+        <a href="{% url 'note_view_mode' note.pk %}" class="tooltip">
+            <img src="{% static 'noteapp/svg/view.svg' %}" alt="">
+            <span class="tooltiptext">Перейти в режим обзора</span>
+        </a>
+    {% else %}
+        {% if request.user.profile == note.author %}
+            <a href="{% url 'note_edit_mode' note.pk %}" class="tooltip">
+                <img src="{% static 'noteapp/svg/edit.svg' %}" alt="">
+                <span class="tooltiptext">Перейти в режим редактирования</span>
+            </a>
+        {% endif %}
+    {% endif %}
+
+    {# Общие действия #}
+    {% if request.user.profile == note.author %}
+        <a href="{% url 'update_note' note.pk %}" class="tooltip">
+            <img src="{% static 'noteapp/svg/note-properties.svg' %}" alt="">
+            <span class="tooltiptext">Изменить данные заметки</span>
+        </a>
+    {% endif %}
+    <a class="tooltip" onclick="copy_to_clipboard()">
+        <img src="{% static 'noteapp/svg/copy.svg' %}" alt="">
+        <span class="tooltiptext">Скопировать содержимое</span>
+    </a>
+    <a class="tooltip" onclick="scrollToTop()">
+        <img src="{% static 'noteapp/svg/up.svg' %}" alt="">
+        <span class="tooltiptext">Переместиться наверх</span>
+    </a>
+    <a class="tooltip" onclick="scrollToBottom()">
+        <img src="{% static 'noteapp/svg/down.svg' %}" alt="">
+        <span class="tooltiptext">Переместиться вниз</span>
+    </a>
+    <a href="{% url 'export_note' note.pk %}" class="tooltip">
+        <img src="{% static 'noteapp/svg/md.svg' %}" alt="">
+        <span class="tooltiptext">Экспортировать как .md файл</span>
+    </a>
+    {% if request.user.profile == note.author %}
+        <a href="javascript:void(0)" class="tooltip deleteButton" data-id="{{ note.pk }}" data-type="note">
+            <img src="{% static 'noteapp/svg/delete.svg' %}" alt="">
+            <span class="tooltiptext">Удалить заметку</span>
+        </a>
+    {% endif %}
+
+    {% if mode == "edit" %}
+        {% if request.user.profile == note.author %}
+            <a href="" class="tooltip save-link">
+                <img src="{% static 'noteapp/svg/save.svg' %}" alt="">
+                <span class="tooltiptext">Сохранить изменения</span>
+            </a>
+        {% endif %}
+    {% endif %}
+
+</div>

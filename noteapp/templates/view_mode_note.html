@@ -2,130 +2,107 @@
 {% load static %}
 
 {% block css %}
-<title>{{ note.title }}</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-<link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-dark.css"
-/>
-<link rel="stylesheet" href="{% static 'noteapp/css/note.css' %}"/>
-<link rel="stylesheet" href="{% static 'noteapp/css/view_mode_note.css' %}"/>
+    <title>{{ note.title }}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-dark.css"
+    />
+    <link rel="stylesheet" href="{% static 'noteapp/css/note.css' %}"/>
+    <link rel="stylesheet" href="{% static 'noteapp/css/view_mode_note.css' %}"/>
 
-{% include 'view_note_text_changer.html' %}
+    {% include 'view_note_text_changer.html' %}
 
 {% endblock %}
 
 {% block content %}
+    {% include 'note_panel.html' with mode="view" %}
 
-<div class="note-panel">
-    {% if request.user.profile == note.author %}
-    <a href="{% url 'note_edit_mode' note.pk %}" class="tooltip">
-        <img src="{% static 'noteapp/svg/edit.svg' %}" alt="">
-        <span class="tooltiptext">Перейти в режим редактирования</span>
-    </a>
-    {% endif %}
-    {% if request.user.profile == note.author %}
-    <a href="{% url 'update_note' note.pk %}" class="tooltip">
-        <img src="{% static 'noteapp/svg/note-properties.svg' %}" alt="">
-        <span class="tooltiptext">Изменить данные заметки</span>
-    </a>
-    {% endif %}
-    <a class="tooltip" onclick="copy_to_clipboard()">
-        <img src="{% static 'noteapp/svg/copy.svg' %}" alt="">
-        <span class="tooltiptext">Скопировать содержимое</span>
-    </a>
-    <a class="tooltip" onclick="scrollToTop()">
-        <img src="{% static 'noteapp/svg/up.svg' %}" alt="">
-        <span class="tooltiptext">Переместиться наверх</span>
-    </a>
-    <a class="tooltip" onclick="scrollToBottom()">
-        <img src="{% static 'noteapp/svg/down.svg' %}" alt="">
-        <span class="tooltiptext">Переместиться вниз</span>
-    </a>
-    <a href="{% url 'export_note' note.pk %}" class="tooltip">
-        <img src="{% static 'noteapp/svg/md.svg' %}" alt="">
-        <span class="tooltiptext">Экспортировать как .md файл</span>
-    </a>
-    {% if request.user.profile == note.author %}
-    <a href="{% url 'delete_note' note.pk %}" class="tooltip">
-        <img src="{% static 'noteapp/svg/delete.svg' %}" alt="">
-        <span class="tooltiptext">Удалить заметку</span>
-    </a>
-    {% endif %}
-
-</div>
+    <!-- заметка -->
+    <div class="note-block">
+        <div class="note-info-container">
+            <div class="note-image">
+                <img
+                        class="circled-icon note-icon"
+                        src="
 
 
-<!-- заметка -->
-<div class="note-block">
-    <div class="note-info-container">
-        <div class="note-image">
-            <img
-                    class="circled-icon note-icon"
-                    src="{% if note.icon %}{{ note.icon.url }}{% else %}{% static 'noteapp/default/default-note-icon.png' %}{% endif %}"
-                    alt="Заметка"
-            />
-        </div>
 
-        <div class="note-info">
-            <div class="note-title">
-                <h2>{{ note.title }}</h2>
+
+
+
+                                {% if note.icon %}{{ note.icon.url }}{% else %}{% static 'noteapp/default/default-note-icon.png' %}{% endif %}"
+                        alt="Заметка"
+                />
             </div>
 
-            {% if note.description %}
-            <div class="note-description">
-                <p>{{ note.description }}</p>
-            </div>
-            {% endif %}
+            <div class="note-info">
+                <div class="note-title">
+                    <h2>{{ note.title }}</h2>
+                </div>
 
-            <div class="category" style="background-color: {{ note.category.color }}">
-                <h2>{{ note.category }}</h2>
-            </div>
-            <div class="author-and-date-container">
-                <p>
-                    {% if request.user.profile == note.author %}
-                    <span class="white-span">Время изменения:</span>
-                    {{ note.time_update|date:"H:i / d.m.Y" }}
-                    <br>
-                    {% endif %}
-                    {% if request.user.profile != note.author %}
-                    <span class="white-span">Автор:</span> {{ note.author }}
-                    {% endif %}
-                </p>
+                {% if note.description %}
+                    <div class="note-description">
+                        <p>{{ note.description }}</p>
+                    </div>
+                {% endif %}
+
+                <div class="category" style="background-color: {{ note.category.color }}">
+                    <h2>{{ note.category }}</h2>
+                </div>
+                <div class="author-and-date-container">
+                    <p>
+                        {% if request.user.profile == note.author %}
+                            <span class="white-span">Время изменения:</span>
+                            {{ note.time_update|date:"H:i / d.m.Y" }}
+                            <br>
+                        {% endif %}
+                        {% if request.user.profile != note.author %}
+                            <span class="white-span">Автор:</span> {{ note.author }}
+                        {% endif %}
+                    </p>
+                </div>
             </div>
         </div>
+
+        {% load markdown_extras %}
+
+        {% if note.content %}
+            <div class="note-content">
+                {{ note.content | markdown | safe }}
+            </div>
+        {% endif %}
+
+        <!-- подсветка кода-->
+        <script>
+            hljs.highlightAll();
+        </script>
+
+        <!-- Модальное окно для подтверждения удаления -->
+        {% include 'modal_delete_note.html' %}
+
+        <!-- для подтверждения удаления -->
+        <script src="{% static 'noteapp/js/delete_confirmation.js' %}"></script>
+
+        <!-- для копирования в буфер -->
+        <script src="{% static 'noteapp/js/copy_to_clipboard.js' %}"></script>
+
+        <!-- для подсчета ширины и медленного появления note-panel -->
+        <script src="{% static 'noteapp/js/show_note_panel.js' %}"></script>
+
+        <!-- для копирования кода -->
+        <script>
+            window.copyIconPath = "{% static 'noteapp/svg/copy.svg' %}";
+            window.saveIconPath = "{% static 'noteapp/svg/save.svg' %}";
+        </script>
+        <script src="{% static 'noteapp/js/copy_code_button.js' %}"></script>
+
+        <!-- для скролла наверх и вниз -->
+        <script src="{% static 'noteapp/js/scroll_to_top.js' %}"></script>
+        <script src="{% static 'noteapp/js/scroll_to_down.js' %}"></script>
+
+        <!-- для подтверждения удаления -->
+        <script src="{% static 'noteapp/js/delete_confirmation.js' %}"></script>
+
     </div>
-
-    {% load markdown_extras %}
-
-    {% if note.content %}
-    <div class="note-content">
-        {{ note.content | markdown | safe }}
-    </div>
-    {% endif %}
-
-    <!-- подсветка кода-->
-    <script>
-        hljs.highlightAll();
-    </script>
-
-    <!-- для копирования в буфер -->
-    <script src="{% static 'noteapp/js/copy_to_clipboard.js' %}"></script>
-
-    <!-- для подсчета ширины и медленного появления note-panel -->
-    <script src="{% static 'noteapp/js/show_note_panel.js' %}"></script>
-
-    <!-- для копирования кода -->
-    <script>
-        window.copyIconPath = "{% static 'noteapp/svg/copy.svg' %}";
-        window.saveIconPath = "{% static 'noteapp/svg/save.svg' %}";
-    </script>
-    <script src="{% static 'noteapp/js/copy_code_button.js' %}"></script>
-
-    <!-- для скролла наверх и вниз -->
-    <script src="{% static 'noteapp/js/scroll_to_top.js' %}"></script>
-    <script src="{% static 'noteapp/js/scroll_to_down.js' %}"></script>
-
-</div>
-
 {% endblock %}
