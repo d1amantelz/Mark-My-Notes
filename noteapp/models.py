@@ -73,11 +73,19 @@ class Setting(models.Model):
         (18, '18'),
     ]
 
+    CODE_THEME_CHOICES = [
+        ('a11y-dark', 'a11y-dark'),
+        ('atom-one-dark', 'atom-one-dark'),
+        ('isbl-editor-dark', 'isbl-editor-dark'),
+        ('agate', 'agate'),
+    ]
+
     user = models.OneToOneField('Profile', on_delete=models.CASCADE, unique=True)
     code_font = models.CharField(max_length=20, choices=FONT_CHOICES, default='JetBrains Mono')
     code_font_size = models.IntegerField(choices=FONT_SIZE_CHOICES, default=14)
     text_font = models.CharField(max_length=20, choices=FONT_CHOICES, default='JetBrains Mono')
     text_font_size = models.IntegerField(choices=FONT_SIZE_CHOICES, default=16)
+    code_theme = models.CharField(max_length=20, choices=CODE_THEME_CHOICES, default='a11y-dark')
 
     def __str__(self):
         return f"{self.user}'s settings"

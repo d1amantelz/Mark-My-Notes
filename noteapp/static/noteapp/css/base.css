@@ -186,6 +186,18 @@ header .tooltip .tooltiptext {
     text-decoration: none;
 }
 
+.create-category-button {
+    position: static;
+    padding: 10px 15px;
+    transform: none;
+    font-size: 16px;
+    border: 1px solid #fdbf2d;
+    border-radius: 15px;
+    width: 200px;
+    color: #d2d2ca;
+    text-align: left;
+}
+
 .submit-button-margin {
     margin-top: 25px;
 }

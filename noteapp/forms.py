@@ -136,7 +136,7 @@ class CustomUserCreationForm(UserCreationForm):
 class SettingForm(forms.ModelForm):
     class Meta:
         model = Setting
-        fields = ['code_font', 'code_font_size', 'text_font', 'text_font_size']
+        fields = ['code_font', 'code_font_size', 'text_font', 'text_font_size', 'code_theme']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -144,3 +144,4 @@ class SettingForm(forms.ModelForm):
         self.fields['code_font_size'].label = 'Размер шрифта кода'
         self.fields['text_font'].label = 'Шрифт текста'
         self.fields['text_font_size'].label = 'Размер шрифта текста'
+        self.fields['code_theme'].label = 'Тема кода'
