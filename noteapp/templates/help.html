@@ -79,66 +79,56 @@
         <h3>Заголовки</h3>
         <p>В Markdown заголовки создаются с помощью символа решетки #. Количество решеток перед заголовком определяет
             его уровень. Вот примеры:</p>
-        <pre>
-            <code class="language-markdown"># Заголовок 1
+        <pre><code class="language-markdown"># Заголовок 1
 ## Заголовок 2
 ### Заголовок 3
 #### Заголовок 4
 ##### Заголовок 5
-###### Заголовок 6</code>
-        </pre>
+###### Заголовок 6</code></pre>
         <img src="{% static 'noteapp/img/headers-example.png' %}" alt="">
     </div>
     <div class="example-container">
         <h3>Параграфы</h3>
         <p>В Markdown параграфы создаются с помощью одного или более последовательных строк текста, разделенных одной
             или более пустыми строками. Вот пример:</p>
-        <pre>
-            <code class="language-markdown">Это первый параграф.
+        <pre><code class="language-markdown">Это первый параграф.
 
-Это второй параграф.</code>
-        </pre>
+Это второй параграф.</code></pre>
         <img src="{% static 'noteapp/img/p-example.png' %}" alt="">
         <p>Если вы хотите создать перенос строки без начала нового параграфа, вы можете использовать два или более
             пробела в конце строки:</p>
-        <pre>
-            <code>Это строка с переносом.
-Это следующая строка.</code>
-        </pre>
+        <pre><code>Это строка с переносом.
+Это следующая строка.</code></pre>
         <img src="{% static 'noteapp/img/p-example2.png' %}" alt="">
 
         <h3>Выделения текста</h3>
-        <p>В Markdown отдельные части текста можно выделять разные способами. Например, жирным, курсивом или жирным
-            курсивом.</p>
+        <p>В Markdown отдельные части текста можно выделять разные способами. Например, жирным, курсивом, жирным
+            курсивом или моноширинным текстом.</p>
         <p>Для выделения курсивом используются, либо одна звездочка "*", либо одно подчеркивание "_". Вот как это
             выглядит:</p>
         <!-- TODO: fix that-->
-        <pre>
-            <code class="python">*Курсив*
-_Курсив_</code>
-        </pre>
+        <pre><code class="python">*Курсив*
+_Курсив_</code></pre>
         <img src="{% static 'noteapp/img/cursive-example.png' %}" alt="">
-        <p>Для выделения жирным используются, либо две звездочки "**", либо два подчеркивания "__". Вот как это
-            выглядит:</p>
-        <pre>
-            <code class="python">**Жирный текст**
-__Жирный текст__</code>
-        </pre>
+
+        <p>Для выделения жирным используются, либо две звездочки "**", либо два подчеркивания "__". Вот как это выглядит:</p>
+        <pre><code class="python">**Жирный текст**
+__Жирный текст__</code></pre>
         <img src="{% static 'noteapp/img/bold-example.png' %}" alt="">
-        <p>Для выделения жирным курсивом используются, либо три звездочки "***", либо три подчеркивания "__". Вот как
-            это
-            выглядит:</p>
-        <pre>
-            <code class="language-python">***Жирный курсив***
-___Жирный курсив___</code>
-        </pre>
+
+        <p>Для выделения жирным курсивом используются, либо три звездочки "***", либо три подчеркивания "__". Вот как это выглядит:</p>
+        <pre><code class="language-python">***Жирный курсив***
+___Жирный курсив___</code></pre>
         <img src="{% static 'noteapp/img/bold-cursive-example.png' %}" alt="">
+
+        <p>Для выделения моноширинным текстом используются обратные апострофы "`". Вот как это выглядит:</p>
+        <pre><code class="language-python">`Моноширинный текст`</code></pre>
+        <img src="{% static 'noteapp/img/monospace-example.png' %}" alt="">
 
         <h3>Цитаты</h3>
         <p>В Markdown цитаты создаются с помощью символа > перед текстом. Имеется возможность использовать вложенные
             цитаты, комбинируя символы >. Вот пример:</p>
-        <pre>
-            <code class="language-python">> # Заголовок
+        <pre><code class="language-python">> # Заголовок
 > Первый параграф
 >
 > Второй параграф
@@ -146,47 +136,36 @@ ___Жирный курсив___</code>
 > > Вложенная цитата
 > > > Цитата третьего уровня
 >
-> Продолжение основной цитаты</code>
-        </pre>
+> Продолжение основной цитаты</code></pre>
         <img src="{% static 'noteapp/img/quote-example.png' %}" alt="">
 
         <h3>Нумерованные списки</h3>
         <p>В Markdown нумерованные списки создаются с помощью чисел, за которыми следует точка. Вот пример:</p>
-        <pre>
-            <code>1. Один
+        <pre><code>1. Один
 2. Два
-3. Три</code>
-        </pre>
+3. Три</code></pre>
         <img src="{% static 'noteapp/img/ol-example.png' %}" alt="">
 
         <h3>Маркированные списки</h3>
         <p>В Markdown маркированные списки создаются с помощью символа звездочки "*". Вот пример:</p>
-        <pre>
-            <code class="language-markdown">* Первый пункт
+        <pre><code class="language-markdown">* Первый пункт
 * Второй пункт
-* Третий пункт</code>
-        </pre>
+* Третий пункт</code></pre>
         <img src="{% static 'noteapp/img/ul-example.png' %}" alt="">
 
         <h3>Ссылки</h3>
         <p>Ссылки в Markdown имеют несколько видов: встроенные, с всплывающей подсказкой, автоматические ссылки
             url.</p>
         <p>Встроенные ссылки состоят из [...] - текст ссылки, и (...) - url ссылки. Вот пример:</p>
-        <pre>
-            <code class="language-markdown">[Google](https://google.com/)</code>
-        </pre>
+        <pre><code class="language-markdown">[Google](https://google.com/)</code></pre>
         <img src="{% static 'noteapp/img/link-example1.png' %}" alt="">
         <p>Ссылки с всплывающей подсказкой похожи на встроенные ссылки. Чтобы указать текст подсказки, необходимо
             написать его в кавычках после url ссылки. Вот пример:</p>
-        <pre>
-            <code class="language-markdown">[Google](https://google.com/ "Ссылка на Google")</code>
-        </pre>
+        <pre><code class="language-markdown">[Google](https://google.com/ "Ссылка на Google")</code></pre>
         <img src="{% static 'noteapp/img/link-example2.png' %}" alt="">
         <p>Ну и наконец автоматические ссылки url, которые выглядят как обычный url адрес. Достаточно окружить ссылку
             треугольными скобками <>. Вот пример:</p>
-        <pre>
-            <code class="language-markdown">< https://google.com/ ></code>
-        </pre>
+        <pre><code class="language-markdown">< https://google.com/ ></code></pre>
         <img src="{% static 'noteapp/img/link-example3.png' %}" alt="">
         <p>Пробелы вокруг ссылки НЕ НУЖНЫ. Они были добавлены для того, чтобы код Markdown корректно
             отображался. Без них отображение кода было бы некорректным.</p>
@@ -195,12 +174,10 @@ ___Жирный курсив___</code>
         <p>В Markdown код помещается между тройными обратными кавычками ```. После открывающих кавычек можно указать
             язык программирования для активации подсветки синтаксиса. И, конечно, не забудьте добавить закрывающие
             кавычки ```. Вот как это выглядит на практике:</p>
-        <pre>
-            <code class="language-markdown">```python
+        <pre><code class="language-markdown">```python
 def hello_world():
     print("Hello, world!")
-```</code>
-        </pre>
+```</code></pre>
         <img src="{% static 'noteapp/img/code-example.png' %}" alt="">
 
         <h3>Изображения</h3>
@@ -209,13 +186,11 @@ def hello_world():
             сделать всплывающую подсказку.</p>
         <p>Вы можете разместить URL-адрес изображения в другом месте документа, присвоив ему номер для ссылки. Вот
             пример:</p>
-        <pre>
-            <code>![Фоточка](https://avatars.mds.yandex.net/i?id=32fb1c6fcc34819b36ef9e3b0d96fa01_l-9867831-images-thumbs&n=13 "Логотип Markdown")
+        <pre><code>![Фоточка](https://avatars.mds.yandex.net/i?id=32fb1c6fcc34819b36ef9e3b0d96fa01_l-9867831-images-thumbs&n=13 "Логотип Markdown")
 
 ![Фоточка][1]
 
-[1]: https://avatars.mds.yandex.net/i?id=32fb1c6fcc34819b36ef9e3b0d96fa01_l-9867831-images-thumbs&n=13 "Логотип Markdown"</code>
-        </pre>
+[1]: https://avatars.mds.yandex.net/i?id=32fb1c6fcc34819b36ef9e3b0d96fa01_l-9867831-images-thumbs&n=13 "Логотип Markdown"</code></pre>
         <img src="{% static 'noteapp/img/img-example.png' %}" alt="">
     </div>
 </div>

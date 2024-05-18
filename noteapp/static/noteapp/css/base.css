@@ -192,6 +192,7 @@ header .tooltip .tooltiptext {
     transform: none;
     font-size: 16px;
     border: 1px solid #fdbf2d;
+    background-color: #3f3f3f;
     border-radius: 15px;
     width: 200px;
     color: #d2d2ca;
@@ -310,7 +311,7 @@ hr {
 .modal {
     display: none; /* Скрыть модальное окно по умолчанию */
     position: fixed; /* Оставаться на месте при прокрутке */
-    z-index: 1; /* Сидеть над всеми другими элементами */
+    z-index: 21; /* Сидеть над всеми другими элементами */
     left: 0;
     top: 0;
     width: 100%; /* Полная ширина */

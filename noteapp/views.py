@@ -121,6 +121,7 @@ def export_note(request, note_id):
     return response
 
 
+# TODO: refactor this function to a class view
 def note_search(request):
     search_query = request.POST.get('search')
     if search_query:

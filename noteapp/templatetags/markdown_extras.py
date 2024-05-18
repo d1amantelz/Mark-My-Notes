@@ -16,8 +16,7 @@ def markdown(value):
 @register.filter
 def markdown_to_plaintext(markdown_string, search_query):
     html = md.markdown(markdown_string)
-
     soup = BeautifulSoup(html, "html.parser")
     text = '. '.join(soup.stripped_strings)
-    sentences = text.split('.')
+    sentences = text.split('. ')
     return '. '.join(sentence for sentence in sentences if search_query.lower() in sentence.lower())
