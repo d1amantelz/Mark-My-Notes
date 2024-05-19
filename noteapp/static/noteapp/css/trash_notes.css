@@ -1,0 +1,65 @@
+
+.trash-note-icon {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.icon-container {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.first-line {
+    display: flex;
+}
+
+.trash-notes-container {
+    margin: 70px 100px;
+}
+
+.trash-note-container {
+    width: fit-content;
+    margin-bottom: 20px;
+    padding: 20px 30px 55px;
+    margin-right: 15px;
+    border-radius: 15px;
+    display: inline-block;
+}
+
+.trash-note-container {
+    cursor: none;
+}
+
+.trash-note-title {
+    margin: 0 0 5px 0;
+    font-size: 20px;
+}
+
+.trash-note-category {
+    display: inline-block;
+    font-weight: bold;
+    color: white;
+    padding: 5px 10px;
+    margin: 0;
+    border-radius: 5px;
+}
+
+.title-and-category-container {
+    display: inline-block;
+}
+
+.trash-note-delete-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    width: 66px;
+    position: absolute;
+}
+
+.trash-note-delete-container img {
+    width: 27px;
+    height: 27px;
+}

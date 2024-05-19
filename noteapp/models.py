@@ -13,7 +13,19 @@ class Note(models.Model):
     icon = models.ImageField(upload_to='icons/%Y/%m/', blank=True, null=True)
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)
-    category = models.ForeignKey('Category', on_delete=models.PROTECT)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE)
+    is_deleted = models.BooleanField(default=False)
+
+    def delete(self, *args, **kwargs):
+        self.is_deleted = True
+        self.save()
+
+    def restore(self):
+        self.is_deleted = False
+        self.save()
+
+    def delete_permanently(self, *args, **kwargs):
+        super().delete(*args, **kwargs)
 
     def __str__(self):
         return f'{self.title} | {self.category} | {self.time_create:%d-%m-%Y | %H:%M:%S}'

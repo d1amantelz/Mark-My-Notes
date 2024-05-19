@@ -153,7 +153,6 @@ header .tooltip .tooltiptext {
 
 .hoverable:hover {
     background-color: #3d3d3d;
-    border-radius: 15px;
     transition: background-color 0.5s ease-in-out;
     cursor: pointer;
 }

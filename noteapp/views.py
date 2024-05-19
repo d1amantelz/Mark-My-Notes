@@ -21,12 +21,7 @@ class NoteListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         user = self.request.user.profile
-        return Note.objects.filter(author=user)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['user'] = self.request.user.profile
-        return context
+        return Note.objects.filter(author=user, is_deleted=False)
 
 
 class NoteCreateView(LoginRequiredMixin, CreateView):
@@ -135,6 +130,27 @@ def note_search(request):
                        'settings': settings})
     else:
         return redirect(request.META.get('HTTP_REFERER', 'notes/'))
+
+
+class TrashListView(LoginRequiredMixin, ListView):
+    template_name = 'trash_notes.html'
+    context_object_name = 'trash_notes'
+
+    def get_queryset(self):
+        user = self.request.user.profile
+        return Note.objects.filter(author=user, is_deleted=True)
+
+
+def delete_permanently_note(request, note_id):
+    note = Note.objects.get(pk=note_id)
+    note.delete_permanently()
+    return redirect('trash')
+
+
+def restore_note(request, note_id):
+    note = Note.objects.get(pk=note_id)
+    note.restore()
+    return redirect('trash')
 
 
 # ------- CATEGORY VIEWS -------
