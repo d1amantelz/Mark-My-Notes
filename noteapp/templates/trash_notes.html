@@ -5,8 +5,6 @@
     <title>Ваши категории</title>
     <link rel="stylesheet" href="{% static 'noteapp/css/notes.css' %}"/>
     <link rel="stylesheet" href="{% static 'noteapp/css/trash_notes.css' %}"/>
-
-
 {% endblock %}
 
 {% block content %}
@@ -32,16 +30,17 @@
                         </div>
                     </div>
                     <div class="trash-note-delete-container">
-                        <a href="{% url 'delete_permanently_note' trash_note.pk %}">
+                        <a class="tooltip" href="{% url 'delete_permanently_note' trash_note.pk %}">
                             <img src="{% static 'noteapp/svg/delete.svg' %}" alt="">
+                            <span class="tooltiptext">Удалить заметку навсегда</span>
                         </a>
-                        <a href="{% url 'restore_note' trash_note.pk %}">
+                        <a class="tooltip" href="{% url 'restore_note' trash_note.pk %}">
                             <img src="{% static 'noteapp/svg/restore.svg' %}" alt="">
+                            <span class="tooltiptext">Восстановить заметку</span>
                         </a>
                     </div>
                 </div>
             {% endfor %}
         </div>
-
     </div>
 {% endblock %}

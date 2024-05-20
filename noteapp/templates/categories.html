@@ -20,11 +20,14 @@
                         <h3><a href="{% url 'notes_by_category' category.pk %}">{{ category.name }}</a></h3>
                     </div>
                     <div class="category-button-container">
-                        <a href="{{ category.get_absolute_url }}">
+                        <a class="tooltip" href="{{ category.get_absolute_url }}">
                             <img src="{% static 'noteapp/svg/edit.svg' %}" alt="">
+                            <span class="tooltiptext">Изменить категорию</span>
                         </a>
-                        <a href="javascript:void(0)" class="deleteButton" data-id="{{ category.pk }}" data-type="category">
+                        <a href="javascript:void(0)" class="deleteButton tooltip" data-id="{{ category.pk }}"
+                           data-type="category">
                             <img src="{% static 'noteapp/svg/delete.svg' %}" alt="">
+                            <span class="tooltiptext">Удалить категорию</span>
                         </a>
                     </div>
                 </div>

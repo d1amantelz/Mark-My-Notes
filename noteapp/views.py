@@ -55,6 +55,11 @@ class NoteUpdateView(LoginRequiredMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         settings = Setting.objects.get(user=self.request.user.profile)
         context['settings'] = settings
+        context['url'] = self.request.build_absolute_uri(
+            reverse('note_view_mode',
+                    kwargs={'note_id': self.object.pk}))
+        context['text'] = 'Посмотри мою заметку!'
+        context['text'] = 'Посмотри мою заметку!'
         return context
 
 

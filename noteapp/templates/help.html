@@ -2,133 +2,165 @@
 {% load static %}
 
 {% block css %}
-<title>Помощь</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-<link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-dark.css"
-/>
-<link rel="stylesheet" href="{% static 'noteapp/css/help.css' %}"/>
-<link rel="stylesheet" href="{% static 'noteapp/css/view_mode_note.css' %}"/>
+    <title>Помощь</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-dark.css"
+    />
+    <link rel="stylesheet" href="{% static 'noteapp/css/help.css' %}"/>
+    <link rel="stylesheet" href="{% static 'noteapp/css/view_mode_note.css' %}"/>
 {% endblock %}
 
 {% block content %}
 
-<!--<div class="scroll-buttons-container">-->
-<!--    <a href="#" onclick="scrollToTop()">-->
-<!--        <img src="{% static 'noteapp/svg/up.svg' %}" alt="Переместиться наверх">-->
-<!--    </a>-->
-<!--    <a href="#" onclick="scrollToBottom()">-->
-<!--        <img src="{% static 'noteapp/svg/down.svg' %}" alt="Переместиться вниз">-->
-<!--    </a>-->
-<!--</div>-->
+    <!--<div class="scroll-buttons-container">-->
+    <!--    <a href="#" onclick="scrollToTop()">-->
+    <!--        <img src="{% static 'noteapp/svg/up.svg' %}" alt="Переместиться наверх">-->
+    <!--    </a>-->
+    <!--    <a href="#" onclick="scrollToBottom()">-->
+    <!--        <img src="{% static 'noteapp/svg/down.svg' %}" alt="Переместиться вниз">-->
+    <!--    </a>-->
+    <!--</div>-->
 
 
-<div class="note-panel">
-    <a class="tooltip" onclick="scrollToTop()">
-        <img src="{% static 'noteapp/svg/up.svg' %}" alt="">
-        <span class="tooltiptext">Переместиться наверх</span>
-    </a>
-    <a class="tooltip" onclick="scrollToBottom()">
-        <img src="{% static 'noteapp/svg/down.svg' %}" alt="">
-        <span class="tooltiptext">Переместиться вниз</span>
-    </a>
-</div>
-
-
-<img class="guide-background-img" src="{% static 'noteapp/img/poster_background.png' %}" alt="Фон">
-
-<div class="examples-container">
-    <h2>Замечание!</h2>
-    <div class="p-with-icon-container">
-        <div class="icon-container">
-            <img src="{% static 'noteapp/svg/warning.svg' %}" alt="">
-        </div>
-        <p class="p-with-icon">Этот проект применяет мощь <span class="md">Markdown</span>, преобразуя обычный текст в
-            структурированный HTML. В
-            следующих разделах вы узнаете, что такое <span class="md">Markdown</span> и как эффективно использовать его
-            в рамках этого проекта.
-            Рассматривайте эту страницу как ваше персональное руководство по навигации по проекту.</p>
+    <div class="note-panel">
+        <a class="tooltip" onclick="scrollToTop()">
+            <img src="{% static 'noteapp/svg/up.svg' %}" alt="">
+            <span class="tooltiptext">Переместиться наверх</span>
+        </a>
+        <a class="tooltip" onclick="scrollToBottom()">
+            <img src="{% static 'noteapp/svg/down.svg' %}" alt="">
+            <span class="tooltiptext">Переместиться вниз</span>
+        </a>
     </div>
-</div>
 
 
-<div class="examples-container">
-    <h2>Что такое Markdown?</h2>
-    <p class="quote"><span>Markdown</span> – это легкий язык разметки, созданный с целью облегчения добавления
-        форматирования к тексту в интернете.
-        Он позволяет вам преобразовывать текст в HTML или XHTML и многие другие форматы.
-        <br><br>
-        Основная идея <span>Markdown</span> – сделать текст читаемым и легко редактируемым, независимо от того,
-        преобразован он в
-        другой формат или нет. Это достигается за счет использования простого и интуитивно понятного синтаксиса.
-        <br> <br>
-        <span>Markdown</span> широко используется для создания документации, написания сообщений на форумах, создания
-        контента для
-        сайтов и многое другое. Он поддерживается многими платформами публикации контента, такими как GitHub, GitLab,
-        Bitbucket, Jekyll, и многими другими.
-        <br> <br>
-        <span>Markdown</span> поддерживает различные элементы форматирования, такие как заголовки, ссылки, списки,
-        выделение текста,
-        и многое другое.</p>
-</div>
+    <img class="guide-background-img" src="{% static 'noteapp/img/poster_background.png' %}" alt="Фон">
 
-<div class="examples-container">
-    <h2>Примеры использования Markdown</h2>
-    <div class="example-container">
-        <h3>Заголовки</h3>
-        <p>В Markdown заголовки создаются с помощью символа решетки #. Количество решеток перед заголовком определяет
-            его уровень. Вот примеры:</p>
-        <pre><code class="language-markdown"># Заголовок 1
+    <div class="examples-container">
+        <h2>Замечание!</h2>
+        <div class="p-with-icon-container">
+            <div class="icon-container">
+                <img src="{% static 'noteapp/svg/warning.svg' %}" alt="">
+            </div>
+            <p class="p-with-icon">Этот проект применяет мощь <span class="md">Markdown</span>, преобразуя обычный текст
+                в
+                структурированный HTML. В
+                следующих разделах вы узнаете, что такое <span class="md">Markdown</span> и как эффективно использовать
+                его
+                в рамках этого проекта.
+                Рассматривайте эту страницу как ваше персональное руководство по навигации по проекту.</p>
+        </div>
+    </div>
+
+
+    <div class="examples-container">
+        <h2>Что такое Markdown?</h2>
+        <p class="quote"><span>Markdown</span> – это легкий язык разметки, созданный с целью облегчения добавления
+            форматирования к тексту в интернете.
+            Он позволяет вам преобразовывать текст в HTML или XHTML и многие другие форматы.
+            <br><br>
+            Основная идея <span>Markdown</span> – сделать текст читаемым и легко редактируемым, независимо от того,
+            преобразован он в
+            другой формат или нет. Это достигается за счет использования простого и интуитивно понятного синтаксиса.
+            <br> <br>
+            <span>Markdown</span> широко используется для создания документации, написания сообщений на форумах,
+            создания
+            контента для
+            сайтов и многое другое. Он поддерживается многими платформами публикации контента, такими как GitHub,
+            GitLab,
+            Bitbucket, Jekyll, и многими другими.
+            <br> <br>
+            <span>Markdown</span> поддерживает различные элементы форматирования, такие как заголовки, ссылки, списки,
+            выделение текста,
+            и многое другое.</p>
+    </div>
+
+    <div class="examples-container">
+        <h2>Примеры использования Markdown</h2>
+        <div class="example-container">
+            <h3>Заголовки</h3>
+            <p>В Markdown заголовки создаются с помощью символа решетки #. Количество решеток перед заголовком
+                определяет
+                его уровень. Вот примеры:</p>
+            <pre><code class="language-markdown"># Заголовок 1
 ## Заголовок 2
 ### Заголовок 3
 #### Заголовок 4
 ##### Заголовок 5
 ###### Заголовок 6</code></pre>
-        <img src="{% static 'noteapp/img/headers-example.png' %}" alt="">
-    </div>
-    <div class="example-container">
-        <h3>Параграфы</h3>
-        <p>В Markdown параграфы создаются с помощью одного или более последовательных строк текста, разделенных одной
-            или более пустыми строками. Вот пример:</p>
-        <pre><code class="language-markdown">Это первый параграф.
+            <img src="{% static 'noteapp/img/headers-example.png' %}" alt="">
+        </div>
+        <div class="example-container">
+            <h3>Параграфы</h3>
+            <p>В Markdown параграфы создаются с помощью одного или более последовательных строк текста, разделенных
+                одной
+                или более пустыми строками. Вот пример:</p>
+            <pre><code class="language-markdown">Это первый параграф.
 
 Это второй параграф.</code></pre>
-        <img src="{% static 'noteapp/img/p-example.png' %}" alt="">
-        <p>Если вы хотите создать перенос строки без начала нового параграфа, вы можете использовать два или более
-            пробела в конце строки:</p>
-        <pre><code>Это строка с переносом.
+            <img src="{% static 'noteapp/img/p-example.png' %}" alt="">
+            <p>Если вы хотите создать перенос строки без начала нового параграфа, вы можете использовать два или более
+                пробела в конце строки:</p>
+            <pre><code>Это строка с переносом.
 Это следующая строка.</code></pre>
-        <img src="{% static 'noteapp/img/p-example2.png' %}" alt="">
+            <img src="{% static 'noteapp/img/p-example2.png' %}" alt="">
 
-        <h3>Выделения текста</h3>
-        <p>В Markdown отдельные части текста можно выделять разные способами. Например, жирным, курсивом, жирным
-            курсивом или моноширинным текстом.</p>
-        <p>Для выделения курсивом используются, либо одна звездочка "*", либо одно подчеркивание "_". Вот как это
-            выглядит:</p>
-        <!-- TODO: fix that-->
-        <pre><code class="python">*Курсив*
+            <h3>Экранирование</h3>
+            <p>Экранирование символов в Markdown — это способ указать, что определенные символы следует
+                интерпретировать буквально, а не как часть синтаксиса Markdown. Это полезно, когда вам нужно отобразить
+                символы, которые обычно используются для форматирования текста, например * или _, без применения их
+                форматирующего эффекта.</p>
+            <p>Чтобы экранировать символ, вы ставите перед ним обратную косую черту (\). Вот примеры:</p>
+            <pre><code class="language-markdown">\\   обратная косая черта
+\`   обратный апостроф
+\*   звездочка
+\_   нижнее подчеркивание
+\{   фигурная скобка открывающая
+\}   фигурная скобка закрывающая
+\[   квадратная скобка открывающая
+\]   квадратная скобка закрывающая
+\(   круглая скобка открывающая
+\)   круглая скобка закрывающая
+\#   решетка
+\+   плюс
+\-   минус (или дефис)
+\.   точка
+\!   восклицательный знак
+</code></pre>
+            <img src="{% static 'noteapp/img/escape-example.png' %}" alt="">
+
+            <h3>Выделения текста</h3>
+            <p>В Markdown отдельные части текста можно выделять разные способами. Например, жирным, курсивом, жирным
+                курсивом или моноширинным текстом.</p>
+            <p>Для выделения курсивом используются, либо одна звездочка "*", либо одно подчеркивание "_". Вот как это
+                выглядит:</p>
+            <!-- TODO: fix that-->
+            <pre><code class="python">*Курсив*
 _Курсив_</code></pre>
-        <img src="{% static 'noteapp/img/cursive-example.png' %}" alt="">
+            <img src="{% static 'noteapp/img/cursive-example.png' %}" alt="">
 
-        <p>Для выделения жирным используются, либо две звездочки "**", либо два подчеркивания "__". Вот как это выглядит:</p>
-        <pre><code class="python">**Жирный текст**
+            <p>Для выделения жирным используются, либо две звездочки "**", либо два подчеркивания "__". Вот как это
+                выглядит:</p>
+            <pre><code class="python">**Жирный текст**
 __Жирный текст__</code></pre>
-        <img src="{% static 'noteapp/img/bold-example.png' %}" alt="">
+            <img src="{% static 'noteapp/img/bold-example.png' %}" alt="">
 
-        <p>Для выделения жирным курсивом используются, либо три звездочки "***", либо три подчеркивания "__". Вот как это выглядит:</p>
-        <pre><code class="language-python">***Жирный курсив***
+            <p>Для выделения жирным курсивом используются, либо три звездочки "***", либо три подчеркивания "__". Вот
+                как это выглядит:</p>
+            <pre><code class="language-python">***Жирный курсив***
 ___Жирный курсив___</code></pre>
-        <img src="{% static 'noteapp/img/bold-cursive-example.png' %}" alt="">
+            <img src="{% static 'noteapp/img/bold-cursive-example.png' %}" alt="">
 
-        <p>Для выделения моноширинным текстом используются обратные апострофы "`". Вот как это выглядит:</p>
-        <pre><code class="language-python">`Моноширинный текст`</code></pre>
-        <img src="{% static 'noteapp/img/monospace-example.png' %}" alt="">
+            <p>Для выделения моноширинным текстом используются обратные апострофы "`". Вот как это выглядит:</p>
+            <pre><code class="language-python">`Моноширинный текст`</code></pre>
+            <img src="{% static 'noteapp/img/monospace-example.png' %}" alt="">
 
-        <h3>Цитаты</h3>
-        <p>В Markdown цитаты создаются с помощью символа > перед текстом. Имеется возможность использовать вложенные
-            цитаты, комбинируя символы >. Вот пример:</p>
-        <pre><code class="language-python">> # Заголовок
+            <h3>Цитаты</h3>
+            <p>В Markdown цитаты создаются с помощью символа > перед текстом. Имеется возможность использовать вложенные
+                цитаты, комбинируя символы >. Вот пример:</p>
+            <pre><code class="language-python">> # Заголовок
 > Первый параграф
 >
 > Второй параграф
@@ -137,94 +169,98 @@ ___Жирный курсив___</code></pre>
 > > > Цитата третьего уровня
 >
 > Продолжение основной цитаты</code></pre>
-        <img src="{% static 'noteapp/img/quote-example.png' %}" alt="">
+            <img src="{% static 'noteapp/img/quote-example.png' %}" alt="">
 
-        <h3>Нумерованные списки</h3>
-        <p>В Markdown нумерованные списки создаются с помощью чисел, за которыми следует точка. Вот пример:</p>
-        <pre><code>1. Один
+            <h3>Нумерованные списки</h3>
+            <p>В Markdown нумерованные списки создаются с помощью чисел, за которыми следует точка. Вот пример:</p>
+            <pre><code>1. Один
 2. Два
 3. Три</code></pre>
-        <img src="{% static 'noteapp/img/ol-example.png' %}" alt="">
+            <img src="{% static 'noteapp/img/ol-example.png' %}" alt="">
 
-        <h3>Маркированные списки</h3>
-        <p>В Markdown маркированные списки создаются с помощью символа звездочки "*". Вот пример:</p>
-        <pre><code class="language-markdown">* Первый пункт
+            <h3>Маркированные списки</h3>
+            <p>В Markdown маркированные списки создаются с помощью символа звездочки "*". Вот пример:</p>
+            <pre><code class="language-markdown">* Первый пункт
 * Второй пункт
 * Третий пункт</code></pre>
-        <img src="{% static 'noteapp/img/ul-example.png' %}" alt="">
+            <img src="{% static 'noteapp/img/ul-example.png' %}" alt="">
 
-        <h3>Ссылки</h3>
-        <p>Ссылки в Markdown имеют несколько видов: встроенные, с всплывающей подсказкой, автоматические ссылки
-            url.</p>
-        <p>Встроенные ссылки состоят из [...] - текст ссылки, и (...) - url ссылки. Вот пример:</p>
-        <pre><code class="language-markdown">[Google](https://google.com/)</code></pre>
-        <img src="{% static 'noteapp/img/link-example1.png' %}" alt="">
-        <p>Ссылки с всплывающей подсказкой похожи на встроенные ссылки. Чтобы указать текст подсказки, необходимо
-            написать его в кавычках после url ссылки. Вот пример:</p>
-        <pre><code class="language-markdown">[Google](https://google.com/ "Ссылка на Google")</code></pre>
-        <img src="{% static 'noteapp/img/link-example2.png' %}" alt="">
-        <p>Ну и наконец автоматические ссылки url, которые выглядят как обычный url адрес. Достаточно окружить ссылку
-            треугольными скобками <>. Вот пример:</p>
-        <pre><code class="language-markdown">< https://google.com/ ></code></pre>
-        <img src="{% static 'noteapp/img/link-example3.png' %}" alt="">
-        <p>Пробелы вокруг ссылки НЕ НУЖНЫ. Они были добавлены для того, чтобы код Markdown корректно
-            отображался. Без них отображение кода было бы некорректным.</p>
+            <h3>Ссылки</h3>
+            <p>Ссылки в Markdown имеют несколько видов: встроенные, с всплывающей подсказкой, автоматические ссылки
+                url.</p>
+            <p>Встроенные ссылки состоят из [...] - текст ссылки, и (...) - url ссылки. Вот пример:</p>
+            <pre><code class="language-markdown">[Google](https://google.com/)</code></pre>
+            <img src="{% static 'noteapp/img/link-example1.png' %}" alt="">
+            <p>Ссылки с всплывающей подсказкой похожи на встроенные ссылки. Чтобы указать текст подсказки, необходимо
+                написать его в кавычках после url ссылки. Вот пример:</p>
+            <pre><code class="language-markdown">[Google](https://google.com/ "Ссылка на Google")</code></pre>
+            <img src="{% static 'noteapp/img/link-example2.png' %}" alt="">
+            <p>Ну и наконец автоматические ссылки url, которые выглядят как обычный url адрес. Достаточно окружить
+                ссылку
+                треугольными скобками <>. Вот пример:</p>
+            <pre><code class="language-markdown">< https://google.com/ ></code></pre>
+            <img src="{% static 'noteapp/img/link-example3.png' %}" alt="">
+            <p>Пробелы вокруг ссылки НЕ НУЖНЫ. Они были добавлены для того, чтобы код Markdown корректно
+                отображался. Без них отображение кода было бы некорректным.</p>
 
-        <h3>Код</h3>
-        <p>В Markdown код помещается между тройными обратными кавычками ```. После открывающих кавычек можно указать
-            язык программирования для активации подсветки синтаксиса. И, конечно, не забудьте добавить закрывающие
-            кавычки ```. Вот как это выглядит на практике:</p>
-        <pre><code class="language-markdown">```python
+            <h3>Код</h3>
+            <p>В Markdown код помещается между тройными обратными кавычками ```. После открывающих кавычек можно указать
+                язык программирования для активации подсветки синтаксиса. И, конечно, не забудьте добавить закрывающие
+                кавычки ```. Вот как это выглядит на практике:</p>
+            <pre><code class="language-markdown">```python
 def hello_world():
     print("Hello, world!")
 ```</code></pre>
-        <img src="{% static 'noteapp/img/code-example.png' %}" alt="">
+            <img src="{% static 'noteapp/img/code-example.png' %}" alt="">
 
-        <h3>Изображения</h3>
-        <p>Изображения в Markdown оформляются по принципу, схожему с принципом оформления ссылок, только перед
-            квадратными скобками нужно поставить восклицательный знак. Также можно
-            сделать всплывающую подсказку.</p>
-        <p>Вы можете разместить URL-адрес изображения в другом месте документа, присвоив ему номер для ссылки. Вот
-            пример:</p>
-        <pre><code>![Фоточка](https://avatars.mds.yandex.net/i?id=32fb1c6fcc34819b36ef9e3b0d96fa01_l-9867831-images-thumbs&n=13 "Логотип Markdown")
+            <h3>Изображения</h3>
+            <p>Изображения в Markdown оформляются по принципу, схожему с принципом оформления ссылок, только перед
+                квадратными скобками нужно поставить восклицательный знак. Также можно
+                сделать всплывающую подсказку.</p>
+            <p>Вы можете разместить URL-адрес изображения в другом месте документа, присвоив ему номер для ссылки. Вот
+                пример:</p>
+            <pre><code>![Фоточка](https://avatars.mds.yandex.net/i?id=32fb1c6fcc34819b36ef9e3b0d96fa01_l-9867831-images-thumbs&n=13 "Логотип Markdown")
 
 ![Фоточка][1]
 
 [1]: https://avatars.mds.yandex.net/i?id=32fb1c6fcc34819b36ef9e3b0d96fa01_l-9867831-images-thumbs&n=13 "Логотип Markdown"</code></pre>
-        <img src="{% static 'noteapp/img/img-example.png' %}" alt="">
-    </div>
-</div>
-
-<div class="examples-container">
-    <h2>Заключение</h2>
-    <div class="p-with-icon-container">
-        <div class="icon-container">
-            <img src="{% static 'noteapp/svg/smile.svg' %}" alt="">
+            <img src="{% static 'noteapp/img/img-example.png' %}" alt="">
         </div>
-        <p class="p-with-icon">Мы рассмотрели основные возможности <span class="md">Markdown</span>, которые позволяют
-            вам эффективно
-            форматировать текст для веб-страниц и документов. Эти основные функции должны быть достаточны для
-            большинства ваших потребностей в работе с <span class="md">Markdown</span>.
-            <br><br>
-            В будущем планируется добавить еще больше возможностей, чтобы сделать <span class="md">Markdown</span> еще
-            более мощным и гибким
-            инструментом для создания контента.
-            <br><br>
-            Желаем вам удачи в работе с <span class="md">Markdown</span>! Надеемся, что вы найдете его простым и удобным
-            в использовании.</p>
     </div>
-</div>
 
-<!-- подсветка кода-->
-<script>
-    hljs.highlightAll();
-</script>
+    <div class="examples-container">
+        <h2>Заключение</h2>
+        <div class="p-with-icon-container">
+            <div class="icon-container">
+                <img src="{% static 'noteapp/svg/smile.svg' %}" alt="">
+            </div>
+            <p class="p-with-icon">Мы рассмотрели основные возможности <span class="md">Markdown</span>, которые
+                позволяют
+                вам эффективно
+                форматировать текст для веб-страниц и документов. Эти основные функции должны быть достаточны для
+                большинства ваших потребностей в работе с <span class="md">Markdown</span>.
+                <br><br>
+                В будущем планируется добавить еще больше возможностей, чтобы сделать <span class="md">Markdown</span>
+                еще
+                более мощным и гибким
+                инструментом для создания контента.
+                <br><br>
+                Желаем вам удачи в работе с <span class="md">Markdown</span>! Надеемся, что вы найдете его простым и
+                удобным
+                в использовании.</p>
+        </div>
+    </div>
 
-<!-- для скролла наверх и вниз -->
-<script src="{% static 'noteapp/js/scroll_to_top.js' %}"></script>
-<script src="{% static 'noteapp/js/scroll_to_down.js' %}"></script>
+    <!-- подсветка кода-->
+    <script>
+        hljs.highlightAll();
+    </script>
 
-<!-- для подсчета ширины и медленного появления note-panel -->
-<script src="{% static 'noteapp/js/show_note_panel.js' %}"></script>
+    <!-- для скролла наверх и вниз -->
+    <script src="{% static 'noteapp/js/scroll_to_top.js' %}"></script>
+    <script src="{% static 'noteapp/js/scroll_to_down.js' %}"></script>
+
+    <!-- для подсчета ширины и медленного появления note-panel -->
+    <script src="{% static 'noteapp/js/show_note_panel.js' %}"></script>
 
 {% endblock %}

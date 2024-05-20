@@ -29,9 +29,6 @@
     display: inline-block;
 }
 
-.trash-note-container {
-    cursor: none;
-}
 
 .trash-note-title {
     margin: 0 0 5px 0;
