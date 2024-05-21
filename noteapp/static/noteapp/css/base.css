@@ -166,7 +166,7 @@ header .tooltip .tooltiptext {
     font-size: 20px;
     border-radius: 10px;
     font-family: Nunito, sans-serif;
-    background-color: #3a3a3a;
+    background-color: #323232;
     color: #fdbf2d;
     font-weight: bold;
     position: relative;
@@ -252,7 +252,7 @@ label {
     margin-left: 5px;
 }
 
-hr {
+.hr {
     border: none;
     border-bottom: 1px solid #525252;
     margin-bottom: 55px;

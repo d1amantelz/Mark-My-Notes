@@ -2,44 +2,72 @@
 {% load static %}
 
 {% block css %}
-<title>{{ profile.user.username }}</title>
-<link rel="stylesheet" href="{% static 'noteapp/css/profile.css' %}"/>
+    <title>{{ profile.user.username }}</title>
+    <link rel="stylesheet" href="{% static 'noteapp/css/profile.css' %}"/>
 {% endblock %}
 
 {% block content %}
-<!-- контент профиля -->
-<div class="profile-container">
-    <div class="change-info-container">
-        <div class="profile-photo-container">
-            <img class="profile-photo"
-                 src="{% if profile.avatar %}{{ profile.avatar.url }}{% else %}{% static 'noteapp/default/default-profile-avatar.jpg' %}{% endif %}"
-                 alt=""/>
+    <!-- контент профиля -->
+    <div class="profile-container">
+        <div class="change-info-container">
+            <div class="profile-photo-container">
+                <img class="profile-photo"
+                     src="
+
+                             {% if profile.avatar %}{{ profile.avatar.url }}{% else %}{% static 'noteapp/default/default-profile-avatar.jpg' %}{% endif %}"
+                     alt=""/>
+            </div>
+            <div class="change-buttons-container">
+                <h2 class="profile-name">{{ profile.user.username }}</h2>
+                <button><a href="{% url 'update_avatar' %}">Сменить аватар</a></button>
+                <button><a href="{% url 'update_username' %}">Сменить имя профиля</a></button>
+            </div>
         </div>
-        <div class="change-buttons-container">
-            <h2 class="profile-name">{{ profile.user.username }}</h2>
-            <button><a href="{% url 'update_avatar' %}">Сменить аватар</a></button>
-            <button><a href="{% url 'update_username' %}">Сменить имя профиля</a></button>
-        </div>
-    </div>
-    <div class="form-container">
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-fields">
-                <div class="input-group">
-                    <label>Имя</label>
-                    {{ form.first_name }}
-                </div>
-                <div class="input-group">
-                    <label>Фамилия</label>
-                    {{ form.last_name }}
-                </div>
-                <div class="input-group">
-                    <label>Email</label>
-                    {{ form.email }}
+
+        {% if request.user.profile == profile %}
+            <div class="activities-container">
+                <h2 class="activity-header">Активность за последнюю неделю</h2>
+                <div class="week-activities">
+                    {% for date, has_activity in activities.items %}
+                        <div class="day-container">
+                            <div class="day-name">{{ date|date:"D" }}</div>
+                            <div class="activity">
+                                {% if has_activity %}
+                                    <div class="square marked">
+                                        <img src="{% static 'noteapp/svg/save.svg' %}" alt="">
+                                    </div>
+                                {% else %}
+                                    <div class="square unmarked"></div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
-            <button type="submit" class="ordinary-button submit-button-margin">Сохранить изменения</button>
-        </form>
+        {% endif %}
+
+        <div class="form-container">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-fields">
+                    <div class="input-group">
+                        <label>Имя</label>
+                        {{ form.first_name }}
+                    </div>
+                    <div class="input-group">
+                        <label>Фамилия</label>
+                        {{ form.last_name }}
+                    </div>
+                    <div class="input-group">
+                        <label>Email</label>
+                        {{ form.email }}
+                    </div>
+                </div>
+                <button type="submit" class="ordinary-button submit-button-margin">Сохранить изменения</button>
+            </form>
+        </div>
     </div>
-</div>
+
+
+
 {% endblock %}

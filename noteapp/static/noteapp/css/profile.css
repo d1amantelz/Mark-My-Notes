@@ -1,7 +1,7 @@
 
 .profile-container {
     max-width: 800px;
-    margin: 70px auto;
+    margin: 70px auto 0;
 }
 
 .change-info-container {
@@ -38,7 +38,7 @@
     font-family: inherit;
     font-weight: bold;
     color: #fdbf2d;
-    background-color: #3a3a3a;
+    background-color: #323232;
     border: 1px solid #272727;
 }
 
@@ -70,12 +70,13 @@ label {
 
 .input-group > input {
     height: 20px;
-    width: 490px;
+    width: 522px;
 }
 
 .form-container {
+    box-sizing: border-box;
     margin: 35px auto;
-    max-width: 610px;
+    max-width: 642px;
 }
 
 
@@ -117,25 +118,66 @@ label {
     margin-bottom: 0;
 }
 
-/*button[type="submit"] {*/
-/*    padding: 8px 26px;*/
-/*    font-size: 20px;*/
-/*    border-radius: 10px;*/
-/*    font-family: Nunito, sans-serif;*/
-/*    background-color: #3a3a3a;*/
-/*    border: none;*/
-/*    color: #fdbf2d;*/
-/*    font-weight: bold;*/
-/*    position: relative;*/
-/*    left: 50%;*/
-/*    transform: translate(-50%, 0);*/
-/*    margin-top: 25px;*/
-/*    border: 1px solid #272727;*/
-/*}*/
+.activities-container {
+    background-color: #323232;
+    max-width: 642px;
+    margin: 35px auto;
+    padding: 10px 0;
+    border-radius: 15px;
+}
 
-/*button[type="submit"]:hover {*/
-/*    border: 1px solid #fdbf2d;*/
-/*}*/
+.activity-header {
+    font-size: 22px;
+    text-align: center;
+}
+
+.week-activities {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.day-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 5px;
+}
+
+.day-name {
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 5px;
+    color: #d2d2ca;
+}
+
+.activity .square {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.activity .square.marked {
+    outline: 1px solid #fdbf2d;
+    outline-offset: -1px;
+    background-color: #323232;
+}
+
+.activity .square.unmarked {
+    background-color: #424242;
+}
+
+/* Убираем отступ справа у последнего контейнера дня */
+.week-activities .day-container:last-child {
+    margin-right: 0;
+}
+
 
 /* Make profile container responsive */
 @media (max-width: 800px) {
@@ -162,9 +204,6 @@ label {
     }
 
     .change-buttons-container button {
-        margin: 0 auto;
-        margin-bottom: 25px;
+        margin: 0 auto 25px;
     }
-
-
 }

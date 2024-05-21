@@ -1,3 +1,6 @@
+from collections import defaultdict
+from datetime import timedelta
+
 from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView
@@ -36,6 +39,7 @@ class NoteCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user.profile
+        Activity.objects.create(user=self.request.user.profile, action='create_note')
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -49,6 +53,7 @@ class NoteUpdateView(LoginRequiredMixin, UpdateView):
     pk_url_kwarg = 'note_id'
 
     def get_success_url(self):
+        Activity.objects.create(user=self.request.user.profile, action='edit_note')
         return reverse_lazy('note_view_mode', kwargs={'note_id': self.object.pk})
 
     def get_context_data(self, **kwargs):
@@ -58,7 +63,6 @@ class NoteUpdateView(LoginRequiredMixin, UpdateView):
         context['url'] = self.request.build_absolute_uri(
             reverse('note_view_mode',
                     kwargs={'note_id': self.object.pk}))
-        context['text'] = 'Посмотри мою заметку!'
         context['text'] = 'Посмотри мою заметку!'
         return context
 
@@ -111,6 +115,7 @@ class NotesByCategoryView(LoginRequiredMixin, ListView):
 
 def delete_note(request, note_id):
     get_object_or_404(Note, pk=note_id).delete()
+    Activity.objects.create(user=request.user.profile, action='delete_note')
     return redirect('notes')
 
 
@@ -155,6 +160,7 @@ def delete_permanently_note(request, note_id):
 def restore_note(request, note_id):
     note = Note.objects.get(pk=note_id)
     note.restore()
+    Activity.objects.create(user=request.user.profile, action='restore_note')
     return redirect('trash')
 
 
@@ -182,6 +188,7 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):
             form.instance.color = form.cleaned_data['color']
 
         form.instance.author = self.request.user.profile
+        Activity.objects.create(user=self.request.user.profile, action='create_category')
         return super().form_valid(form)
 
 
@@ -197,11 +204,15 @@ class CategoryUpdateView(LoginRequiredMixin, UpdateView):
             form.instance.color = Category.COLOR_CHOICES[1][0]
         else:
             form.instance.color = form.cleaned_data['color']
+
+        Activity.objects.create(user=self.request.user.profile, action='edit_category')
         return super().form_valid(form)
 
 
 def delete_category(request, category_id):
     get_object_or_404(Category, pk=category_id).delete()
+    Activity.objects.create(user=request.user.profile, action='delete_category')
+    Activity.objects.create(user=request.user.profile, action='delete_note')
     return redirect('/categories/')
 
 
@@ -215,7 +226,26 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['profile'] = self.request.user.profile
+        profile = self.request.user.profile
+        context['profile'] = profile
+
+        # Получаем активности пользователя
+        activities = Activity.objects.filter(user=profile)
+
+        # Группируем активности по дате
+        activities_by_date = defaultdict(list)
+        for activity in activities:
+            activities_by_date[activity.date].append(activity.action)
+
+        # Получаем диапазон дат для отображения статистики
+        today = timezone.now().date()
+        start_date = today - timedelta(days=6)  # Неделя назад от сегодняшнего дня
+        date_range = [start_date + timedelta(days=i) for i in range(7)]
+
+        # Создаем словарь для отображения активности по датам
+        activities_display = {date: (date in activities_by_date) for date in date_range}
+
+        context['activities'] = activities_display
         return context
 
     def get_object(self, *args, **kwargs):

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save, post_delete
 from django.urls import reverse
+from django.utils import timezone
 
 
 class Note(models.Model):
@@ -101,6 +102,25 @@ class Setting(models.Model):
 
     def __str__(self):
         return f"{self.user}'s settings"
+
+
+class Activity(models.Model):
+    ACTION_CHOICES = [
+        ('create_note', 'Создание заметки'),
+        ('edit_note', 'Редактирование заметки'),
+        ('delete_note', 'Удаление заметки'),
+        ('restore_note', 'Восстановление заметки'),
+        ('create_category', 'Создание категории'),
+        ('edit_category', 'Редактирование категории'),
+        ('delete_category', 'Удаление категории'),
+    ]
+
+    user = models.ForeignKey('Profile', on_delete=models.CASCADE)
+    action = models.CharField(max_length=50, choices=ACTION_CHOICES)
+    date = models.DateField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.user.user.username} - {self.action} - {self.date}"
 
 
 @receiver(post_save, sender=User)
