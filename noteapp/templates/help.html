@@ -103,7 +103,7 @@
             <img src="{% static 'noteapp/img/p-example.png' %}" alt="">
             <p>Если вы хотите создать перенос строки без начала нового параграфа, вы можете использовать два или более
                 пробела в конце строки:</p>
-            <pre><code>Это строка с переносом.
+            <pre><code class="language-markdown">Это строка с переносом.
 Это следующая строка.</code></pre>
             <img src="{% static 'noteapp/img/p-example2.png' %}" alt="">
 
@@ -132,35 +132,44 @@
             <img src="{% static 'noteapp/img/escape-example.png' %}" alt="">
 
             <h3>Выделения текста</h3>
-            <p>В Markdown отдельные части текста можно выделять разные способами. Например, жирным, курсивом, жирным
-                курсивом или моноширинным текстом.</p>
+            <p>В Markdown отдельные части текста можно выделять разные способами. Например, жирным, курсивом,
+                моноширинным, зачеркнутым или подчеркнутым и т.д.</p>
             <p>Для выделения курсивом используются, либо одна звездочка "*", либо одно подчеркивание "_". Вот как это
                 выглядит:</p>
-            <!-- TODO: fix that-->
-            <pre><code class="python">*Курсив*
+            <pre><code class="language-markdown">*Курсив*
 _Курсив_</code></pre>
             <img src="{% static 'noteapp/img/cursive-example.png' %}" alt="">
 
             <p>Для выделения жирным используются, либо две звездочки "**", либо два подчеркивания "__". Вот как это
                 выглядит:</p>
-            <pre><code class="python">**Жирный текст**
+            <pre><code class="language-markdown">**Жирный текст**
 __Жирный текст__</code></pre>
             <img src="{% static 'noteapp/img/bold-example.png' %}" alt="">
 
             <p>Для выделения жирным курсивом используются, либо три звездочки "***", либо три подчеркивания "__". Вот
                 как это выглядит:</p>
-            <pre><code class="language-python">***Жирный курсив***
+            <pre><code class="language-markdown">***Жирный курсив***
 ___Жирный курсив___</code></pre>
             <img src="{% static 'noteapp/img/bold-cursive-example.png' %}" alt="">
 
             <p>Для выделения моноширинным текстом используются обратные апострофы "`". Вот как это выглядит:</p>
-            <pre><code class="language-python">`Моноширинный текст`</code></pre>
+            <pre><code class="language-markdown">`Моноширинный текст`</code></pre>
             <img src="{% static 'noteapp/img/monospace-example.png' %}" alt="">
+
+            <p>Для выделения зачеркнутого текста не существует специального символа. Однако, можно воспользоваться HTML
+                тэгом &lt;del&gt;. Вот как это выглядит:</p>
+            <pre><code class="language-markdown">&lt;del&gt;Привет мир!&lt;del&gt;</code></pre>
+            <img src="{% static 'noteapp/img/del-example.png' %}" alt="">
+
+            <p>Для выделения подчеркнутого текста не существует специального символа. Однако, можно воспользоваться HTML
+                тэгом &lt;u&gt;. Вот как это выглядит:</p>
+            <pre><code class="language-markdown">&lt;u&gt;100 рублей!&lt;u&gt;</code></pre>
+            <img src="{% static 'noteapp/img/u-example.png' %}" alt="">
 
             <h3>Цитаты</h3>
             <p>В Markdown цитаты создаются с помощью символа > перед текстом. Имеется возможность использовать вложенные
                 цитаты, комбинируя символы >. Вот пример:</p>
-            <pre><code class="language-python">> # Заголовок
+            <pre><code class="language-markdown">> # Заголовок
 > Первый параграф
 >
 > Второй параграф
@@ -198,10 +207,8 @@ ___Жирный курсив___</code></pre>
             <p>Ну и наконец автоматические ссылки url, которые выглядят как обычный url адрес. Достаточно окружить
                 ссылку
                 треугольными скобками <>. Вот пример:</p>
-            <pre><code class="language-markdown">< https://google.com/ ></code></pre>
+            <pre><code class="language-markdown">&lt;https://google.com/&gt;</code></pre>
             <img src="{% static 'noteapp/img/link-example3.png' %}" alt="">
-            <p>Пробелы вокруг ссылки НЕ НУЖНЫ. Они были добавлены для того, чтобы код Markdown корректно
-                отображался. Без них отображение кода было бы некорректным.</p>
 
             <h3>Код</h3>
             <p>В Markdown код помещается между тройными обратными кавычками ```. После открывающих кавычек можно указать
@@ -219,7 +226,7 @@ def hello_world():
                 сделать всплывающую подсказку.</p>
             <p>Вы можете разместить URL-адрес изображения в другом месте документа, присвоив ему номер для ссылки. Вот
                 пример:</p>
-            <pre><code>![Фоточка](https://avatars.mds.yandex.net/i?id=32fb1c6fcc34819b36ef9e3b0d96fa01_l-9867831-images-thumbs&n=13 "Логотип Markdown")
+            <pre><code class="language-markdown">![Фоточка](https://avatars.mds.yandex.net/i?id=32fb1c6fcc34819b36ef9e3b0d96fa01_l-9867831-images-thumbs&n=13 "Логотип Markdown")
 
 ![Фоточка][1]
 

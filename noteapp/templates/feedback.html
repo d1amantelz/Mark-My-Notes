@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <title>Создать заметку</title>
+    <link rel="stylesheet" href="{% static 'noteapp/css/forms.css' %}"/>
+    <link rel="stylesheet" href="{% static 'noteapp/css/create_note.css' %}"/>
+
+{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-fields">
+                <h1>Форма обратной связи</h1>
+                <hr class="hr"/>
+
+                <div class="input-group">
+                    <label for="title">Тема</label>
+                    <input type="text" name="title" id="title" maxlength="100" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="description">Сообщение</label>
+                    <textarea name="description" id="description" maxlength="355" required></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="images">Скриншоты</label>
+                    <input type="file" name="images" id="images" multiple>
+                </div>
+
+            </div>
+            <button type="submit" class="ordinary-button submit-button-margin">Отправить</button>
+        </form>
+    </div>
+
+{% endblock %}

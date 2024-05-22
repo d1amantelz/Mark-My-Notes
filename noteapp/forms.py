@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from PIL import Image
 from django.core.exceptions import ValidationError
+from django.forms import ClearableFileInput
 
 from .models import *
 
@@ -9,6 +10,10 @@ from .models import *
 class CleanFileInput(forms.FileInput):
     def render(self, name, value, attrs=None, renderer=None):
         return super().render(name, value, attrs)
+
+
+class MultipleFileInput(ClearableFileInput):
+    allow_multiple_selected = True
 
 
 class NoteForm(forms.ModelForm):

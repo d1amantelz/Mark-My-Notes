@@ -31,7 +31,7 @@
 
 .change-buttons-container button {
     display: block;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     font-size: 20px;
     padding: 8px 26px;
     border-radius: 10px;
@@ -40,6 +40,11 @@
     color: #fdbf2d;
     background-color: #323232;
     border: 1px solid #272727;
+}
+
+.change-buttons-container img {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .change-buttons-container a {
@@ -164,9 +169,14 @@ label {
 }
 
 .activity .square.marked {
+    /*outline: 1px solid #fdbf2d;*/
+    /*outline-offset: -1px;*/
+    background-color: #424242;
+}
+
+.day-container:last-child .square:last-child {
     outline: 1px solid #fdbf2d;
     outline-offset: -1px;
-    background-color: #323232;
 }
 
 .activity .square.unmarked {

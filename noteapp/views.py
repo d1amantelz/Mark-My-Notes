@@ -2,6 +2,7 @@ from collections import defaultdict
 from datetime import timedelta
 
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView
 from django.db.models import Q
@@ -286,6 +287,7 @@ class LoginPageView(LoginView):
     success_url = reverse_lazy('notes')
 
 
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('/login/')
@@ -293,12 +295,34 @@ def logout_view(request):
 
 # ------- OTHER VIEWS -------
 
+@login_required
 def create_screen(request):
     return render(request, 'create_screen.html')
 
 
 def help_view(request):
     return render(request, 'help.html')
+
+
+@login_required
+def feedback_view(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        images = request.FILES.getlist('images')
+
+        if title and description:
+            report = Report.objects.create(
+                title=title,
+                description=description,
+                author=request.user.profile)
+
+            for image in images:
+                ReportImage.objects.create(report=report, image=image)
+
+            return redirect('notes')
+
+    return render(request, 'feedback.html')
 
 
 class SettingsUpdateView(UpdateView):

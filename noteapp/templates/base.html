@@ -64,11 +64,14 @@
             <img src="{% static 'noteapp/svg/question_mark.svg' %}" alt="Настройки">
             <span class="tooltiptext">Справка по написанию</span>
         </a>
+        <a href="{% url 'feedback' %}" class="tooltip">
+            <img src="{% static 'noteapp/svg/feedback.svg' %}" alt="Настройки">
+            <span class="tooltiptext">Обратная связь</span>
+        </a>
         <a href="#" class="tooltip">
             <img src="{% static 'noteapp/svg/coffee.svg' %}" alt="Настройки">
             <span class="tooltiptext">Пожертвовать на кофе</span>
         </a>
-
         <a href="{% url 'settings' %}" class="tooltip">
             <img src="{% static 'noteapp/svg/settings.svg' %}" alt="Настройки">
             <span class="tooltiptext">Настройки</span>
