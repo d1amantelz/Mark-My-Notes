@@ -193,7 +193,7 @@ header .tooltip .tooltiptext {
     font-size: 16px;
     border: 1px solid #fdbf2d;
     background-color: #3f3f3f;
-    border-radius: 15px;
+    border-radius: 10px;
     width: 200px;
     color: #d2d2ca;
     text-align: left;
@@ -229,7 +229,7 @@ select {
     width: 200px;
     height: 40px;
     font-size: 16px;
-    border-radius: 15px;
+    border-radius: 10px;
     font-weight: bold;
     appearance: none;
     color: #d2d2ca;

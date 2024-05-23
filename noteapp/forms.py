@@ -21,6 +21,7 @@ class NoteForm(forms.ModelForm):
         model = Note
         fields = ['title', 'description', 'icon', 'category']
         widgets = {
+            'title': forms.TextInput(attrs={'placeholder': 'Мои проекты...'}),
             'description': forms.Textarea(attrs={'rows': 10, 'cols': 70}),
             'icon': CleanFileInput(),
         }
@@ -40,6 +41,9 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = ['name', 'color']
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': 'Учеба...'})
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

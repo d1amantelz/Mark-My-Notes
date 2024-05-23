@@ -18,6 +18,7 @@ textarea:focus {
 input[type="file"] {
     height: 40px;
     font-size: 15px;
+    border-radius: 10px;
     font-family: Nunito, sans-serif;
     padding: 0;
 }
@@ -29,14 +30,3 @@ input[type="file"] {
     transform: none;
     max-width: 698px;
 }
-
-
-/*textarea::-webkit-scrollbar {*/
-/*    width: 8px;*/
-/*}*/
-
-/*textarea::-webkit-scrollbar-thumb {*/
-/*    background-color: #525252;*/
-/*    border-radius: 20px;*/
-/*    !* border: 3px solid #303030; *!*/
-/*}*/

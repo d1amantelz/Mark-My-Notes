@@ -42,6 +42,11 @@ h1 {
     width: 558px;
 }
 
+.input-group input::placeholder { /* Most modern browsers support this now. */
+    color: #939393;
+    font-style: italic;
+}
+
 p {
     font-size: 18px;
     color: #d2d2ca;
@@ -80,14 +85,6 @@ a:hover {
 
 .input-group {
     margin-bottom: 20px;
-}
-
-
-input[type="file"] {
-    height: 40px;
-    font-size: 15px;
-    font-family: Nunito, sans-serif;
-    padding: 0;
 }
 
 
