@@ -3,18 +3,16 @@
     background-color: #303030;
     max-width: 1560px;
     margin: 30px auto 40px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
-    padding-bottom: 45px;
+    padding-bottom: 10px;
 }
 
 .note-content {
-    background-color: #3a3a3a;
+    /*background-color: #3a3a3a;*/
     color: #d7d7d7;
     border-radius: 15px;
     margin-left: 50px;
     margin-right: 50px;
-    padding: 40px;
 }
 
 .note-info-container {
@@ -91,25 +89,6 @@ p {
 
 }
 
-/*.note-submit-button {*/
-/*    padding: 8px 26px;*/
-/*    font-size: 20px;*/
-/*    border-radius: 10px;*/
-/*    font-family: Nunito, sans-serif;*/
-/*    background-color: #3a3a3a;*/
-/*    color: #fdbf2d;*/
-/*    font-weight: bold;*/
-/*    position: relative;*/
-/*    left: 50%;*/
-/*    transform: translate(-50%, 0);*/
-/*    margin-top: 45px;*/
-/*    border: 1px solid #303030;*/
-/*}*/
-
-/*.note-submit-button:hover {*/
-/*    cursor: pointer;*/
-/*    border: 1px solid #fdbf2d;*/
-/*}*/
 
 
 button a {
@@ -156,6 +135,12 @@ button a {
     color: #d7d7d7;
 }
 
+
+/*.CodeMirror {*/
+/*    background-color: #424242; !* Ваш цвет фона *!*/
+/*    color: #fcfcee;*/
+
+/*}*/
 
 @media (max-width: 1180px) {
     .note-info-container {

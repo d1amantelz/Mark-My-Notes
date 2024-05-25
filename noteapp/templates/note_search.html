@@ -2,44 +2,46 @@
 {% load static %}
 
 {% block css %}
-<title>Поиск по заметкам</title>
-<link rel="stylesheet" href="{% static 'noteapp/css/note_search.css' %}"/>
-<style>
-    .note-search-content {
-        font-family: "{{ settings.code_font }}", sans-serif;
-    }
-</style>
+    <title>Поиск по заметкам</title>
+    <link rel="stylesheet" href="{% static 'noteapp/css/note_search.css' %}"/>
+    <style>
+        .note-search-content {
+            font-family: "{{ settings.code_font }}", sans-serif;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
 
-{% if notes %}
+    {% if notes %}
 
-<div class="notes-container">
-    <h1 class="notes-search-header">Результаты поиска:</h1>
-    <div class="notes-container-wrapper">
-        {% for note in notes %}
-        <a href="{{ note.get_absolute_url }}">
-            <div class="note-container hoverable">
-                <img class="note-search-icon" src="{{ note.icon.url }}" alt="">
-                <p class="note-search-title">{{ note.title }}</p>
-                {% load markdown_extras %}
-                {% if note.content %}
-                    {% with note_content=note.content|markdown_to_plaintext:search_query %}
-                        {% if note_content.strip %}
-                            <p class="note-search-content">{{ note_content }}</p>
-                        {% endif %}
-                    {% endwith %}
-                {% endif %}
+        <div class="notes-container">
+            <h1 class="notes-search-header">Результаты поиска:</h1>
+            <div class="notes-container-wrapper">
+                {% for note in notes %}
+                    <a href="{{ note.get_absolute_url }}">
+                        <div class="note-container hoverable">
+                            <img class="note-search-icon" src="
+                                    {% if note.icon %}{{ note.icon.url }}{% else %}{% static 'noteapp/default/default-note-icon.png' %}{% endif %}"
+                                 alt="">
+                            <p class="note-search-title">{{ note.title }}</p>
+                            {% load markdown_extras %}
+                            {% if note.content %}
+                                {% with note_content=note.content|markdown_to_plaintext:search_query %}
+                                    {% if note_content.strip %}
+                                        <p class="note-search-content">{{ note_content }}</p>
+                                    {% endif %}
+                                {% endwith %}
+                            {% endif %}
+                        </div>
+                    </a>
+                {% endfor %}
             </div>
-        </a>
-        {% endfor %}
-    </div>
 
-</div>
-{% else %}
-<p class="not-found">Не найдено ни одного элемента с данным содержанием!</p>
-<button class="ordinary-button" onclick="goBack()">Вернуться назад</button>
-<script src="{% static 'noteapp/js/go_back.js' %}"></script>
-{% endif %}
+        </div>
+    {% else %}
+        <p class="not-found">Не найдено ни одного элемента с данным содержанием!</p>
+        <button class="ordinary-button" onclick="goBack()">Вернуться назад</button>
+        <script src="{% static 'noteapp/js/go_back.js' %}"></script>
+    {% endif %}
 {% endblock %}

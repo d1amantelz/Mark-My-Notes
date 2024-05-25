@@ -3,9 +3,15 @@
 
 {% block css %}
     <title>{{ note.title }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <link rel="stylesheet" href="{% static 'noteapp/css/note.css' %}"/>
+    <link rel="stylesheet" href="{% static 'noteapp/css/simplemde.css' %}">
 
     {% include 'note_text_changer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+
+
 
 {% endblock %}
 
@@ -19,8 +25,7 @@
             <div class="note-image">
                 <img
                         class="circled-icon note-icon"
-                        src="
-                                {% if note.icon %}{{ note.icon.url }}{% else %}{% static 'noteapp/default/default-note-icon.png' %}{% endif %}"
+                        src="{% if note.icon %}{{ note.icon.url }}{% else %}{% static 'noteapp/default/default-note-icon.png' %}{% endif %}"
                         alt="Заметка"
                 />
             </div>
@@ -54,17 +59,47 @@
             </div>
         </div>
 
+
         <form method="post" tabindex="-1">
             {% csrf_token %}
             <div class="note-content">
-                <div class="note-div" contenteditable>
-                    {{ form.content }}
-                </div>
+                <textarea id="markdown-editor" name="content">{{ form.content.value }}</textarea>
             </div>
 
             <!-- невидимая кнопка-->
             <button type="submit">Сохранить изменения</button>
         </form>
+
+        <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+        <script>
+            let simplemde = new SimpleMDE({
+                element: document.getElementById("markdown-editor"),
+                spellChecker: false,
+                placeholder: "Начните писать здесь...",
+                autosave: {
+                    enabled: true,
+                    uniqueId: "MyUniqueID",
+                    delay: 1000,
+                },
+                toolbar: [
+                    "bold", "italic", "heading",
+                    "quote", "unordered-list", "ordered-list",
+                    "link", "image", "code"
+                ],
+            });
+        </script>
+
+        {#        <form method="post" tabindex="-1">#}
+        {#            {% csrf_token %}#}
+        {#            <div class="note-content">#}
+        {#                <div class="note-div" contenteditable>#}
+        {#                    {{ form.content }}#}
+        {#                </div>#}
+        {#            </div>#}
+        {##}
+        {#            <!-- невидимая кнопка-->#}
+        {#            <button type="submit">Сохранить изменения</button>#}
+        {#        </form>#}
     </div>
 
     <!-- Модальное окно для подтверждения удаления -->

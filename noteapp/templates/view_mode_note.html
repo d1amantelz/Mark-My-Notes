@@ -61,7 +61,7 @@
 
         {% load markdown_extras %}
 
-        {% if note.content %}
+        {% if note.content != ' ' and note.content %}
             <div class="note-content">
                 {{ note.content | markdown | safe }}
             </div>

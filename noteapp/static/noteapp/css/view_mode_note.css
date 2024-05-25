@@ -1,6 +1,9 @@
 
 .note-content {
     font-family: "Jetbrains Mono", monospace;
+    margin-bottom: 30px;
+    background-color: #3a3a3a;
+    padding: 40px;
 }
 
 

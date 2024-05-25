@@ -270,10 +270,10 @@ label {
 }
 
 .note-panel {
-    position: sticky;
+    /*position: sticky;*/
     top: 10px;
     z-index: 20;
-    border-radius: 15px;
+    border-radius: 10px;
     background-color: #303030;
     margin: 30px auto;
     display: flex;
@@ -287,7 +287,7 @@ label {
     padding: 10px;
     outline: 1px solid transparent;
     outline-offset: -1px;
-    transition: background-color 0.2s ease, outline 0.2s ease-in-out;
+    transition: background-color 0.2s ease;
 }
 
 .note-panel span {

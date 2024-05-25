@@ -1,0 +1,101 @@
+.editor-toolbar {
+    background-color: #333; /* Темный фон для панели инструментов */
+    border-color: #444;
+}
+
+.CodeMirror {
+    background-color: #3a3a3a; /* Темный фон для редактора */
+    border-radius: 10px;
+    color: #dcdcdc; /* Цвет текста */
+    font-family: "JetBrains Mono", monospace;
+    border: none;
+    padding: 15px !important;
+}
+
+
+.editor-toolbar {
+    position: sticky;
+    top: 10px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    margin: 0 auto 20px;
+    background-color: #3a3a3a;
+    opacity: 1;
+    padding: 0;
+    width: fit-content;
+    border: none;
+}
+
+
+
+.CodeMirror .CodeMirror-selected,
+.CodeMirror .CodeMirror-line::selection,
+.CodeMirror .CodeMirror-line > span::selection,
+.CodeMirror .CodeMirror-line > span > span::selection {
+    background: #655c1f !important;
+    color: #fdbf2d;
+}
+
+.CodeMirror-selectedtext::selection {
+    color: #fdbf2d;
+}
+
+.CodeMirror-vscrollbar::-webkit-scrollbar {
+    width: 10px;
+}
+
+.CodeMirror-vscrollbar::-webkit-scrollbar-track {
+    background: #2a2a2a;
+    border-radius: 5px;
+}
+
+.CodeMirror-vscrollbar::-webkit-scrollbar-thumb {
+    background: #494949;
+    border-radius: 5px;
+}
+
+
+.editor-toolbar:hover {
+    opacity: 1;
+}
+
+.editor-toolbar a {
+    padding: 8px;
+    color: #fdbf2d !important; /* Цвет иконок */
+    border-radius: 0;
+    border: none;
+    transition: background-color 0.2s ease;
+    margin-right: 1px;
+}
+
+/* Меняем цвет иконок при наведении */
+.editor-toolbar a:hover {
+    /*color: #ff9900 !important; !* Цвет иконок при наведении *!*/
+    background-color: #303030;
+    outline: 1px solid #fdbf2d;
+    outline-offset: -1px;
+}
+
+.editor-toolbar a:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.editor-toolbar a:last-child {
+    border-radius: 0 10px 10px 0;
+    margin-right: 0;
+}
+
+
+/* Меняем цвет активных иконок */
+.editor-toolbar a.active {
+    background-color: #383838;
+    outline: 1px solid #fdbf2d;
+    outline-offset: -1px;
+}
+
+.CodeMirror-cursor {
+    border-left: 1px solid #ffcc00; /* Цвет и толщина курсора */
+}
+
