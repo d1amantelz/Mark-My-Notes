@@ -4,14 +4,20 @@
 }
 
 .CodeMirror {
-    background-color: #3a3a3a; /* Темный фон для редактора */
-    border-radius: 10px;
+    background-color: #303030; /* Темный фон для редактора */
+    border-radius: 10px 5px 5px 10px;
     color: #dcdcdc; /* Цвет текста */
     font-family: "JetBrains Mono", monospace;
     border: none;
-    padding: 15px !important;
+    padding-top: 35px;
+    padding-left: 35px;
 }
 
+
+.editor-container {
+    max-width: 1560px;
+    margin: 0 auto;
+}
 
 .editor-toolbar {
     position: sticky;
@@ -20,8 +26,8 @@
     display: flex;
     justify-content: center;
     border-radius: 10px;
-    margin: 0 auto 20px;
-    background-color: #3a3a3a;
+    margin: 30px auto;
+    background-color: #303030;
     opacity: 1;
     padding: 0;
     width: fit-content;
@@ -29,8 +35,8 @@
 }
 
 
-
 .CodeMirror .CodeMirror-selected,
+.CodeMirror-selectedtext::selection,
 .CodeMirror .CodeMirror-line::selection,
 .CodeMirror .CodeMirror-line > span::selection,
 .CodeMirror .CodeMirror-line > span > span::selection {
@@ -38,22 +44,17 @@
     color: #fdbf2d;
 }
 
-.CodeMirror-selectedtext::selection {
-    color: #fdbf2d;
-}
-
 .CodeMirror-vscrollbar::-webkit-scrollbar {
-    width: 10px;
+    width: 12px;
 }
 
 .CodeMirror-vscrollbar::-webkit-scrollbar-track {
-    background: #2a2a2a;
-    border-radius: 5px;
+    background: #3a3a3a;
 }
 
 .CodeMirror-vscrollbar::-webkit-scrollbar-thumb {
     background: #494949;
-    border-radius: 5px;
+    border-radius: 0 5px 5px 0;
 }
 
 
@@ -67,13 +68,11 @@
     border-radius: 0;
     border: none;
     transition: background-color 0.2s ease;
-    margin-right: 1px;
 }
 
 /* Меняем цвет иконок при наведении */
 .editor-toolbar a:hover {
-    /*color: #ff9900 !important; !* Цвет иконок при наведении *!*/
-    background-color: #303030;
+    background-color: #3a3a3a;
     outline: 1px solid #fdbf2d;
     outline-offset: -1px;
 }
@@ -84,7 +83,6 @@
 
 .editor-toolbar a:last-child {
     border-radius: 0 10px 10px 0;
-    margin-right: 0;
 }
 
 
@@ -96,6 +94,6 @@
 }
 
 .CodeMirror-cursor {
-    border-left: 1px solid #ffcc00; /* Цвет и толщина курсора */
+    border-left: 2px solid #ffcc00; /* Цвет и толщина курсора */
 }
 

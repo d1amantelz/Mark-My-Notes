@@ -25,7 +25,10 @@
             <div class="note-image">
                 <img
                         class="circled-icon note-icon"
-                        src="{% if note.icon %}{{ note.icon.url }}{% else %}{% static 'noteapp/default/default-note-icon.png' %}{% endif %}"
+                        src="
+
+
+                                {% if note.icon %}{{ note.icon.url }}{% else %}{% static 'noteapp/default/default-note-icon.png' %}{% endif %}"
                         alt="Заметка"
                 />
             </div>
@@ -58,12 +61,13 @@
                 </div>
             </div>
         </div>
+    </div>
 
-
+    <div class="editor-container" tabindex="-1">
         <form method="post" tabindex="-1">
             {% csrf_token %}
             <div class="note-content">
-                <textarea id="markdown-editor" name="content">{{ form.content.value }}</textarea>
+                <textarea tabindex="-1" id="markdown-editor-{{ note_id }}" name="content">{{ form.content.value }}</textarea>
             </div>
 
             <!-- невидимая кнопка-->
@@ -73,14 +77,15 @@
         <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
         <script>
             let simplemde = new SimpleMDE({
-                element: document.getElementById("markdown-editor"),
+                element: document.getElementById("markdown-editor-{{ note_id }}"),
                 spellChecker: false,
                 placeholder: "Начните писать здесь...",
                 autosave: {
                     enabled: true,
-                    uniqueId: "MyUniqueID",
+                    uniqueId: "MyUniqueID-{{ note_id }}",
                     delay: 1000,
                 },
+                initialValue: document.getElementById("markdown-editor-{{ note_id }}").value,
                 toolbar: [
                     "bold", "italic", "heading",
                     "quote", "unordered-list", "ordered-list",
@@ -88,18 +93,6 @@
                 ],
             });
         </script>
-
-        {#        <form method="post" tabindex="-1">#}
-        {#            {% csrf_token %}#}
-        {#            <div class="note-content">#}
-        {#                <div class="note-div" contenteditable>#}
-        {#                    {{ form.content }}#}
-        {#                </div>#}
-        {#            </div>#}
-        {##}
-        {#            <!-- невидимая кнопка-->#}
-        {#            <button type="submit">Сохранить изменения</button>#}
-        {#        </form>#}
     </div>
 
     <!-- Модальное окно для подтверждения удаления -->
@@ -111,10 +104,7 @@
     <!-- для нажатия невидимой кнопки сохранения через иконку save.svg -->
     <script src="{% static 'noteapp/js/click_save_button.js' %}"></script>
 
-    <!-- для сохранения положения экрана на странице при добавлении контента в textarea -->
-    <script src="{% static 'noteapp/js/save_screen_position.js' %}"></script>
-
-    <!-- для вставки 4-х пробелов при нажатии tab -->
+    <!-- для вставки 4-х пробелов при нажатии tab  (doesn't work) -->
     <script src="{% static 'noteapp/js/insert_four_spaces.js' %}"></script>
 
     <!-- для копирования в буфер -->
@@ -125,10 +115,5 @@
 
     <!-- для подсчета ширины и медленного появления note-panel -->
     <script src="{% static 'noteapp/js/show_note_panel.js' %}"></script>
-
-    <!-- для скролла наверх и вниз -->
-    <script src="{% static 'noteapp/js/scroll_to_top.js' %}"></script>
-    <script src="{% static 'noteapp/js/scroll_to_down.js' %}"></script>
-
 
 {% endblock %}

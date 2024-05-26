@@ -25,6 +25,8 @@
                 <img
                         class="circled-icon note-icon"
                         src="
+
+
                                 {% if note.icon %}{{ note.icon.url }}{% else %}{% static 'noteapp/default/default-note-icon.png' %}{% endif %}"
                         alt="Заметка"
                 />
@@ -58,7 +60,9 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="editor-container">
         {% load markdown_extras %}
 
         {% if note.content != ' ' and note.content %}
@@ -66,40 +70,41 @@
                 {{ note.content | markdown | safe }}
             </div>
         {% endif %}
-
-        <!-- подсветка кода-->
-        <script>
-            hljs.highlightAll();
-        </script>
-
-        <!-- Модальное окно для подтверждения удаления -->
-        {% include 'modal_delete_note.html' %}
-
-        <!-- для подтверждения удаления -->
-        <script src="{% static 'noteapp/js/delete_confirmation.js' %}"></script>
-
-        <!-- для копирования в буфер -->
-        <script src="{% static 'noteapp/js/copy_to_clipboard.js' %}"></script>
-
-        <!-- для подсчета ширины и медленного появления note-panel -->
-        <script src="{% static 'noteapp/js/show_note_panel.js' %}"></script>
-
-        <!-- для копирования кода -->
-        <script>
-            window.copyIconPath = "{% static 'noteapp/svg/copy.svg' %}";
-            window.saveIconPath = "{% static 'noteapp/svg/save.svg' %}";
-        </script>
-        <script src="{% static 'noteapp/js/copy_code_button.js' %}"></script>
-
-        <!-- для скролла наверх и вниз -->
-        <script src="{% static 'noteapp/js/scroll_to_top.js' %}"></script>
-        <script src="{% static 'noteapp/js/scroll_to_down.js' %}"></script>
-
-        <!-- для подтверждения удаления -->
-        <script src="{% static 'noteapp/js/delete_confirmation.js' %}"></script>
-
-        <!-- для установки всем ссылкам атрибута target="_blank" -->
-        <script src="{% static 'noteapp/js/setting_target_attr.js' %}"></script>
-
     </div>
+
+    <!-- подсветка кода-->
+    <script>
+        hljs.highlightAll();
+    </script>
+
+    <!-- Модальное окно для подтверждения удаления -->
+    {% include 'modal_delete_note.html' %}
+
+    <!-- для подтверждения удаления -->
+    <script src="{% static 'noteapp/js/delete_confirmation.js' %}"></script>
+
+    <!-- для копирования в буфер -->
+    <script src="{% static 'noteapp/js/copy_to_clipboard.js' %}"></script>
+
+    <!-- для подсчета ширины и медленного появления note-panel -->
+    <script src="{% static 'noteapp/js/show_note_panel.js' %}"></script>
+
+    <!-- для копирования кода -->
+    <script>
+        window.copyIconPath = "{% static 'noteapp/svg/copy.svg' %}";
+        window.saveIconPath = "{% static 'noteapp/svg/save.svg' %}";
+    </script>
+    <script src="{% static 'noteapp/js/copy_code_button.js' %}"></script>
+
+    <!-- для скролла наверх и вниз -->
+    <script src="{% static 'noteapp/js/scroll_to_top.js' %}"></script>
+    <script src="{% static 'noteapp/js/scroll_to_down.js' %}"></script>
+
+    <!-- для подтверждения удаления -->
+    <script src="{% static 'noteapp/js/delete_confirmation.js' %}"></script>
+
+    <!-- для установки всем ссылкам атрибута target="_blank" -->
+    <script src="{% static 'noteapp/js/setting_target_attr.js' %}"></script>
+
+
 {% endblock %}

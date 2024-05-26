@@ -65,6 +65,7 @@ class NoteUpdateView(LoginRequiredMixin, UpdateView):
             reverse('note_view_mode',
                     kwargs={'note_id': self.object.pk}))
         context['text'] = 'Посмотри мою заметку!'
+        context['note_id'] = self.object.pk
         return context
 
 

@@ -1,6 +1,3 @@
-html {
-    scroll-behavior: smooth;
-}
 
 img {
     user-select: none;
@@ -330,7 +327,7 @@ label {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 35%; /* Ширина модального окна */
+    width: 50%; /* Ширина модального окна */
     height: auto; /* Высота по содержимому */
 }
 
@@ -341,6 +338,7 @@ label {
     font-size: 24px;
     font-weight: bold;
 }
+
 
 .buttons-container {
     margin: 0 auto;

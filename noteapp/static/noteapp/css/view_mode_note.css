@@ -1,9 +1,11 @@
 
 .note-content {
     font-family: "Jetbrains Mono", monospace;
-    margin-bottom: 30px;
-    background-color: #3a3a3a;
-    padding: 40px;
+    background-color: #303030;
+    max-width: 1560px;
+    margin: 30px auto 0;
+    box-sizing: border-box;
+    padding: 35px;
 }
 
 
@@ -50,7 +52,7 @@
     margin: 10px 0 10px 0;
     padding: 10px;
     border-left: 3px solid #fdbf2d;
-    background-color: #343434;
+    background-color: #3f3f3f;
 }
 
 .note-content code {
@@ -62,9 +64,11 @@
 }
 
 .note-content > p > code {
-    border-radius: 5px;
-    background-color: #323232;
-    padding: 5px 7px;
+    border-radius: 3px;
+    background-color: #272727;
+    padding: 3px 7px;
+    outline: 1px solid #fdbf2d;
+    outline-offset: -1px;
     color: #fdbf2d;
     font-weight: bold;
     font-family: "JetBrains Mono Medium", monospace;
@@ -72,12 +76,12 @@
 }
 
 .note-content code::-webkit-scrollbar {
-    width: 5px;
+    width: 12px;
 }
 
 .note-content code::-webkit-scrollbar-track {
-    background: #2a2a2a;
-    border-radius: 5px;
+    background: #343434;
+    border-radius: 0 0 5px 5px;
 }
 
 .note-content code::-webkit-scrollbar-thumb {
@@ -109,7 +113,7 @@
     border-radius: 5px;
     border: none;
     color: #fdbf2d;
-    background-color: #3f3f3f;
+    background-color: #303030;
 }
 
 .copy-button img {
@@ -117,6 +121,6 @@
 }
 
 .hljs {
-    background-color: #323232;
+    background-color: #383838;
     font-family: "Jetbrains Mono", monospace;
 }

@@ -29,14 +29,6 @@
         <img src="{% static 'noteapp/svg/copy.svg' %}" alt="">
         <span class="tooltiptext">Скопировать содержимое</span>
     </a>
-    <a class="tooltip" onclick="scrollToTop()">
-        <img src="{% static 'noteapp/svg/up.svg' %}" alt="">
-        <span class="tooltiptext">Переместиться наверх</span>
-    </a>
-    <a class="tooltip" onclick="scrollToBottom()">
-        <img src="{% static 'noteapp/svg/down.svg' %}" alt="">
-        <span class="tooltiptext">Переместиться вниз</span>
-    </a>
     <a href="{% url 'export_note' note.pk %}" class="tooltip">
         <img src="{% static 'noteapp/svg/md.svg' %}" alt="">
         <span class="tooltiptext">Экспортировать как .md файл</span>
