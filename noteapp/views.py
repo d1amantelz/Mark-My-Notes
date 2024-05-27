@@ -25,7 +25,10 @@ class NoteListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         user = self.request.user.profile
-        return Note.objects.filter(author=user, is_deleted=False)
+        pinned_notes = Note.objects.filter(author=user, is_deleted=False, is_pinned=True).order_by('-time_update')
+        other_notes = Note.objects.filter(author=user, is_deleted=False, is_pinned=False).order_by('-time_update')
+        all_notes = list(pinned_notes) + list(other_notes)
+        return all_notes
 
 
 class NoteCreateView(LoginRequiredMixin, CreateView):
@@ -164,6 +167,32 @@ def restore_note(request, note_id):
     note.restore()
     Activity.objects.create(user=request.user.profile, action='restore_note')
     return redirect('trash')
+
+
+def duplicate_note(request, note_id):
+    note = Note.objects.get(pk=note_id)
+    duplicated_note = Note.objects.create(
+        title=note.title + ' (copy)',
+        description=note.description,
+        content=note.content,
+        author=note.author,
+        icon=note.icon,
+        category=note.category)
+    duplicated_note.save()
+
+    return redirect('note_edit_mode', duplicated_note.pk)
+
+
+def pin_note(request, note_id):
+    note = Note.objects.get(pk=note_id)
+    note.pin()
+    return redirect('note_edit_mode', note.pk)
+
+
+def unpin_note(request, note_id):
+    note = Note.objects.get(pk=note_id)
+    note.unpin()
+    return redirect('note_edit_mode', note.pk)
 
 
 # ------- CATEGORY VIEWS -------

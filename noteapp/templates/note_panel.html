@@ -38,10 +38,23 @@
             <img src="{% static 'noteapp/svg/telegram.svg' %}" alt="">
             <span class="tooltiptext">Поделиться заметкой в Telegram</span>
         </a>
-        <a href="https://vk.com/share.php?url={{ url }}" class="tooltip" target="_blank">
-            <img src="{% static 'noteapp/svg/vk.svg' %}" alt="">
-            <span class="tooltiptext">Поделиться заметкой в VK</span>
+        <a href="{% url 'duplicate_note' note.pk %}" class="tooltip">
+            <img src="{% static 'noteapp/svg/duplicate.svg' %}" alt="">
+            <span class="tooltiptext">Создать копию заметки</span>
         </a>
+
+        {% if note.is_pinned %}
+            <a href="{% url 'unpin_note' note.pk %}" class="tooltip">
+                <img src="{% static 'noteapp/svg/unpin.svg' %}" alt="">
+                <span class="tooltiptext">Открепить заметку</span>
+            </a>
+        {% else %}
+            <a href="{% url 'pin_note' note.pk %}" class="tooltip">
+                <img src="{% static 'noteapp/svg/pin.svg' %}" alt="">
+                <span class="tooltiptext">Закрепить заметку</span>
+            </a>
+        {% endif %}
+
         <a href="javascript:void(0)" class="tooltip deleteButton" data-id="{{ note.pk }}" data-type="note">
             <img src="{% static 'noteapp/svg/delete.svg' %}" alt="">
             <span class="tooltiptext">Удалить заметку</span>

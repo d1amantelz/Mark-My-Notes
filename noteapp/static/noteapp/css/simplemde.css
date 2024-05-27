@@ -5,7 +5,7 @@
 
 .CodeMirror {
     background-color: #303030; /* Темный фон для редактора */
-    border-radius: 10px 5px 5px 10px;
+    border-radius: 10px;
     color: #dcdcdc; /* Цвет текста */
     font-family: "JetBrains Mono", monospace;
     border: none;
@@ -54,7 +54,7 @@
 
 .CodeMirror-vscrollbar::-webkit-scrollbar-thumb {
     background: #494949;
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 10px 10px 0;
 }
 
 

@@ -16,6 +16,9 @@ urlpatterns = [
     path('notes/trash/', TrashListView.as_view(), name='trash'),
     path('notes/<int:note_id>/delete_permanently/', delete_permanently_note, name='delete_permanently_note'),
     path('notes/<int:note_id>/restore/', restore_note, name='restore_note'),
+    path('notes/<int:note_id>/duplicate/', duplicate_note, name='duplicate_note'),
+    path('notes/<int:note_id>/pin/', pin_note, name='pin_note'),
+    path('notes/<int:note_id>/unpin/', unpin_note, name='unpin_note'),
 
     # CATEGORY VIEWS
     path('categories/', CategoryListView.as_view(), name='categories'),

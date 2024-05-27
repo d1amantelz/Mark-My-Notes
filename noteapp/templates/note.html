@@ -26,8 +26,6 @@
                 <img
                         class="circled-icon note-icon"
                         src="
-
-
                                 {% if note.icon %}{{ note.icon.url }}{% else %}{% static 'noteapp/default/default-note-icon.png' %}{% endif %}"
                         alt="Заметка"
                 />
@@ -47,18 +45,9 @@
                 <div class="category" style="background-color: {{ note.category.color }}">
                     <h2>{{ note.category }}</h2>
                 </div>
-                <div class="author-and-date-container">
-                    <p>
-                        {% if request.user.profile == note.author %}
-                            <span class="white-span">Время изменения:</span>
-                            {{ note.time_update|date:"H:i / d.m.Y" }}
-                            <br>
-                        {% endif %}
-                        {% if request.user.profile != note.author %}
-                            <span class="white-span">Автор:</span> {{ note.author }}
-                        {% endif %}
-                    </p>
-                </div>
+
+                {% include 'date_and_author.html' %}
+
             </div>
         </div>
     </div>
@@ -67,7 +56,8 @@
         <form method="post" tabindex="-1">
             {% csrf_token %}
             <div class="note-content">
-                <textarea tabindex="-1" id="markdown-editor-{{ note_id }}" name="content">{{ form.content.value }}</textarea>
+                <textarea tabindex="-1" id="markdown-editor-{{ note_id }}"
+                          name="content">{{ form.content.value }}</textarea>
             </div>
 
             <!-- невидимая кнопка-->

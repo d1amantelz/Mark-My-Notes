@@ -16,6 +16,15 @@ class Note(models.Model):
     time_update = models.DateTimeField(auto_now=True)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     is_deleted = models.BooleanField(default=False)
+    is_pinned = models.BooleanField(default=False)
+
+    def pin(self):
+        self.is_pinned = True
+        self.save()
+
+    def unpin(self):
+        self.is_pinned = False
+        self.save()
 
     def delete(self, *args, **kwargs):
         self.is_deleted = True

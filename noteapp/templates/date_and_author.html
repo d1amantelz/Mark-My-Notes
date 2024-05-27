@@ -1,0 +1,13 @@
+<div class="author-and-date-container">
+    <p>
+        {% if request.user.profile == note.author %}
+            <span class="white-span">Время изменения</span>
+            <br>
+            {{ note.time_update|date:"H:i" }}
+
+        {% endif %}
+        {% if request.user.profile != note.author %}
+            <span class="white-span">Автор:</span> {{ note.author }}
+        {% endif %}
+    </p>
+</div>

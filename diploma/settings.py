@@ -110,7 +110,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'Europe/Moscow'
+TIME_ZONE = 'Europe/Ulyanovsk'
 
 USE_I18N = True
 

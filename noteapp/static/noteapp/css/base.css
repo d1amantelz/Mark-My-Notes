@@ -157,6 +157,7 @@ header .tooltip .tooltiptext {
 
 .note-title {
     font-size: 17px;
+    /*display: inline-block;*/
 }
 
 .ordinary-button {
