@@ -65,9 +65,9 @@
 
 .note-content > p > code {
     border-radius: 3px;
-    background-color: #272727;
+    background-color: #383838;
     padding: 3px 7px;
-    outline: 1px solid #fdbf2d;
+    outline: 1px solid rgba(254, 191, 45, 0.7);
     outline-offset: -1px;
     color: #fdbf2d;
     font-weight: bold;
@@ -103,6 +103,140 @@
     margin-bottom: 15px;
 }
 
+.note-content abbr {
+    text-decoration-thickness: 2px;
+    text-decoration-style: wavy;
+    text-decoration-color: #fdbf2d;
+}
+
+
+.note-content dl {
+    max-width: 800px;
+    width: fit-content;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid rgba(254, 191, 45, 0.7);
+    background-color: #383838;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.note-content dt {
+    /*text-align: center;*/
+    font-weight: bold;
+    padding-left: 5px;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    text-decoration-thickness: 2px;
+    color: #fdbf2d;
+    margin-bottom: 10px;
+}
+
+.note-content dd {
+    /*text-align: center;*/
+    margin-left: 0;
+}
+
+
+.note-content table,
+.note-content th,
+.note-content td {
+    border: 1px solid #fdbf2d;
+    border-collapse: collapse;
+    padding: 10px;
+    color: #d7d7d7;
+}
+
+.note-content th {
+    background-color: #424242;
+}
+
+.admonition {
+    padding: 5px 10px;
+    margin: 10px 0;
+    border-left: 5px solid #6b6b6b;
+    width: fit-content;
+}
+
+.admonition-title {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
+}
+
+.admonition i {
+    vertical-align: bottom;
+    margin-right: 5px;
+}
+
+.admonition-title {
+    text-decoration-color: #6b6b6b;
+}
+
+.admonition > span {
+    font-weight: bold;
+}
+
+.admonition.attention {
+    border-left: 5px solid #ff9900; /* Orange border */
+}
+
+.admonition.attention > span {
+    color: #ff9900;
+}
+
+.admonition.attention > span + .admonition-title {
+    text-decoration-color: #ff9900;
+}
+
+.admonition.danger {
+    border-left: 5px solid #ff3535; /* Dark red border */
+}
+
+.admonition.danger > span {
+    color: #ff3535;
+}
+
+.admonition.danger > span + .admonition-title {
+    text-decoration-color: #ff3535;
+}
+
+.admonition.important {
+    border-left: 5px solid #e358ff; /* Gray border */
+}
+
+.admonition.important > span {
+    color: #e358ff;
+}
+
+.admonition.important > span + .admonition-title {
+    text-decoration-color: #e358ff;
+}
+
+.admonition.note {
+    border-left: 5px solid #596aff; /* Gray border */
+}
+
+.admonition.note > span {
+    color: #596aff;
+}
+
+.admonition.note > span + .admonition-title {
+    text-decoration-color: #596aff;
+}
+
+.admonition.tip {
+    border-left: 5px solid #2c961f; /* Голубая рамка */
+}
+
+.admonition.tip > span {
+    color: #2c961f;
+}
+
+.admonition.tip > span + .admonition-title {
+    text-decoration-color: #2c961f;
+}
+
 .copy-button {
     cursor: pointer;
     position: absolute;
@@ -113,7 +247,14 @@
     border-radius: 5px;
     border: none;
     color: #fdbf2d;
-    background-color: #303030;
+    background: transparent;
+}
+
+.note-content hr {
+    max-width: 800px;
+    margin: 15px 0 15px;
+    border: none;
+    border-bottom: 1px solid #fdbf2d;
 }
 
 .copy-button img {

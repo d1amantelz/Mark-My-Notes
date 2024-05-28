@@ -26,6 +26,23 @@
                 <img
                         class="circled-icon note-icon"
                         src="
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 {% if note.icon %}{{ note.icon.url }}{% else %}{% static 'noteapp/default/default-note-icon.png' %}{% endif %}"
                         alt="Заметка"
                 />
@@ -67,21 +84,101 @@
         <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
         <script>
             let simplemde = new SimpleMDE({
-                element: document.getElementById("markdown-editor-{{ note_id }}"),
-                spellChecker: false,
-                placeholder: "Начните писать здесь...",
-                autosave: {
-                    enabled: true,
-                    uniqueId: "MyUniqueID-{{ note_id }}",
-                    delay: 1000,
-                },
-                initialValue: document.getElementById("markdown-editor-{{ note_id }}").value,
-                toolbar: [
-                    "bold", "italic", "heading",
-                    "quote", "unordered-list", "ordered-list",
-                    "link", "image", "code"
-                ],
-            });
+                    element: document.getElementById("markdown-editor-{{ note_id }}"),
+                    spellChecker: false,
+                    placeholder: "Начните писать здесь...",
+                    indentWithTabs: true,
+                    autosave: {
+                        enabled: true,
+                        uniqueId: "MyUniqueID-{{ note_id }}",
+                        delay: 1000,
+                    },
+
+                    initialValue: document.getElementById("markdown-editor-{{ note_id }}").value,
+                    toolbar: [
+                        "bold", "italic", "heading",
+                        "quote", "unordered-list", "ordered-list",
+                        "link", "image", "horizontal-rule", "code", "table",
+                        {
+                            name: "abbr",
+                            action: function addAbbreviation(editor) {
+                                let cm = editor.codemirror;
+                                let cursorPosition = cm.getCursor();
+                                let selectedText = cm.getSelection();
+                                let line = cm.getLine(cursorPosition.line);
+                                let lineLength = line.length;
+
+                                if (selectedText === "") {
+                                    let abbrText = "*[]:  ";
+                                    cm.replaceRange("\n\n" + abbrText, {line: cursorPosition.line, ch: lineLength});
+                                    cm.setCursor({line: cursorPosition.line + 2, ch: abbrText.length - 1});
+                                } else {
+                                    let abbrWithSelectedText = `*[${selectedText}]:  `;
+                                    cm.replaceRange("\n\n" + abbrWithSelectedText, {
+                                        line: cursorPosition.line,
+                                        ch: lineLength
+                                    });
+                                    cm.setCursor({line: cursorPosition.line + 2, ch: abbrWithSelectedText.length - 1});
+                                }
+
+                                cm.focus();
+                            },
+                            className:
+                                "fa fa-font",
+                            title:
+                                "Insert abbreviation"
+                        },
+                        {
+                            name: "admonition",
+                            action: function addAdmonition(editor) {
+                                let cm = editor.codemirror;
+                                let cursorPosition = cm.getCursor();
+                                let admoText = '!!! note ""\n\t\ttext';
+                                let line = cm.getLine(cursorPosition.line);
+
+                                cm.replaceRange("\n" + admoText, {line: cursorPosition.line, ch: line.length});
+                                cm.setCursor({line: cursorPosition.line + 2, ch: admoText.length});
+                                cm.focus();
+                            },
+                            className:
+                                "fa fa-exclamation",
+                            title:
+                                "Insert admonition"
+                        },
+                        {
+                            name: "def_list",
+                            action: function addDefList(editor) {
+                                let cm = editor.codemirror;
+                                let cursorPosition = cm.getCursor();
+                                let selectedText = cm.getSelection();
+                                let line = cm.getLine(cursorPosition.line);
+                                let lineLength = line.length;
+
+                                if (selectedText === "") {
+                                    // Insert a new definition list
+                                    let defListText = "Definition\n:\t\tText";
+                                    cm.replaceRange(defListText, {line: cursorPosition.line, ch: 0});
+                                    cm.setCursor({line: cursorPosition.line + 1, ch: 10}); // Set cursor to the beginning of the text line
+                                } else {
+                                    let defListText = `${selectedText}\n:\t\t`;
+                                    cm.replaceRange("\n\n" + defListText, {
+                                        line: cursorPosition.line,
+                                        ch: lineLength
+                                    });
+                                    cm.setCursor({line: cursorPosition.line + 3, ch: defListText.length - 1});
+                                }
+
+                                cm.focus();
+                            },
+                            className:
+                                "fa fa-book",
+                            title:
+                                "Definition List"
+                        }
+
+                    ],
+                })
+            ;
         </script>
     </div>
 
@@ -99,9 +196,6 @@
 
     <!-- для копирования в буфер -->
     <script src="{% static 'noteapp/js/copy_to_clipboard.js' %}"></script>
-
-    <!-- Отключение tabindex на всей странице -->
-    <script src="{% static 'noteapp/js/disable_tabindex.js' %}"></script>
 
     <!-- для подсчета ширины и медленного появления note-panel -->
     <script src="{% static 'noteapp/js/show_note_panel.js' %}"></script>

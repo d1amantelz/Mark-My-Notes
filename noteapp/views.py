@@ -110,7 +110,7 @@ class NotesByCategoryView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         category_id = self.kwargs['category_id']
-        return Note.objects.filter(category__pk=category_id, author=self.request.user.profile)
+        return Note.objects.filter(category__pk=category_id, author=self.request.user.profile, is_deleted=False)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
