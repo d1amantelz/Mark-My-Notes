@@ -11,8 +11,6 @@
 
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 
-
-
 {% endblock %}
 
 {% block content %}
@@ -26,22 +24,6 @@
                 <img
                         class="circled-icon note-icon"
                         src="
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                                 {% if note.icon %}{{ note.icon.url }}{% else %}{% static 'noteapp/default/default-note-icon.png' %}{% endif %}"
                         alt="Заметка"
@@ -78,111 +60,199 @@
             </div>
 
             <!-- невидимая кнопка-->
-            <button type="submit">Сохранить изменения</button>
+            <button id="invisible-submit" type="submit">Сохранить изменения</button>
         </form>
-
-        <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-        <script>
-            let simplemde = new SimpleMDE({
-                    element: document.getElementById("markdown-editor-{{ note_id }}"),
-                    spellChecker: false,
-                    placeholder: "Начните писать здесь...",
-                    indentWithTabs: true,
-                    autosave: {
-                        enabled: true,
-                        uniqueId: "MyUniqueID-{{ note_id }}",
-                        delay: 1000,
-                    },
-
-                    initialValue: document.getElementById("markdown-editor-{{ note_id }}").value,
-                    toolbar: [
-                        "bold", "italic", "heading",
-                        "quote", "unordered-list", "ordered-list",
-                        "link", "image", "horizontal-rule", "code", "table",
-                        {
-                            name: "abbr",
-                            action: function addAbbreviation(editor) {
-                                let cm = editor.codemirror;
-                                let cursorPosition = cm.getCursor();
-                                let selectedText = cm.getSelection();
-                                let line = cm.getLine(cursorPosition.line);
-                                let lineLength = line.length;
-
-                                if (selectedText === "") {
-                                    let abbrText = "*[]:  ";
-                                    cm.replaceRange("\n\n" + abbrText, {line: cursorPosition.line, ch: lineLength});
-                                    cm.setCursor({line: cursorPosition.line + 2, ch: abbrText.length - 1});
-                                } else {
-                                    let abbrWithSelectedText = `*[${selectedText}]:  `;
-                                    cm.replaceRange("\n\n" + abbrWithSelectedText, {
-                                        line: cursorPosition.line,
-                                        ch: lineLength
-                                    });
-                                    cm.setCursor({line: cursorPosition.line + 2, ch: abbrWithSelectedText.length - 1});
-                                }
-
-                                cm.focus();
-                            },
-                            className:
-                                "fa fa-font",
-                            title:
-                                "Insert abbreviation"
-                        },
-                        {
-                            name: "admonition",
-                            action: function addAdmonition(editor) {
-                                let cm = editor.codemirror;
-                                let cursorPosition = cm.getCursor();
-                                let admoText = '!!! note ""\n\t\ttext';
-                                let line = cm.getLine(cursorPosition.line);
-
-                                cm.replaceRange("\n" + admoText, {line: cursorPosition.line, ch: line.length});
-                                cm.setCursor({line: cursorPosition.line + 2, ch: admoText.length});
-                                cm.focus();
-                            },
-                            className:
-                                "fa fa-exclamation",
-                            title:
-                                "Insert admonition"
-                        },
-                        {
-                            name: "def_list",
-                            action: function addDefList(editor) {
-                                let cm = editor.codemirror;
-                                let cursorPosition = cm.getCursor();
-                                let selectedText = cm.getSelection();
-                                let line = cm.getLine(cursorPosition.line);
-                                let lineLength = line.length;
-
-                                if (selectedText === "") {
-                                    // Insert a new definition list
-                                    let defListText = "Definition\n:\t\tText";
-                                    cm.replaceRange(defListText, {line: cursorPosition.line, ch: 0});
-                                    cm.setCursor({line: cursorPosition.line + 1, ch: 10}); // Set cursor to the beginning of the text line
-                                } else {
-                                    let defListText = `${selectedText}\n:\t\t`;
-                                    cm.replaceRange("\n\n" + defListText, {
-                                        line: cursorPosition.line,
-                                        ch: lineLength
-                                    });
-                                    cm.setCursor({line: cursorPosition.line + 3, ch: defListText.length - 1});
-                                }
-
-                                cm.focus();
-                            },
-                            className:
-                                "fa fa-book",
-                            title:
-                                "Definition List"
-                        }
-
-                    ],
-                })
-            ;
-        </script>
     </div>
 
-    <!-- Модальное окно для подтверждения удаления -->
+    <!-- для создания и конфигурации редактора -->
+    <script>
+        const handleUnderline = (editor) => {
+            let cm = editor.codemirror;
+            let cursorPosition = cm.getCursor();
+            let selectedText = cm.getSelection();
+
+            if (selectedText === "") {
+                let underlineText = "<u></u>";
+                cm.replaceRange(underlineText, cursorPosition);
+                cm.setCursor({line: cursorPosition.line, ch: cursorPosition.ch + 3});
+            } else {
+                let underlineText = `<u>${selectedText}</u>`;
+                cm.replaceSelection(underlineText);
+                cm.setCursor({line: cursorPosition.line, ch: cursorPosition.ch + underlineText.length});
+            }
+
+            cm.focus();
+        };
+
+        const handleStrikeThrough = (editor) => {
+            let cm = editor.codemirror;
+            let cursorPosition = cm.getCursor();
+            let selectedText = cm.getSelection();
+
+            if (selectedText === "") {
+                let strikeThroughText = "<del></del>";
+                cm.replaceRange(strikeThroughText, cursorPosition);
+                cm.setCursor({line: cursorPosition.line, ch: cursorPosition.ch + 5});
+            } else {
+                let strikeThroughText = `<del>${selectedText}</del>`;
+                cm.replaceSelection(strikeThroughText);
+                cm.setCursor({
+                    line: cursorPosition.line,
+                    ch: cursorPosition.ch + strikeThroughText.length
+                });
+            }
+
+            cm.focus();
+        };
+
+        const addDefList = (editor) => {
+            let cm = editor.codemirror;
+            let cursorPosition = cm.getCursor();
+            let selectedText = cm.getSelection();
+            let line = cm.getLine(cursorPosition.line);
+            let lineLength = line.length;
+
+            if (selectedText === "") {
+                let defListText = "Definition\n:    Text";
+                cm.replaceRange(defListText, {line: cursorPosition.line, ch: 0});
+                cm.setCursor({line: cursorPosition.line + 1, ch: 10});
+            } else {
+                let defListText = `${selectedText}\n:    `;
+                cm.replaceRange("\n\n" + defListText, {
+                    line: cursorPosition.line,
+                    ch: lineLength
+                });
+                cm.setCursor({line: cursorPosition.line + 3, ch: defListText.length - 1});
+            }
+
+            cm.focus();
+        };
+
+        const addAdmonition = (editor) => {
+            let cm = editor.codemirror;
+            let cursorPosition = cm.getCursor();
+            let admoText = '!!! note ""\n    text';
+            let line = cm.getLine(cursorPosition.line);
+
+            cm.replaceRange("\n" + admoText, {line: cursorPosition.line, ch: line.length});
+            cm.setCursor({line: cursorPosition.line + 2, ch: admoText.length});
+            cm.focus();
+        };
+
+        const addAbbreviation = (editor) => {
+            let cm = editor.codemirror;
+            let cursorPosition = cm.getCursor();
+            let selectedText = cm.getSelection();
+            let line = cm.getLine(cursorPosition.line);
+            let lineLength = line.length;
+
+            if (selectedText === "") {
+                let abbrText = "*[]:  ";
+                cm.replaceRange("\n\n" + abbrText, {line: cursorPosition.line, ch: lineLength});
+                cm.setCursor({line: cursorPosition.line + 2, ch: abbrText.length - 1});
+            } else {
+                let abbrWithSelectedText = `*[${selectedText}]:  `;
+                cm.replaceRange("\n\n" + abbrWithSelectedText, {
+                    line: cursorPosition.line,
+                    ch: lineLength
+                });
+                cm.setCursor({line: cursorPosition.line + 2, ch: abbrWithSelectedText.length - 1});
+            }
+
+            cm.focus();
+        };
+
+        const clickSubmitButton = () => {
+            document.getElementById("invisible-submit").click();
+        };
+
+        const selectCurrentLine = (editor) => {
+            let cm = editor.codemirror;
+            let cursorPosition = cm.getCursor();
+            let line = cm.getLine(cursorPosition.line);
+
+            cm.setSelection({line: cursorPosition.line, ch: 0}, {line: cursorPosition.line, ch: line.length});
+        };
+
+        const underlineButton = {
+            name: "underline",
+            action: handleUnderline,
+            className: "fa fa-underline",
+            title: "Underline (Ctrl-U)"
+        };
+
+        const strikeThroughButton = {
+            name: "strikethrough",
+            action: handleStrikeThrough,
+            className: "fa fa-strikethrough",
+            title: "Strikethrough (Ctrl-Shift-I)"
+        };
+
+        const abbrButton = {
+            name: "abbr",
+            action: addAbbreviation,
+            className: "fa fa-font",
+            title: "Insert abbreviation"
+        };
+
+        const admonitionButton = {
+            name: "admonition",
+            action: addAdmonition,
+            className: "fa fa-exclamation",
+            title: "Insert admonition"
+        };
+
+        const defListButton = {
+            name: "def_list",
+            action: addDefList,
+            className: "fa fa-book",
+            title: "Definition List"
+        };
+
+        let simplemde = new SimpleMDE({
+            element: document.getElementById("markdown-editor-{{ note_id }}"),
+            spellChecker: false,
+            placeholder: "Начните писать здесь...",
+            shortcuts: {
+                "toggleUnorderedList": "Ctrl-Alt-L"
+            },
+            indentWithTabs: true,
+            autosave: {
+                enabled: true,
+                uniqueId: "MyUniqueID-{{ note_id }}",
+                delay: 1000,
+            },
+            initialValue: document.getElementById("markdown-editor-{{ note_id }}").value,
+            toolbar: [
+                "bold", "italic",
+                underlineButton,
+                strikeThroughButton,
+                "heading",
+                "quote", "unordered-list", "ordered-list",
+                "link", "image", "horizontal-rule", "code", "table",
+                abbrButton,
+                admonitionButton,
+                defListButton,
+            ],
+        });
+
+        simplemde.codemirror.addKeyMap({
+            "Ctrl-O": function (cm) {
+                handleStrikeThrough(simplemde);
+            },
+            "Ctrl-U": function (cm) {
+                handleUnderline(simplemde);
+            },
+            "Ctrl-S": function (cm) {
+                clickSubmitButton();
+            },
+            "Ctrl-L": function (cm) {
+                selectCurrentLine(simplemde)
+            }
+        });
+    </script>
+
+    <!-- модальное окно для подтверждения удаления -->
     {% include 'modal_delete_note.html' %}
 
     <!-- для подтверждения удаления -->
@@ -190,9 +260,6 @@
 
     <!-- для нажатия невидимой кнопки сохранения через иконку save.svg -->
     <script src="{% static 'noteapp/js/click_save_button.js' %}"></script>
-
-    <!-- для вставки 4-х пробелов при нажатии tab  (doesn't work) -->
-    <script src="{% static 'noteapp/js/insert_four_spaces.js' %}"></script>
 
     <!-- для копирования в буфер -->
     <script src="{% static 'noteapp/js/copy_to_clipboard.js' %}"></script>

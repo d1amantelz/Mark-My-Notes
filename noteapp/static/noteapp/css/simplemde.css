@@ -14,11 +14,6 @@
 }
 
 
-.editor-container {
-    max-width: 1560px;
-    margin: 0 auto;
-}
-
 .editor-toolbar {
     position: sticky;
     top: 10px;

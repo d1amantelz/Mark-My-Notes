@@ -9,6 +9,8 @@
 .note-content {
     color: #d7d7d7;
     border-radius: 15px;
+    max-width: 1560px;
+    margin: 0 auto;
 }
 
 .note-info-container {

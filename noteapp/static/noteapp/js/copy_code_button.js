@@ -1,5 +1,5 @@
 window.addEventListener('load', (event) => {
-    document.querySelectorAll('pre code').forEach((block) => {
+    document.querySelectorAll('.note-content > pre > code').forEach((block) => {
         // Создаем div-обертку
         const wrapper = document.createElement('div');
         wrapper.style.maxWidth = '800px';
