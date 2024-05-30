@@ -43,6 +43,9 @@ class NoteCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user.profile
+        content_file = self.request.FILES.get('content')
+        if content_file:
+            form.instance.content = content_file.read().decode('utf-8')
         Activity.objects.create(user=self.request.user.profile, action='create_note')
         return super().form_valid(form)
 
@@ -87,18 +90,9 @@ class NoteViewMode(LoginRequiredMixin, DetailView):
 
 class NoteInfoUpdateView(LoginRequiredMixin, UpdateView):
     model = Note
-    form_class = NoteForm
+    form_class = NoteInfoUpdateForm
     template_name = 'update_note.html'
     pk_url_kwarg = 'note_id'
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs.update({'author': self.request.user.profile})
-        return kwargs
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user.profile
-        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse_lazy('note_edit_mode', kwargs={'note_id': self.object.pk})

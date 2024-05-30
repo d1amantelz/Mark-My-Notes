@@ -17,9 +17,11 @@ class MultipleFileInput(ClearableFileInput):
 
 
 class NoteForm(forms.ModelForm):
+    content = forms.FileField(required=False)
+
     class Meta:
         model = Note
-        fields = ['title', 'description', 'icon', 'category']
+        fields = ['title', 'description', 'icon', 'content', 'category']
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'Мои проекты...'}),
             'description': forms.Textarea(attrs={'rows': 10, 'cols': 70}),
@@ -31,10 +33,19 @@ class NoteForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['title'].label = 'Название'
         self.fields['description'].label = 'Описание'
+        self.fields['content'].label = 'Импорт содержимого'
         self.fields['icon'].label = 'Аватар'
         self.fields['category'].label = 'Категория'
         self.fields['category'].empty_label = None
         self.fields['category'].queryset = Category.objects.filter(author=self.author)
+
+    def clean_content(self):
+        content_file = self.cleaned_data.get('content')
+        if content_file:
+            filename = content_file.name.lower()
+            if not filename.endswith('.md'):
+                raise ValidationError('Файл должен иметь расширение .md')
+        return content_file
 
 
 class CategoryForm(forms.ModelForm):

@@ -13,7 +13,6 @@ class ReportAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Report, ReportAdmin)
-# admin.site.register(ReportImage)
 admin.site.register(Note)
 admin.site.register(Profile)
 admin.site.register(Category)
