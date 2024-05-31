@@ -24,7 +24,7 @@
         <div class="form-fields">
             <h1>Регистрация нового аккаунта</h1>
             <hr class="hr"/>
-            <p style="text-align: left;margin: 10px 5px;">* – обязательное для заполнения поле</p>
+            <p style="text-align: left;margin: 10px 5px;"><span style="color: #fdbf2d">*</span> – обязательное для заполнения поле</p>
             <div class="input-group">
                 {{ form.non_field_errors }}
                 {{ form.username.errors }}
@@ -39,7 +39,7 @@
                 {{ form.last_name }}
             </div>
             <div class="input-group">
-                <label><span class="required-span">*</span>Имя профиля</label>
+                <label>*Имя профиля</label>
                 {{ form.username }}
             </div>
             <div class="input-group">
@@ -47,11 +47,11 @@
                 {{ form.email }}
             </div>
             <div class="input-group">
-                <label><span class="required-span">*</span>Пароль</label>
+                <label>*Пароль</label>
                 {{ form.password1 }}
             </div>
             <div class="input-group">
-                <label><span class="required-span">*</span>Повторите пароль</label>
+                <label>*Повторите пароль</label>
                 {{ form.password2 }}
             </div>
             <p>Уже есть аккаунт? <a href="{% url 'login' %}">Войдите здесь</a></p>

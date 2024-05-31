@@ -118,3 +118,9 @@
 .p-with-icon {
     flex: 3;
 }
+
+
+.important-text {
+    font-weight: bold;
+    color: #fdbf2d;
+}

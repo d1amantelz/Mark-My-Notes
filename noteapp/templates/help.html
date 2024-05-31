@@ -26,18 +26,20 @@
     <img class="guide-background-img" src="{% static 'noteapp/img/poster_background.png' %}" alt="Фон">
 
     <div class="examples-container">
-        <h2>Замечание!</h2>
+        <h2>Перед началом</h2>
         <div class="p-with-icon-container">
             <div class="icon-container">
                 <img src="{% static 'noteapp/svg/warning.svg' %}" alt="">
             </div>
             <p class="p-with-icon">Этот проект применяет мощь <span class="md">Markdown</span>, преобразуя обычный текст
-                в
-                структурированный HTML. В
-                следующих разделах вы узнаете, что такое <span class="md">Markdown</span> и как эффективно использовать
-                его
-                в рамках этого проекта.
-                Рассматривайте эту страницу как ваше персональное руководство по навигации по проекту.</p>
+                в структурированный HTML. В следующих разделах вы узнаете, что такое <span class="md">Markdown</span> и
+                как эффективно использовать
+                его в рамках этого проекта. Рассматривайте эту страницу как ваше персональное руководство по навигации
+                по проекту.
+                <br><br>
+                <span class="important-text">ВАЖНО, НЕКОТОРЫЕ СПОСОБЫ РЕНДЕРИНГА ТОГО ИЛИ ИНОГО ЭЛЕМЕНТА ЗАВИСЯТ ОТ ТИПА ИСПОЛЬЗУЕМОГО РЕДАКТОРА.
+                    ИМЕЙТЕ ЭТО ВВИДУ.</span>
+            </p>
         </div>
     </div>
 
@@ -88,11 +90,6 @@
 
 Это второй параграф.</code></pre>
             <img src="{% static 'noteapp/img/p-example.png' %}" alt="">
-            <p>Если вы хотите создать перенос строки без начала нового параграфа, вы можете использовать два или более
-                пробела в конце строки:</p>
-            <pre><code class="language-markdown">Это строка с переносом.
-Это следующая строка.</code></pre>
-            <img src="{% static 'noteapp/img/p-example2.png' %}" alt="">
 
             <h3>Экранирование</h3>
             <p>Экранирование символов в Markdown — это способ указать, что определенные символы следует
@@ -219,6 +216,89 @@ def hello_world():
 
 [1]: https://avatars.mds.yandex.net/i?id=32fb1c6fcc34819b36ef9e3b0d96fa01_l-9867831-images-thumbs&n=13 "Логотип Markdown"</code></pre>
             <img src="{% static 'noteapp/img/img-example.png' %}" alt="">
+
+            <h3>Таблицы</h3>
+            <p>В Markdown таблицы можно создавать с помощью вертикальных черт (|) и дефисов (-). Вот несколько
+                примеров:</p>
+            <pre><code class="language-markdown">| Заголовок 1 | Заголовок 2 |
+|-------------|-------------|
+| Строка 1    | Строка 2    |
+| Строка 3    | Строка 4    |
+</code></pre>
+            <img src="{% static 'noteapp/img/table-example1.png' %}" alt="">
+            <p>Для выравнивания текста в столбцах используйте двоеточия:</p>
+            <ol>
+                <li>:--- для выравнивания по левому краю.</li>
+                <li>:---: для центрирования.</li>
+                <li>---: для выравнивания по правому краю.</li>
+            </ol>
+
+            <pre><code class="language-markdown">| Заголовок 1 | Заголовок 2 |
+|:------------|:-----------:|
+| Строка 1    | Строка 2    |
+| Строка 3    | Строка 4    |
+</code></pre>
+            <img src="{% static 'noteapp/img/table-example2.png' %}" alt="">
+            <p>Также, необязательно делать таблицы красивыми, вот пример, который отлично работает и преобразуется в
+                таблицу:</p>
+            <pre><code class="language-markdown">| Заголовок 1 | Заголовок 2 |
+|:---|:---:|
+| Строка 1 | Строка 2 |
+| Строка 3 | Строка 4 |</code></pre>
+
+            <h3>Аббревиатуры</h3>
+            <p>Аббревиатуры можно создать с помощью *[text]: Вот пример:</p>
+            <pre><code class="language-markdown">The HTML specification is maintained by the W3C.
+
+*[HTML]: Hyper Text Markup Language
+*[W3C]:  World Wide Web Consortium</code></pre>
+            <img src="{% static 'noteapp/img/abbr-example.png' %}" alt="">
+            <p>При наведении появится подсказка с текстом, идущим после двоеточия.</p>
+
+            <h3>Замечания</h3>
+            <p>Замечания создаются с помощью трех знаков восклицания, после которых идет тип замечания. Всего имеется 5
+                видов замечаний:
+                note, tip, danger, important, attention. Вот примеры:</p>
+            <pre><code class="language-markdown">!!! note ""
+    Таким образом выглядит примечание
+
+!!! tip ""
+    Таким образом выглядит совет
+
+!!! danger ""
+    Таким образом выглядит что-то опасное
+
+!!! important ""
+    Таким образом выглядит что-то важное
+
+!!! attention ""
+    Таким образом выглядит внимание</code></pre>
+            <img src="{% static 'noteapp/img/admonition-example1.png' %}" alt="">
+            <p>Текст внутри кавычек это заголовок замечания. Является необязательным элементом. Вот как выглядит
+                замечание с заголовком:</p>
+            <pre><code class="language-markdown">!!! note "Заголовок замечания"
+    Таким образом выглядит примечание</code></pre>
+            <img src="{% static 'noteapp/img/admonition-example2.png' %}" alt="">
+            <p>Если был написан не существующий тип замечания, то он отображается примерно так:</p>
+            <pre><code class="language-markdown">!!! test "Заголовок замечания"
+    Таким образом выглядит примечание</code></pre>
+            <img src="{% static 'noteapp/img/admonition-example3.png' %}" alt="">
+
+            <h3>Списки определений</h3>
+            <p>Списки определений создаются с помощью текста и двоеточия. Вот пример:</p>
+            <pre><code class="language-markdown">Django это:
+
+Django
+:    высокоуровневый Python веб-фреймворк, который позволяет быстро создавать безопасные и поддерживаемые веб-сайты.</code></pre>
+            <img src="{% static 'noteapp/img/deflist-example.png' %}" alt="">
+
+            <h3>Панель редактора</h3>
+            <p>Вы можете использовать панель редактора для быстрого создания заметок или конспектов. Она включает в себя
+                большинство описанных выше функций, которые позволят вам вставлять готовые конструкции для
+                форматирования текста.</p>
+            <img src="{% static 'noteapp/img/toolbar-example.png' %}" alt="">
+
+
         </div>
     </div>
 

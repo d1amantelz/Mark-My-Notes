@@ -31,11 +31,11 @@ class NoteForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.author = kwargs.pop('author', None)
         super().__init__(*args, **kwargs)
-        self.fields['title'].label = 'Название'
+        self.fields['title'].label = '*Название'
         self.fields['description'].label = 'Описание'
         self.fields['content'].label = 'Импорт содержимого'
         self.fields['icon'].label = 'Аватар'
-        self.fields['category'].label = 'Категория'
+        self.fields['category'].label = '*Категория'
         self.fields['category'].empty_label = None
         self.fields['category'].queryset = Category.objects.filter(author=self.author)
 
@@ -100,6 +100,15 @@ class NoteInfoUpdateForm(forms.ModelForm):
         self.fields['category'].empty_label = 'Выберите категорию'
         self.fields['category'].queryset = Category.objects.all()
 
+    def clean_icon(self):
+        icon = self.cleaned_data.get('icon')
+
+        allowed_extensions = ['.jpg', '.png', '.gif']
+        if not icon.name.lower().endswith(tuple(allowed_extensions)):
+            raise ValidationError("Пожалуйста, загрузите изображение в формате .jpg, .png или .gif")
+
+        return icon
+
 
 class CategoryInfoUpdateForm(forms.ModelForm):
     class Meta:
@@ -133,9 +142,14 @@ class AvatarUpdateForm(forms.ModelForm):
             with Image.open(avatar) as img:
                 width, height = img.size
 
-            # Проверка на квадратность
-            if width != height:
-                raise ValidationError("Изображение должно быть квадратным")
+                # Проверка на квадратность
+                if width != height:
+                    raise ValidationError("Изображение должно быть квадратным")
+
+                # Проверка на расширение файла
+                allowed_extensions = ['.jpg', '.png', '.gif']
+                if not avatar.name.lower().endswith(tuple(allowed_extensions)):
+                    raise ValidationError("Пожалуйста, загрузите изображение в формате .jpg, .png или .gif")
 
         except Exception as e:
             raise ValidationError(e)

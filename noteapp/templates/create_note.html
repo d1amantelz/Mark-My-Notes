@@ -15,12 +15,13 @@
             <div class="form-fields">
                 <h1>Создание заметки</h1>
                 <hr class="hr"/>
+                <p style="text-align: left;margin: 10px 5px;"><span style="color: #fdbf2d">*</span> – обязательное для заполнения поле</p>
 
                 {% for f in form %}
                     <div class="input-group">
+                        {{ f.errors }}
                         <label>{{ f.label }}</label>
                         {{ f }}
-                        {{ f.errors }}
                     </div>
                 {% endfor %}
 

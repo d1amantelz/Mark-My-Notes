@@ -9,7 +9,7 @@ from django.utils import timezone
 class Note(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=200, blank=True, null=True)
-    content = models.TextField(blank=True)
+    content = models.TextField(blank=True, default='')
     author = models.ForeignKey('Profile', on_delete=models.CASCADE)
     icon = models.ImageField(upload_to='icons/%Y/%m/', blank=True, null=True)
     time_create = models.DateTimeField(auto_now_add=True)
