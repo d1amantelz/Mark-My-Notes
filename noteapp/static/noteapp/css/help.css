@@ -10,7 +10,7 @@
 }
 
 .guide-background-img {
-    margin: 50px auto 0;
+    margin: 0 auto;
     border-radius: 15px;
     width: 1000px;
     box-shadow: 0 0 20px #262626;
@@ -123,4 +123,31 @@
 .important-text {
     font-weight: bold;
     color: #fdbf2d;
+}
+
+.content-block {
+    max-width: 1000px;
+    border-radius: 15px;
+    padding: 30px 50px;
+    margin: 30px auto;
+    box-sizing: border-box;
+    background-color: #303030;
+    font-family: "Jetbrains Mono", monospace;
+}
+
+.content-block h2 {
+    color: #fcfcee;
+}
+
+.content-block li {
+    font-size: 18px;
+}
+
+.content-block li > a {
+    color: #fdbf2d;
+   text-decoration: none;
+}
+
+.content-block li > a:hover {
+    text-decoration: underline;
 }

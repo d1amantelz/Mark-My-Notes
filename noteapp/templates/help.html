@@ -12,10 +12,13 @@
     <link rel="stylesheet" href="{% static 'noteapp/css/view_mode_note.css' %}"/>
 
     <style>
-        header {
+        .note-panel {
             position: sticky;
-            z-index: 11;
             top: 10px;
+        }
+
+        .note-panel a:first-child {
+            border-radius: 10px;
         }
     </style>
 
@@ -23,7 +26,36 @@
 
 {% block content %}
 
+    <div class="note-panel">
+        <a class="tooltip" onclick="topFunction()">
+            <img src="{% static 'noteapp/svg/up.svg' %}" alt="">
+            <span class="tooltiptext">Подняться наверх</span>
+        </a>
+    </div>
+
     <img class="guide-background-img" src="{% static 'noteapp/img/poster_background.png' %}" alt="Фон">
+
+    <div class="content-block">
+        <h2>Содержание</h2>
+        <ul>
+            <li><a href="#headers">Заголовки</a></li>
+            <li><a href="#paragraphs">Параграфы</a></li>
+            <li><a href="#escape">Экранирование</a></li>
+            <li><a href="#selections">Выделения текста</a></li>
+            <li><a href="#quotes">Цитаты</a></li>
+            <li><a href="#ol">Нумерованные списки</a></li>
+            <li><a href="#ul">Маркированные списки</a></li>
+            <li><a href="#links">Ссылки</a></li>
+            <li><a href="#code">Код</a></li>
+            <li><a href="#images">Изображения</a></li>
+            <li><a href="#tables">Таблицы</a></li>
+            <li><a href="#abbr">Аббревиатуры</a></li>
+            <li><a href="#admonitions">Замечания</a></li>
+            <li><a href="#deflist">Списки определений</a></li>
+            <li><a href="#toolbar">Панель редактора</a></li>
+
+        </ul>
+    </div>
 
     <div class="examples-container">
         <h2>Перед началом</h2>
@@ -69,7 +101,7 @@
     <div class="examples-container">
         <h2>Примеры использования Markdown</h2>
         <div class="example-container">
-            <h3>Заголовки</h3>
+            <h3 id="headers">Заголовки</h3>
             <p>В Markdown заголовки создаются с помощью символа решетки #. Количество решеток перед заголовком
                 определяет
                 его уровень. Вот примеры:</p>
@@ -82,7 +114,7 @@
             <img src="{% static 'noteapp/img/headers-example.png' %}" alt="">
         </div>
         <div class="example-container">
-            <h3>Параграфы</h3>
+            <h3 id="paragraphs">Параграфы</h3>
             <p>В Markdown параграфы создаются с помощью одного или более последовательных строк текста, разделенных
                 одной
                 или более пустыми строками. Вот пример:</p>
@@ -91,7 +123,7 @@
 Это второй параграф.</code></pre>
             <img src="{% static 'noteapp/img/p-example.png' %}" alt="">
 
-            <h3>Экранирование</h3>
+            <h3 id="escape">Экранирование</h3>
             <p>Экранирование символов в Markdown — это способ указать, что определенные символы следует
                 интерпретировать буквально, а не как часть синтаксиса Markdown. Это полезно, когда вам нужно отобразить
                 символы, которые обычно используются для форматирования текста, например * или _, без применения их
@@ -115,7 +147,7 @@
 </code></pre>
             <img src="{% static 'noteapp/img/escape-example.png' %}" alt="">
 
-            <h3>Выделения текста</h3>
+            <h3 id="selections">Выделения текста</h3>
             <p>В Markdown отдельные части текста можно выделять разные способами. Например, жирным, курсивом,
                 моноширинным, зачеркнутым или подчеркнутым и т.д.</p>
             <p>Для выделения курсивом используются, либо одна звездочка "*", либо одно подчеркивание "_". Вот как это
@@ -150,7 +182,7 @@ ___Жирный курсив___</code></pre>
             <pre><code class="language-markdown">&lt;u&gt;100 рублей!&lt;/u&gt;</code></pre>
             <img src="{% static 'noteapp/img/u-example.png' %}" alt="">
 
-            <h3>Цитаты</h3>
+            <h3 id="quotes">Цитаты</h3>
             <p>В Markdown цитаты создаются с помощью символа > перед текстом. Имеется возможность использовать вложенные
                 цитаты, комбинируя символы >. Вот пример:</p>
             <pre><code class="language-markdown">> # Заголовок
@@ -164,21 +196,21 @@ ___Жирный курсив___</code></pre>
 > Продолжение основной цитаты</code></pre>
             <img src="{% static 'noteapp/img/quote-example.png' %}" alt="">
 
-            <h3>Нумерованные списки</h3>
+            <h3 id="ol">Нумерованные списки</h3>
             <p>В Markdown нумерованные списки создаются с помощью чисел, за которыми следует точка. Вот пример:</p>
             <pre><code>1. Один
 2. Два
 3. Три</code></pre>
             <img src="{% static 'noteapp/img/ol-example.png' %}" alt="">
 
-            <h3>Маркированные списки</h3>
+            <h3 id="ul">Маркированные списки</h3>
             <p>В Markdown маркированные списки создаются с помощью символа звездочки "*". Вот пример:</p>
             <pre><code class="language-markdown">* Первый пункт
 * Второй пункт
 * Третий пункт</code></pre>
             <img src="{% static 'noteapp/img/ul-example.png' %}" alt="">
 
-            <h3>Ссылки</h3>
+            <h3 id="links">Ссылки</h3>
             <p>Ссылки в Markdown имеют несколько видов: встроенные, с всплывающей подсказкой, автоматические ссылки
                 url.</p>
             <p>Встроенные ссылки состоят из [...] - текст ссылки, и (...) - url ссылки. Вот пример:</p>
@@ -194,7 +226,7 @@ ___Жирный курсив___</code></pre>
             <pre><code class="language-markdown">&lt;https://google.com/&gt;</code></pre>
             <img src="{% static 'noteapp/img/link-example3.png' %}" alt="">
 
-            <h3>Код</h3>
+            <h3 id="code">Код</h3>
             <p>В Markdown код помещается между тройными обратными кавычками ```. После открывающих кавычек можно указать
                 язык программирования для активации подсветки синтаксиса. И, конечно, не забудьте добавить закрывающие
                 кавычки ```. Вот как это выглядит на практике:</p>
@@ -204,7 +236,7 @@ def hello_world():
 ```</code></pre>
             <img src="{% static 'noteapp/img/code-example.png' %}" alt="">
 
-            <h3>Изображения</h3>
+            <h3 id="images">Изображения</h3>
             <p>Изображения в Markdown оформляются по принципу, схожему с принципом оформления ссылок, только перед
                 квадратными скобками нужно поставить восклицательный знак. Также можно
                 сделать всплывающую подсказку.</p>
@@ -217,7 +249,7 @@ def hello_world():
 [1]: https://avatars.mds.yandex.net/i?id=32fb1c6fcc34819b36ef9e3b0d96fa01_l-9867831-images-thumbs&n=13 "Логотип Markdown"</code></pre>
             <img src="{% static 'noteapp/img/img-example.png' %}" alt="">
 
-            <h3>Таблицы</h3>
+            <h3 id="tables">Таблицы</h3>
             <p>В Markdown таблицы можно создавать с помощью вертикальных черт (|) и дефисов (-). Вот несколько
                 примеров:</p>
             <pre><code class="language-markdown">| Заголовок 1 | Заголовок 2 |
@@ -246,7 +278,7 @@ def hello_world():
 | Строка 1 | Строка 2 |
 | Строка 3 | Строка 4 |</code></pre>
 
-            <h3>Аббревиатуры</h3>
+            <h3 id="abbr">Аббревиатуры</h3>
             <p>Аббревиатуры можно создать с помощью *[text]: Вот пример:</p>
             <pre><code class="language-markdown">The HTML specification is maintained by the W3C.
 
@@ -255,7 +287,7 @@ def hello_world():
             <img src="{% static 'noteapp/img/abbr-example.png' %}" alt="">
             <p>При наведении появится подсказка с текстом, идущим после двоеточия.</p>
 
-            <h3>Замечания</h3>
+            <h3 id="admonitions">Замечания</h3>
             <p>Замечания создаются с помощью трех знаков восклицания, после которых идет тип замечания. Всего имеется 5
                 видов замечаний:
                 note, tip, danger, important, attention. Вот примеры:</p>
@@ -284,7 +316,7 @@ def hello_world():
     Таким образом выглядит примечание</code></pre>
             <img src="{% static 'noteapp/img/admonition-example3.png' %}" alt="">
 
-            <h3>Списки определений</h3>
+            <h3 id="deflist">Списки определений</h3>
             <p>Списки определений создаются с помощью текста и двоеточия. Вот пример:</p>
             <pre><code class="language-markdown">Django это:
 
@@ -292,7 +324,7 @@ Django
 :    высокоуровневый Python веб-фреймворк, который позволяет быстро создавать безопасные и поддерживаемые веб-сайты.</code></pre>
             <img src="{% static 'noteapp/img/deflist-example.png' %}" alt="">
 
-            <h3>Панель редактора</h3>
+            <h3 id="toolbar">Панель редактора</h3>
             <p>Вы можете использовать панель редактора для быстрого создания заметок или конспектов. Она включает в себя
                 большинство описанных выше функций, которые позволят вам вставлять готовые конструкции для
                 форматирования текста.</p>
@@ -330,9 +362,8 @@ Django
         hljs.highlightAll();
     </script>
 
-    <!-- для скролла наверх и вниз -->
+    <!-- для скролла наверх -->
     <script src="{% static 'noteapp/js/scroll_to_top.js' %}"></script>
-    <script src="{% static 'noteapp/js/scroll_to_down.js' %}"></script>
 
     <!-- для подсчета ширины и медленного появления note-panel -->
     <script src="{% static 'noteapp/js/show_note_panel.js' %}"></script>

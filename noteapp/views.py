@@ -131,7 +131,8 @@ def note_search(request):
     if search_query:
         notes = Note.objects.filter(
             Q(content__icontains=search_query) | Q(title__icontains=search_query),
-            author=request.user.profile)
+            author=request.user.profile,
+            is_deleted=False)
         settings = Setting.objects.get(user=request.user.profile)
         return render(request, 'note_search.html',
                       {'notes': notes,
