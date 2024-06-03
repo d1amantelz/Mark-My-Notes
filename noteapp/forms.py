@@ -168,14 +168,19 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class SettingForm(forms.ModelForm):
+    timezone = forms.ChoiceField(choices=[(tz, tz) for tz in pytz.common_timezones])
+
     class Meta:
         model = Setting
-        fields = ['code_font', 'code_font_size', 'text_font', 'text_font_size', 'code_theme']
+        fields = ['code_font', 'code_font_size', 'text_font', 'text_font_size', 'code_theme', 'timezone']
 
     def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
         self.fields['code_font'].label = 'Шрифт кода'
         self.fields['code_font_size'].label = 'Размер шрифта кода'
         self.fields['text_font'].label = 'Шрифт текста'
         self.fields['text_font_size'].label = 'Размер шрифта текста'
         self.fields['code_theme'].label = 'Тема кода'
+        self.fields['timezone'].label = 'Часовой пояс'
+        self.fields['timezone'].initial = self.user.timezone

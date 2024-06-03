@@ -1,9 +1,14 @@
+{% load time_extras %}
+{% load tz %}
+
 <div class="author-and-date-container">
     <p>
         {% if request.user.profile == note.author %}
             <span class="white-span">Время изменения</span>
             <br>
-            {{ note.time_update|date:"H:i" }}
+            {% timezone request.user.profile.timezone %}
+                {{ note.time_update|user_localtime:request.user|date:"H:i" }}
+            {% endtimezone %}
 
         {% endif %}
         {% if request.user.profile != note.author %}

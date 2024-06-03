@@ -5,6 +5,8 @@ from django.db.models.signals import post_save, post_delete
 from django.urls import reverse
 from django.utils import timezone
 
+import pytz
+
 
 class Note(models.Model):
     title = models.CharField(max_length=100)
@@ -74,6 +76,11 @@ class Profile(models.Model):
     avatar = models.ImageField(upload_to='avatars/%Y/%m/', blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     settings = models.ForeignKey('Setting', on_delete=models.PROTECT, null=True, blank=True)
+    timezone = models.CharField(
+        max_length=50,
+        choices=[(tz, tz) for tz in pytz.common_timezones],
+        default='Europe/Moscow'
+    )
 
     def __str__(self):
         return self.user.username

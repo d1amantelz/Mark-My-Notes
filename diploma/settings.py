@@ -112,12 +112,10 @@ DATABASES = {
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
 LANGUAGE_CODE = 'ru'
-
-TIME_ZONE = 'Europe/Ulyanovsk'
-
-USE_I18N = True
+TIME_ZONE = 'UTC'
 
 USE_TZ = True
+USE_I18N = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/

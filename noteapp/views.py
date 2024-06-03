@@ -356,5 +356,16 @@ class SettingsUpdateView(UpdateView):
     template_name = 'settings.html'
     success_url = reverse_lazy('notes')
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs.update({'user': self.request.user.profile})
+        return kwargs
+
     def get_object(self, **kwargs):
         return Setting.objects.get(user=self.request.user.profile)
+
+    def form_valid(self, form):
+        profile = Profile.objects.get(pk=self.request.user.profile.pk)
+        profile.timezone = form.cleaned_data['timezone']
+        profile.save()
+        return super().form_valid(form)
