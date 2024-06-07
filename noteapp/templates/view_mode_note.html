@@ -15,6 +15,15 @@
 
     {% include 'view_note_text_changer.html' %}
 
+    <style>
+
+        ul.checklist li::before {
+            content: "";
+            display: inline-block;
+            background: url("{% static 'noteapp/svg/checked.svg' %}") 0 0 no-repeat;
+        }
+    </style>
+
 {% endblock %}
 
 {% block content %}
@@ -27,6 +36,8 @@
                 <img
                         class="circled-icon note-icon"
                         src="
+
+
                                 {% if note.icon %}{{ note.icon.url }}{% else %}{% static 'noteapp/default/default-note-icon.png' %}{% endif %}"
                         alt="Заметка"
                 />

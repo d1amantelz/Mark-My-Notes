@@ -35,26 +35,33 @@
 
     <img class="guide-background-img" src="{% static 'noteapp/img/poster_background.png' %}" alt="Фон">
 
-    <div class="content-block">
-        <h2>Содержание</h2>
-        <ul>
-            <li><a href="#headers">Заголовки</a></li>
-            <li><a href="#paragraphs">Параграфы</a></li>
-            <li><a href="#escape">Экранирование</a></li>
-            <li><a href="#selections">Выделения текста</a></li>
-            <li><a href="#quotes">Цитаты</a></li>
-            <li><a href="#ol">Нумерованные списки</a></li>
-            <li><a href="#ul">Маркированные списки</a></li>
-            <li><a href="#links">Ссылки</a></li>
-            <li><a href="#code">Код</a></li>
-            <li><a href="#images">Изображения</a></li>
-            <li><a href="#tables">Таблицы</a></li>
-            <li><a href="#abbr">Аббревиатуры</a></li>
-            <li><a href="#admonitions">Замечания</a></li>
-            <li><a href="#deflist">Списки определений</a></li>
-            <li><a href="#toolbar">Панель редактора</a></li>
 
-        </ul>
+    <div class="examples-container">
+        <h2>Содержание</h2>
+        <div class="p-with-icon-container">
+            <div class="icon-container">
+                <img src="{% static 'noteapp/svg/list-lines.svg' %}" alt="">
+            </div>
+            <div class="p-with-icon">
+                <ul>
+                    <li><a href="#headers">Заголовки</a></li>
+                    <li><a href="#paragraphs">Параграфы</a></li>
+                    <li><a href="#escape">Экранирование</a></li>
+                    <li><a href="#selections">Выделения текста</a></li>
+                    <li><a href="#quotes">Цитаты</a></li>
+                    <li><a href="#ol">Нумерованные списки</a></li>
+                    <li><a href="#ul">Маркированные списки</a></li>
+                    <li><a href="#links">Ссылки</a></li>
+                    <li><a href="#code">Код</a></li>
+                    <li><a href="#images">Изображения</a></li>
+                    <li><a href="#tables">Таблицы</a></li>
+                    <li><a href="#abbr">Аббревиатуры</a></li>
+                    <li><a href="#admonitions">Замечания</a></li>
+                    <li><a href="#deflist">Списки определений</a></li>
+                    <li><a href="#toolbar">Панель редактора</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <div class="examples-container">
@@ -248,6 +255,13 @@ def hello_world():
 
 [1]: https://avatars.mds.yandex.net/i?id=32fb1c6fcc34819b36ef9e3b0d96fa01_l-9867831-images-thumbs&n=13 "Логотип Markdown"</code></pre>
             <img src="{% static 'noteapp/img/img-example.png' %}" alt="">
+
+            <h3 id="videos">Видео</h3>
+            <p>К сожалению, встроенного способа прикрепления видео не существует, однако, можно воспользоваться следующим трюком.</p>
+            <p>Достаточно просто поместить внутри ссылки на видео любое GIF изображение. Также, можно добавить подсказку. Вот пример:</p>
+            <pre><code class="language-markdown">[![](https://aniyuki.com/wp-content/uploads/2023/09/aniyuki-gojo-satoru-gif-16.gif "Смотреть видео")](https://www.youtube.com/watch?v=jLvVjKFKfOI)
+</code></pre>
+            <img src="{% static 'noteapp/img/video-example.png' %}" alt="">
 
             <h3 id="tables">Таблицы</h3>
             <p>В Markdown таблицы можно создавать с помощью вертикальных черт (|) и дефисов (-). Вот несколько

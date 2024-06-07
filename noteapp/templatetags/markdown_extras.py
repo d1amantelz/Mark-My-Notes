@@ -11,8 +11,9 @@ register = template.Library()
 @stringfilter
 def markdown(value):
     return md.markdown(value, extensions=['markdown.extensions.fenced_code',
-                                          'tables', 'abbr', 'nl2br', 'sane_lists',
-                                          'admonition', 'def_list'])
+                                          'tables', 'abbr', 'nl2br',
+                                          'admonition', 'def_list', 'markdown_checklist.extension',
+                                          'pymdownx.emoji', 'mdx_truly_sane_lists'])
 
 
 @register.filter
