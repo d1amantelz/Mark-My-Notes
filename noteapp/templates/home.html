@@ -1,0 +1,82 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="icon" href="{% static 'noteapp/svg/title.svg' %}" type="image/x-icon">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="{% static 'noteapp/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'noteapp/css/home.css' %}">
+</head>
+<body>
+
+<div class="header">
+    <div class="header-left-group">
+        <p class="home-caption"><img src="{% static 'noteapp/svg/home.svg' %}" alt=""> MarkMyNotes</p>
+    </div>
+    <div class="header-right-group">
+        <ul>
+            <li><a href="{% url 'sign_up' %}">Регистрация
+            </a></li>
+            <li><a href="{% url 'login' %}">Войти</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="features-container">
+    <h3>Пишите, планируйте, организуйте, радуйтесь</h3>
+    <p>Ведите заметки в инструменте <span>MarkMyNotes</span> и храните свои знания при себе.</p>
+    <img class="interface-example" src="{% static 'noteapp/img/interface-example.png' %}" alt="">
+</div>
+
+<div class="features-container">
+    <h4>Категории для заметок</h4>
+    <p>Оперируйте категориями, назначайте цвета и присваивайте их вашим заметкам.</p>
+    <img class="interface-example" src="{% static 'noteapp/img/categories-example.png' %}" alt="">
+</div>
+
+<div class="features-container">
+    <h4>Заметки</h4>
+    <p>Работайте с заметками в разметке <span>Markdown</span>, закрепляйте, а также экспортируйте в формате <span
+            style="text-decoration: none">.md</span></p>
+    <img class="interface-example" src="{% static 'noteapp/img/notes-example.png' %}" alt="">
+</div>
+
+<div class="features-container">
+    <h4>Поиск в заметках</h4>
+    <p>Ищите заметки по ключевым словам или фразам.</p>
+    <img class="interface-example" src="{% static 'noteapp/img/search-example.png' %}" alt="">
+</div>
+
+<div class="features-container">
+    <h4>Профиль пользователя</h4>
+    <p>Отслеживайте статистику за последние 7 дней, изменяйте свои данные.</p>
+    <img class="interface-example" style="width: 650px" src="{% static 'noteapp/img/profile-example.png' %}" alt="">
+</div>
+
+<div class="features-container">
+    <h4>Обучение Markdown</h4>
+    <p>Изучайте приемы отображения разных видов элементов в разметке <span>Markdown</span>.</p>
+    <img class="interface-example" style="width: 800px" src="{% static 'noteapp/img/md-example.png' %}" alt="">
+</div>
+
+<div class="features-container">
+    <h4>Настройки инструмента</h4>
+    <p>Изменяйте настройки отображения по своему вкусу.</p>
+    <img class="interface-example" src="{% static 'noteapp/img/settings-example.png' %}" alt="">
+</div>
+
+<div class="features-container">
+    <h4>Хотите попробовать?</h4>
+    <p>Начните <a class="start-link" href="{% url 'sign_up' %}">отсюда</a>.</p>
+    <img class="interface-example" style="box-shadow: none;width: 500px;"
+         src="{% static 'noteapp/img/funny-smile-example.png' %}" alt="">
+</div>
+
+
+</body>
+</html>

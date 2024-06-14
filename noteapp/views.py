@@ -17,6 +17,10 @@ from .forms import *
 from .models import *
 
 
+def home(request):
+    return render(request, 'home.html')
+
+
 # ------- NOTE VIEWS -------
 
 class NoteListView(LoginRequiredMixin, ListView):

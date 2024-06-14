@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-k)crwt*frdj4cl!enuo94)*k)afoi&@_-oi8fv+w#0b38ib(uw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -39,11 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'noteapp.apps.NoteappConfig',
-    'django_google_fonts',
     'django_cleanup.apps.CleanupConfig',
 ]
 
-GOOGLE_FONTS = ['JetBrains Mono', 'Nunito', 'Fira Code', 'Roboto', 'Source Code Pro']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -120,7 +118,6 @@ USE_I18N = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-GOOGLE_FONTS_DIR = BASE_DIR / "fonts"
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # STATICFILES_DIRS = []

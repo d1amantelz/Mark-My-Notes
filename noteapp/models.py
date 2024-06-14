@@ -91,7 +91,7 @@ class Setting(models.Model):
         ('JetBrains Mono', 'JetBrains Mono'),
         ('Nunito', 'Nunito'),
         ('Fira Code', 'Fira Code'),
-        ('Roboto Thin', 'Roboto Thin'),
+        ('Roboto Mono', 'Roboto Mono'),
         ('Source Code Pro', 'Source Code Pro'),
     ]
 
