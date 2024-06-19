@@ -9,46 +9,57 @@
 
 {% block content %}
     <!-- контейнер с заметками -->
-    <div class="notes-container">
-        <h1 class="ordinary-header">Ваши заметки</h1>
 
-        <table class="notes-table">
-            <thead>
-            <tr class="note-row header-row">
-                <th>Аватар</th>
-                <th>Название</th>
-                <th>Категория</th>
-                <th>Дата создания</th>
-                <th>Дата изменения</th>
-            </tr>
-            </thead>
+    {% if notes %}
+        <div class="notes-container">
+            <h1 class="ordinary-header">Ваши заметки</h1>
 
-            <tbody>
-            {% for note in notes %}
-                <tr class="note-row hoverable" data-url="{{ note.get_absolute_url }}">
-                    <td>
-                        <img class="img-in-table"
-                             src="
-                                     {% if note.icon %}{{ note.icon.url }}{% else %}{% static 'noteapp/default/default-note-icon.png' %}{% endif %}"
-                             alt=""/>
-                    </td>
-                    <td class="note-title">
-                        {{ note.title }}
-                        {% if note.is_pinned %}
-                            <img class="is_pinned" src="{% static 'noteapp/svg/pin.svg' %}" alt="">
-                        {% endif %}
-                    </td>
-                    <td><span class="note-category-label" style="background-color:{{ note.category.color }}">
-                {{ note.category }}</span>
-                    </td>
-                    <td>{{ note.time_create|date:"d.m.Y" }}</td>
-                    <td>{{ note.time_update|date:"d.m.Y" }}</td>
+            <table class="notes-table">
+                <thead>
+                <tr class="note-row header-row">
+                    <th>Аватар</th>
+                    <th>Название</th>
+                    <th>Категория</th>
+                    <th>Дата создания</th>
+                    <th>Дата изменения</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
 
-        <script src="{% static 'noteapp/js/redirect_notes.js' %}"></script>
+                <tbody>
+                {% for note in notes %}
+                    <tr class="note-row hoverable" data-url="{{ note.get_absolute_url }}">
+                        <td>
+                            <img class="img-in-table"
+                                 src="
 
-    </div>
+
+                                         {% if note.icon %}{{ note.icon.url }}{% else %}{% static 'noteapp/default/default-note-icon.png' %}{% endif %}"
+                                 alt=""/>
+                        </td>
+                        <td class="note-title">
+                            {{ note.title }}
+                            {% if note.is_pinned %}
+                                <img class="is_pinned" src="{% static 'noteapp/svg/pin.svg' %}" alt="">
+                            {% endif %}
+                        </td>
+                        <td><span class="note-category-label" style="background-color:{{ note.category.color }}">
+                {{ note.category }}</span>
+                        </td>
+                        <td>{{ note.time_create|date:"d.m.Y" }}</td>
+                        <td>{{ note.time_update|date:"d.m.Y" }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <script src="{% static 'noteapp/js/redirect_notes.js' %}"></script>
+
+        </div>
+
+    {% else %}
+        <div class="notes-container no-items">
+            <h1 class="ordinary-header">Нет ни одной заметки. Создайте <a href="{% url 'create_note' %}"> здесь</a>
+            </h1>
+        </div>
+    {% endif %}
 {% endblock %}

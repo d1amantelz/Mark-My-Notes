@@ -10,30 +10,38 @@
 
 {% block content %}
     <!-- контейнер с заметками -->
-    <div class="notes-container">
-        <h1 class="ordinary-header">Ваши категории</h1>
 
-        <div class="categories-container">
-            {% for category in categories %}
-                <div class="category-container">
-                    <div class="category-title-container" style="background-color: {{ category.color }}; ">
-                        <h3><a href="{% url 'notes_by_category' category.pk %}">{{ category.name }}</a></h3>
+    {% if categories %}
+        <div class="notes-container">
+            <h1 class="ordinary-header">Ваши категории</h1>
+
+            <div class="categories-container">
+                {% for category in categories %}
+                    <div class="category-container">
+                        <div class="category-title-container" style="background-color: {{ category.color }}; ">
+                            <h3><a href="{% url 'notes_by_category' category.pk %}">{{ category.name }}</a></h3>
+                        </div>
+                        <div class="category-button-container">
+                            <a class="tooltip" href="{{ category.get_absolute_url }}">
+                                <img src="{% static 'noteapp/svg/edit.svg' %}" alt="">
+                                <span class="tooltiptext">Изменить категорию</span>
+                            </a>
+                            <a href="javascript:void(0)" class="deleteButton tooltip" data-id="{{ category.pk }}"
+                               data-type="category">
+                                <img src="{% static 'noteapp/svg/delete.svg' %}" alt="">
+                                <span class="tooltiptext">Удалить категорию</span>
+                            </a>
+                        </div>
                     </div>
-                    <div class="category-button-container">
-                        <a class="tooltip" href="{{ category.get_absolute_url }}">
-                            <img src="{% static 'noteapp/svg/edit.svg' %}" alt="">
-                            <span class="tooltiptext">Изменить категорию</span>
-                        </a>
-                        <a href="javascript:void(0)" class="deleteButton tooltip" data-id="{{ category.pk }}"
-                           data-type="category">
-                            <img src="{% static 'noteapp/svg/delete.svg' %}" alt="">
-                            <span class="tooltiptext">Удалить категорию</span>
-                        </a>
-                    </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
+    {% else %}
+        <div class="notes-container no-items">
+            <h1 class="ordinary-header">Нет ни одной категории. Создайте <a href="{% url 'create_category' %}">здесь</a></h1>
+        </div>
+    {% endif %}
+
 
     <!-- Модальное окно для подтверждения удаления -->
     {% include 'modal_delete_category.html' %}

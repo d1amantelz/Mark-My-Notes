@@ -58,7 +58,7 @@ class Category(models.Model):
 
     name = models.CharField(max_length=20)
     author = models.ForeignKey('Profile', on_delete=models.CASCADE)
-    color = models.CharField(choices=COLOR_CHOICES, default='#264653')
+    color = models.CharField(choices=COLOR_CHOICES, default='#264653', max_length=10)
 
     def __str__(self):
         return self.name

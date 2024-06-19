@@ -8,39 +8,45 @@
 {% endblock %}
 
 {% block content %}
-    <div class="notes-container">
-        <h1 class="ordinary-header">Заметки на удаление</h1>
+    {% if trash_notes %}
+        <div class="notes-container">
+            <h1 class="ordinary-header">Заметки на удаление</h1>
 
-        <div class="trash-notes-container">
-            {% for trash_note in trash_notes %}
-                <div class="hoverable trash-note-container">
-                    <div class="first-line">
-                        <div class="icon-container">
-                            <img class="trash-note-icon" src="
+            <div class="trash-notes-container">
+                {% for trash_note in trash_notes %}
+                    <div class="hoverable trash-note-container">
+                        <div class="first-line">
+                            <div class="icon-container">
+                                <img class="trash-note-icon" src="
                         {% if trash_note.icon %}
                             {{ trash_note.icon.url }}
                         {% else %}
                             {% static 'noteapp/default/default-note-icon.png' %}
                         {% endif %}" alt="">
+                            </div>
+                            <div class="title-and-category-container">
+                                <h3 class="trash-note-title">{{ trash_note.title }}</h3>
+                                <p class="trash-note-category"
+                                   style="background-color: {{ trash_note.category.color }}">{{ trash_note.category }}</p>
+                            </div>
                         </div>
-                        <div class="title-and-category-container">
-                            <h3 class="trash-note-title">{{ trash_note.title }}</h3>
-                            <p class="trash-note-category"
-                               style="background-color: {{ trash_note.category.color }}">{{ trash_note.category }}</p>
+                        <div class="trash-note-delete-container">
+                            <a class="tooltip" href="{% url 'delete_permanently_note' trash_note.pk %}">
+                                <img src="{% static 'noteapp/svg/delete.svg' %}" alt="">
+                                <span class="tooltiptext">Удалить заметку навсегда</span>
+                            </a>
+                            <a class="tooltip" href="{% url 'restore_note' trash_note.pk %}">
+                                <img src="{% static 'noteapp/svg/restore.svg' %}" alt="">
+                                <span class="tooltiptext">Восстановить заметку</span>
+                            </a>
                         </div>
                     </div>
-                    <div class="trash-note-delete-container">
-                        <a class="tooltip" href="{% url 'delete_permanently_note' trash_note.pk %}">
-                            <img src="{% static 'noteapp/svg/delete.svg' %}" alt="">
-                            <span class="tooltiptext">Удалить заметку навсегда</span>
-                        </a>
-                        <a class="tooltip" href="{% url 'restore_note' trash_note.pk %}">
-                            <img src="{% static 'noteapp/svg/restore.svg' %}" alt="">
-                            <span class="tooltiptext">Восстановить заметку</span>
-                        </a>
-                    </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
+    {% else %}
+        <div class="notes-container no-items">
+            <h1 class="ordinary-header">В корзине нет ни одной заметки!</h1>
+        </div>
+    {% endif %}
 {% endblock %}
